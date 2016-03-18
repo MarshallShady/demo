@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三栏布局</title>
+	<style>
+    *{margin: 0;padding: 0;}
+    body{min-width: 700px;}
+
+    .left,
+    .middle,
+    .right{ 
+        position: relative;
+        float: left;
+        min-height: 130px;
+    }
+    .container{
+        padding:0 120px 0 200px;
+        overflow: hidden;
+    }
+    .left{
+        margin-left: -100%;
+        left: -200px;
+        width: 200px;
+        background: red;
+    }
+    .right{
+        margin-left: -120px;
+        right: -120px;
+        width: 120px;
+        background: green;
+    }
+    .middle{ 
+        width: 100%;
+        background: blue;
+        word-break: break-all;
+
+    }
+    .footer{ 
+        clear: both;
+    }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="middle"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>
