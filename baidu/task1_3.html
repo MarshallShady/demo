@@ -5,35 +5,67 @@
 	<title>三栏布局</title>
 	<style>
     *{margin: 0;padding: 0;}
-    body{min-width: 700px;}
+    body{min-width: 700px; padding: 20px;}
 
     .left,
-    .middle,
+    .main,
     .right{ 
         position: relative;
         float: left;
-        min-height: 130px;
+        box-sizing: border-box;
+        min-height: 20px;
     }
     .container{
-        padding:0 120px 0 200px;
+        padding:20px 160px 20px 240px;
         overflow: hidden;
+        background: #eee;
+        border: solid 1px #999;
+
     }
     .left{
         margin-left: -100%;
-        left: -200px;
+        left: -220px;
         width: 200px;
-        background: red;
+        padding: 20px;
+        background: #fff;
+        border: solid 1px #999;
+    }
+    .left img {
+        width: 80px;
+        height: 80px;
+        display: block;
+        float: left;
+    }
+    .left div {
+        width: auto;
+        float: left;
+        margin-left: -80px;
+        position: relative;
+        left: 80px;
+        padding-left: 20px;
+        box-sizing: border-box;
     }
     .right{
         margin-left: -120px;
-        right: -120px;
+        right: -140px;
         width: 120px;
-        background: green;
+        padding:20px;
+        border: solid 1px #999;
+        padding-bottom: 0;
+        background: #fff;
     }
-    .middle{ 
+    .right div {
+        margin-bottom: 20px;
+    }
+    .right img {
         width: 100%;
-        background: blue;
+    }
+    .main{ 
+        width: 100%;
+        background: #fff;
+        border: solid 1px #999;
         word-break: break-all;
+        padding: 20px;
 
     }
     .footer{ 
@@ -43,9 +75,25 @@
 </head>
 <body>
 	<div class="container">
-		<div class="middle"></div>
-		<div class="left"></div>
-		<div class="right"></div>
+		<div class="main">
+            <h1>团队介绍</h1>
+            <p>Sheen 是来自杭电的一只队伍，我们之前都认识，然后都有兴趣就参加了，我们都希望扽到提升。</p>      
+        </div>
+		<div class="left">
+            <img src="img/sheen.jpg" alt="Sheen logo"> 
+            <div>
+               <h2>Sheen</h2>     
+            </div>
+        </div>
+		<div class="right">
+            <div>
+                <img src="img/sheen.jpg" alt="Sheen logo"> 
+            </div>
+            <div>
+                <img src="img/sheen.jpg" alt="Sheen logo"> 
+            </div>
+
+        </div>
 	</div>
 	<div class="footer"></div>
 </body>
