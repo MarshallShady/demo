@@ -126,8 +126,7 @@
 		});
 
 		/*********防止选择餐厅的a标签冒泡**********/
-		$("#canteen a").click(function(e){
-			alert('a');
+		$("#canteen a").tap(function(e){
 			e.stopPropagation();
 		});
 		/*******************/
