@@ -17,9 +17,9 @@
     <div class="header-title">切换餐厅 ></div>
 	<div id="canteen" class="canteen">
 		<ul>
-			<li><a href="https://www.baidu.com">第1餐厅</a></li>
+			<li><a href="#">第1餐厅</a></li>
 			<li><a href="#">第2餐厅</a></li>
-			<li><a href="javascript:alert('ceshi');">第3餐厅</a></li>
+			<li><a href="#">第3餐厅</a></li>
 			<li><a href="#">第4餐厅</a></li>
 			<li><a href="#">第5餐厅</a></li>
 			<li><a href="#">第6餐厅</a></li>
@@ -124,6 +124,13 @@
 		$("#header").tap(function () {		//餐厅触发滑动
 			slide($canteen).toggle();
 		});
+
+		/*********防止选择餐厅的a标签冒泡**********/
+		$canteen.click(function(e){
+			e.stopPropagation();
+		});
+		/*******************/
+
 		$("#order-icon").tap(function (ev) {	//购物车图标触发滑动
 			var ev = ev || event;
 			ev.preventDefault();
