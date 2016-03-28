@@ -1,0 +1,385 @@
+body,div,dl,dt,dd,ul,li,h3,span,p,input,button {margin:0;padding:0;font-family:"Microsoft YaHei","微软雅黑",arial,simsun;}
+a{text-decoration:none;color:#fff;}
+ul {list-style:none;}
+button, input {outline:none;border:none;font-size:16px;}
+
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
+  position: relative;
+  min-height: 1px;
+  float:left;
+}
+.col-12 {
+  width: 100%;
+}
+.col-11 {
+  width: 91.66666667%;
+}
+.col-10 {
+  width: 83.33333333%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-8 {
+  width: 66.66666667%;
+}
+.col-7 {
+  width: 58.33333333%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-5 {
+  width: 41.66666667%;
+}
+.col-4 {
+  width: 33.33333333%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-2 {
+  width: 16.66666667%;
+}
+.col-1 {
+  width: 8.33333333%;
+}
+
+.text-center {
+  text-align: center;
+}
+.small {
+  font-size:75%;
+}
+.large {
+  font-size:125%;
+}
+.warning {
+  color: #e55;
+}
+.icon-before:before {
+  content:attr(data-icon);
+  display:inline-block;
+  color:white;
+  vertical-align:20%;
+  margin-right:5px;
+  border-radius: 3px;
+  padding:1px 3px;
+  font-size:10px;
+  background-color: #f87;
+}
+.icon-after:after {
+  content:attr(data-icon);
+  display:inline-block;
+  color:white;
+  margin-left:10px;
+  vertical-align:25%;
+  border-radius: 3px;
+  padding:2px;
+  font-size:8px;
+  background-color: #f87;
+}
+.icon-plus-minus {
+  position: relative;
+  display: inline-block;
+}
+.icon-plus-minus:after {
+  content: attr(data-icon);
+  display:inline-block;
+  position: absolute;
+  top:0;
+  right:0;
+  width:35px;
+  height:35px;
+  border-radius: 50%;
+  font-size:36px;
+  line-height: 35px;
+  text-align: center;
+  color:#f55;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+.minus:after {
+  line-height:30px;
+}
+.plus:after {
+  line-height:35px;
+}
+.float-right {
+  float:right;
+}
+.float-left {
+  float:left;
+}
+.full {
+  width:100%;
+  height:100%;
+}
+.icon-number {
+  position: relative;
+}
+.full {
+  width:100%;
+  height:100%;
+}
+.icon-number {
+  position: relative;
+}
+.icon-number:before {
+  content: attr(data-icon);
+  position: absolute;
+  top:0;
+  right:0;
+  padding: 5px 8px;
+  line-height: 100%;
+  border: 2px #fff solid;
+  border-radius: 60px;
+  font-weight: bold;
+  color:#f55;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+.card {
+  margin-top: 15px;
+  position: relative;
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  box-sizing:border-box;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.card-streamer {
+  position: absolute;
+  left:-40%;
+  top:20%;
+  z-index:2;
+  font-size:12px;
+  background-color: #ff6550;
+  width:100%;
+  text-align: center;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);   /* IE 9 */
+  -webkit-transform: rotate(-45deg); /* Safari and Chrome */
+  -o-transform: rotate(-45deg);    /* Opera */
+  -moz-transform: rotate(-45deg);
+  color:white;
+}
+.card-object {
+  display: block;
+}
+.card-right,
+.card > .pull-right {
+  padding-left: 10px;
+}
+.card-left,
+.card > .pull-left {
+  padding-right: 10px;
+}
+.card-box {
+  padding-bottom:39%;
+}
+.hidden {
+  visibility: hidden;
+}
+/********************************************/
+.header {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height: 50px;
+  line-height: 45px;
+  color:white;
+  font-size:18px;
+  text-align: center;
+  z-index:10;
+}
+.header-title {
+  width:100%;
+  height: 50px; 
+  background-color: #ff6550;
+}
+.canteen {
+  position:fixed;
+  top:-100%;
+  width:100%;
+  height:100%;
+  transition:top .5s;
+  -ms-transition:top .5s;   /* IE 9 */
+  -webkit-transition:top .5s; /* Safari and Chrome */
+  -o-transition:top .5s;    /* Opera */
+  -moz-transition:top .5s;
+  background-color: #ff6550;
+  overflow: hidden;
+  z-index:-5;
+}
+.canteen ul {
+  position:absolute;
+  bottom:25%;
+}
+.canteen ul li {
+  margin:5px 0;
+  width:50%;
+  float:left;
+}
+.canteen ul li a {
+  font-size:12px;
+  width:80%;
+  padding:10px 25px;
+  background-color: #fff;
+  color:#ff6550;
+  box-shadow: 0 0 5px rgba(0,0,0,.35);
+}
+.tab {
+  margin-top:50px;
+}
+.tab ul {
+  width:100%;
+  height:75px;
+}
+.tab ul li {
+  float:left;
+  width:33.3333%;
+  height:100%;
+}
+.tab ul li a {
+  display: block;
+  margin:0 auto;
+  color:#888;
+  width:80%;
+  height:100%;
+  line-height:70px;
+  text-align: center;
+  box-sizing:border-box;
+}
+.current-time {
+  border-bottom:5px solid #ff6550;
+}
+.container {
+  padding-top:5px;
+  background-color: #f5f5f5;
+}
+.food-info {
+  padding-top:5%;
+}
+.food-name {
+  color:#333;
+  font-size:18px;
+}
+.food-components {
+  font-size:10px;
+  color:#888;
+}
+.food-sold {
+  font-size:10px;
+  color:#888;
+}
+.food-sold:before {
+  font-size:7px;
+  background-color: #f96;
+}
+.food-icon-group {
+  position: absolute;
+  bottom:15px;
+  right:10px;
+}
+.food-icon {
+  width:40px;
+  top:-25px;
+}
+.food-amount {
+  display: inline-block;
+  width:20px;
+  text-align: center;
+}
+.order{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:45px;
+  color:#ff6550;
+  background-color: white;
+  box-shadow: 0 0 2px #888;
+  font-size:16px;
+  z-index:5;
+}
+.order-icon {
+  background:url(../pic/trolley.png) center no-repeat;
+  background-size: 65%;
+  width:60px;
+  height:60px;
+  border-radius:30px;
+  margin-left:15px;
+  margin-top:-25px;
+  background-color: #ff6550;
+}
+.order-price {
+  line-height:45px;
+  text-indent:15px;
+}
+.order-enter {
+  width:30%;
+  line-height:45px;
+  color:#fff;
+  background-color: #888;
+  text-align: center;
+}
+.order-bg {
+  width:100%;
+  height:45px;
+  border:1px solid #eee;
+  background-color: #fff;
+}
+.order-list {
+  position:absolute;
+  top:0;
+  width: 100%;
+  z-index:-5;
+  transition:top .25s;
+  -ms-transition:top .25s;   /* IE 9 */
+  -webkit-transition:top .25s; /* Safari and Chrome */
+  -o-transition:top .25s;    /* Opera */
+  -moz-transition:top .25s;
+}
+.order-list dd,.order-list dt {
+  width:100%;
+  padding:0 15px;
+  box-sizing:border-box;
+}
+.order-list dt {
+  line-height:30px;
+  color:white;
+  background-color: #ff6550;
+}
+.order-list dd {
+  line-height:45px;
+  height:45px;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.1) inset;
+}
+.order-list-bg {
+  position: absolute;
+  width:100%;
+  height:100%;
+  background-color: #fff;
+}
+.item-food-icon {
+  width:35px;
+  height:35px;
+  margin-top: 5px;
+}
+.item-food-total {
+  margin-right:15px;
+}
+.item-food-amount {
+  margin:0 5px;
+  width:20px;
+  text-align: center;
+}
