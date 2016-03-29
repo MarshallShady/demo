@@ -290,7 +290,10 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
 .canteen ul li a {
   font-size:12px;
   width:80%;
-  display: inline-block;
+  text-align: center;
+  line-height: 36px;
+  height: 36px;
+  display: block;
   margin: 0 auto;
   background-color: #fff;
   color:#ff6550;
