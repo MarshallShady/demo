@@ -280,7 +280,8 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
   -o-transition:top .5s;    /* Opera */
   -moz-transition:top .5s;
   background-color: #ff6550;
-  overflow: auto;
+  overflow-x:hidden;
+  overflow-y: auto;
   z-index:-5;
 }
 .canteen .booth-ele {

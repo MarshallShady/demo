@@ -57,10 +57,8 @@ select {-webkit-appearance:none;}
 	border: solid 1px #fff;
 	border-radius: 4px;
 	background: red;
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+	margin: 0 auto;
+	margin-top: 10px;
 }
 .memu-icon span {
 	width: 60%;
@@ -117,9 +115,10 @@ select {-webkit-appearance:none;}
 .select-ele,.gw-btn {
 	border: 1px solid ;
 	border-color: rgba(239,79,79,1);
-	border-radius: 3px;
+	border-radius: 5px;
 	line-height: 36px;
 	margin-bottom: 10px;
+	padding:2px;
 }
 .select-ele select {
 	width: 100%;
@@ -137,6 +136,9 @@ select {-webkit-appearance:none;}
 	width: 100%;
 	background: rgb(255, 101, 80);
 	color: #fff;
+}
+.gw-btn:hover {
+	background: #C9302C;
 }
 
 /********************/
