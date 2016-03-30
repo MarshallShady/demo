@@ -1,5 +1,5 @@
 
-
+;
 function pageScoll( page, initSpeed ){
 	//page 为需要滚动条运动的dom元素
 	//initSpeed为要滚动的速度 1到10
