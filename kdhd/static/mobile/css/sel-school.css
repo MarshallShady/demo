@@ -1,0 +1,22 @@
+
+.bidian-font {
+	width: 100%;
+	padding-top: 60px;
+	padding-bottom: 50px;
+}
+.bidian-font img {
+	width: 40%;
+	margin: 0 auto;
+	display: block;
+}
+.school-address {
+	width: 80%;
+	margin: 0 auto;
+}
+.select-ele {
+	margin-bottom: 20px;
+}
+.gw-btn {
+	margin-top: 30px;
+	font-size: 16px;
+}

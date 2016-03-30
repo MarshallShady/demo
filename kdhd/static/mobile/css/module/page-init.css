@@ -1,0 +1,142 @@
+html,body {
+	width:100%;
+	height: 100%;
+}
+body,div,dl,dt,dd,ul,li,h3,span,p,input,button {margin:0;padding:0;font-family:"Microsoft YaHei","微软雅黑",arial,simsun;}
+header,section,article,aside,footer {
+	display: block;
+}
+ul {list-style:none;}
+button, input {outline:none;border:none;font-size:16px;}
+a{text-decoration:none;color:#fff;}
+select {-webkit-appearance:none;}
+
+.page {
+  max-width: 600px;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.main-header > * {
+ 	height: 50px;
+ }
+.main-header {
+	width: 100%;
+	max-width: 600px;
+	position: fixed;
+	background: #FF6550;
+	text-align: center;
+	font-size: 20px;
+	color: #FFF;
+}
+.go-back {
+	width: 50px;
+	line-height: 50px;
+	float: left;
+}
+.headline {
+	width: 100%;
+	margin-left: -50px;
+	float: left;
+	line-height: 50px;
+}
+.headline-body {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.main-memu{
+	width: 50px;
+	float: left;
+	margin-left:-50px;
+	position: relative;
+}
+.memu-icon {
+	width: 60%;
+	height: 60%;
+	border: solid 1px #fff;
+	border-radius: 4px;
+	background: red;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.memu-icon span {
+	width: 60%;
+	height: 20%;
+	display: block;
+	margin: 0 auto;
+	border-bottom: 2px solid #fff;
+}
+.memu-pull-down {
+	background: red;
+	position: absolute;
+	top:100%;
+	right: 6px;
+	border-radius: 0 0 5px 5px;
+	height: 0;
+	overflow: hidden;
+	transition:width 0.5s,height 0.5s;
+	-ms-transition:width 0.5s,height 0.5s;   /* IE 9 */
+	-webkit-transition:width 0.5s,height 0.5s; /* Safari and Chrome */
+	-o-transition:width 0.5s,height 0.5s;    /* Opera */
+	-moz-transition:width 0.5s,height 0.5s;
+	
+}
+.memu-pull-down li {
+	width: 100px;
+	font-size: 13px;
+	border-bottom: 1px #fff solid;
+    display: block;
+}
+.memu-pull-down a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+}
+.memu-pull-down li:last-child {
+  border-bottom: 0;
+}
+
+
+.main-section {
+	padding-top: 50px;
+	height: 100%;
+}
+.main-footer {
+	margin-top: 50px;
+	text-align: center;
+	font-size: 12px;
+}
+
+
+/********************/
+
+.select-ele,.gw-btn {
+	border: 1px solid ;
+	border-color: rgba(239,79,79,1);
+	border-radius: 3px;
+	line-height: 36px;
+	margin-bottom: 10px;
+}
+.select-ele select {
+	width: 100%;
+	line-height: 36px;
+	border:none;
+	display: block;
+	float: left;
+	padding-left: 20px;
+}
+.select-ele span {
+	margin-left: -30px;
+}
+
+.gw-btn {
+	width: 100%;
+	background: rgb(255, 101, 80);
+	color: #fff;
+}
+
+/********************/
