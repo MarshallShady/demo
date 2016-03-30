@@ -4,7 +4,7 @@ body,div,dl,dt,dd,ul,li,h3,span,p,input,button {margin:0;padding:0;font-family:"
   margin: 0 auto;
 }
 a{text-decoration:none;color:#fff;}
-ul {list-style:none;}
+ul,li {list-style:none;}
 button, input {outline:none;border:none;font-size:16px;}
 
 .container {
@@ -289,8 +289,9 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
 }
 .canteen ul li {
   margin:5px 0;
-  width:33%;
+  width:33.2%;
   float:left;
+  list-style: none;
 }
 .canteen ul li a {
   font-size:12px;
