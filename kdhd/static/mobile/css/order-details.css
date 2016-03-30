@@ -1,1 +1,85 @@
-order-details.css
+
+.page {
+	background: #E6E6E6;
+}
+.status-now {
+	padding: 10px 0;
+	background: #fff;
+}
+.plan {
+	width: 75%;
+	height: 14px;
+	border:2px solid #FF6551;
+	border-radius: 6px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 6px;
+	position: relative;
+}
+.plan > span {
+	width: 1px;
+	height: 14px;
+	border-right: 1px solid #FF6550;
+	position: absolute;
+	top: 0px;
+}
+.plan > span:nth-child(2){
+	left: 33.33%;
+}
+.plan > span:nth-child(3){
+	left: 66.66%;
+}
+.plan-val {
+	width: 0%;
+	height: 99%;
+	display: block;
+	background: #FF6551;
+	transition:width 0.5s;
+	-ms-transition:width 0.5s;   /* IE 9 */
+	-webkit-transition:width 0.5s; /* Safari and Chrome */
+	-o-transition:width 0.5s;    /* Opera */
+	-moz-transition:width 0.5s;
+	position: relative;
+}
+.plan-val div {
+	width: 14px;
+	height: 14px;
+	background: #FF6551;
+	border:1px solid #fff;
+	border-radius: 100%;
+	position: absolute;
+	top: -1px;
+	right: -8px;
+}
+.plan-val span {
+	width: 6px;
+	height: 6px;
+	display: block;
+	background: #FF6551;
+	border:1px solid #fff;
+	border-radius: 100%;
+	margin: 0 auto;
+	margin-top: 3px;
+}
+
+
+.plan-item {
+	background: #FF6551;
+}
+
+.plan-font {
+	width:100%;
+	overflow: hidden;
+	margin-bottom: 20px;
+	color: #000;
+}
+.plan-font li {
+	width:25%;
+	float: left;
+}
+.plan-font p {
+	font-size: 12px;
+	text-align: center;
+	
+}
+

@@ -227,7 +227,7 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
 	height: 60%;
 	border: solid 1px #fff;
 	border-radius: 4px;
-	background: red;
+	background: #ff6550;
 	margin-top: 25%;
 }
 .memu-icon span {
@@ -238,7 +238,7 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
 	border-bottom: 2px solid #fff;
 }
 .memu-pull-down {
-	background: red;
+	background: #ff6550;
 	position: absolute;
 	top:100%;
 	right: 0;
@@ -289,7 +289,7 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
 }
 .canteen ul li {
   margin:5px 0;
-  width:33.2%;
+  width:33.29%;
   float:left;
   list-style: none;
 }

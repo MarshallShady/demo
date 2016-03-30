@@ -6,9 +6,9 @@
     <meta content="yes" name="apple-mobile-web-app-capable" /> 
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <title>选学校</title>
+    <title>订单详细</title>
     <link rel="stylesheet" href="static/mobile/css/module/page-init.css"></head>
-    <link rel="stylesheet" href="static/mobile/css/sel-school.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/order-details.css"></head>
 <body>
 <div class="page">
 	<header class="main-header">
@@ -36,13 +36,17 @@
 	</header>
 	<section class="main-section">
 		<article class="status-now">
-			<div>
-				<span></span>
-				<span></span>
+			<div class="plan">
+				<!-- 0 : 已下单，1 ：付款成功，2 ：已派送，3 ：送达寝室-->
+				<div class="plan-val" data-value="1">
+					<div>
+						<span></span>
+					</div>
+				</div>
 				<span></span>
 				<span></span>
 			</div>
-			<div>
+			<div class="plan-font">
 				<ul>
 					<li><p>已下单</p></li>
 					<li><p>付款成功</p></li>
@@ -50,6 +54,53 @@
 					<li><p>送达寝室</p></li>
 				</ul>
 			</div>
+		</article>
+		<article class="user-msg">
+			<header class="user-msg-title">
+				<ul>
+					<li><p>用户信息</p></li>
+				</ul>
+			</header>
+			<section class="user-msg-body">
+				<a href="">
+					<div class="user-msg-img">
+						<img src="static/mobile/image/address.png" alt="">
+					</div>
+					<div class="user-msg-data">
+						<h3>高少辉</h3>
+						<p>15658033953</p>
+						<p>杭州电子科技大学5号南楼504</p>
+					</div>
+					<div class="arrows"><span>&gt;</span></div>
+				</a>
+			</section>
+		</article>
+		<article class="order-date">
+			<header class="order-date-title">
+				<ul>
+					<li><p></p></li>
+					<li>
+						<p>配送日期</p>
+					</li>
+					<li>
+						<p>配送时间</p>
+					</li>
+				</ul>
+			</header>
+			<section class="order-date-body">
+				<div>
+					<h3>午餐</h3>
+				</div>
+				<div>
+					<select disabled>
+						<option value="">2016-3-30</option>
+					</select>
+					<span>▼</span>
+				</div>
+				<div>
+					<p>12:20~13:30</p>
+				</div>
+			</section>
 		</article>
 	</section>
 	<footer class="main-footer">
@@ -59,5 +110,12 @@
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script src="static/mobile/js/module/init.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		var planValWidth = ( parseInt( $('.plan-val').attr('data-value') )/0.03 );
+		$('.plan-val').css( 'width', planValWidth + '%' );
+	});
+</script>
 </body>
 </html>

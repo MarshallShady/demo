@@ -17,7 +17,7 @@
 
 	<div id="header" class="header">
 	    <div class="header-title">
-	   		<p>切换餐厅 ></p>
+	   		<p>切换餐厅 ▼</p>
 	   		<div id="memu">
 	   			<div class="memu-icon">
 	   				<span></span>
@@ -41,7 +41,6 @@
 				</ul>
 				<div class="clear-float"></div>
 			</div>
-			<div style="height:9000px;"></div>
 			<div id="booth">
 				<p>请选择您的档口</p>
 				<div class="booth-ele">
@@ -267,19 +266,38 @@
 			//给 canteen 的 scroll 增加交互
 			pageScoll( $("#canteen")[0], 5 );
 
-			//个人中心菜单
-			$("#memu").tap(function(e){
-				var height = parseInt( $(".memu-pull-down li").css('height') ) * $(".memu-pull-down li").length;
-				if( $(".memu-pull-down").css('height') == '0px' ){
-					$(".memu-pull-down").css({
-						'height' : height+'px',
-					});
-				} else {
-					$(".memu-pull-down").css({
-						'height' : '0',
-					});
+			
+			//菜单初始化
+			var memu = {
+				onOff : false,
+				height : parseInt( $(".memu-pull-down li").css('height') ) * $(".memu-pull-down li").length,
+				move :	function (e){
+
+					if( this.onOff == false ){
+						$(".memu-pull-down").css({
+							'height' : this.height+'px',
+						});
+						this.onOff = true;
+					} else {
+						$(".memu-pull-down").css({
+							'height' : '0',
+						});
+						this.onOff = false;
+					}
+					
 				}
-				e.stopPropagation();
+			}
+			$("#memu").tap(function(e){
+				memu.move();
+				if( $( "#canteen" ).css('top') != '0px' ){
+					e.stopPropagation();
+				}
+			});
+
+			$(document).tap(function(){
+				if( memu.onOff == true && $( "#canteen" ).css('top') == '0px' ){
+					memu.move();
+				}
 			});
 				
 		}());
