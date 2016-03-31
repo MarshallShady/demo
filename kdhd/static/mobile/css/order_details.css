@@ -71,7 +71,6 @@
 	width:100%;
 	overflow: hidden;
 	margin-bottom: 20px;
-	color: #000;
 }
 .plan-font li {
 	width:25%;
@@ -81,5 +80,23 @@
 	font-size: 12px;
 	text-align: center;
 	
+}
+
+.order-number p{
+	line-height: 50px;
+	font-size: 20px;
+	color: #9f9f9f;
+	letter-spacing: 4px;
+	text-align: center;
+}
+.orider-btn {
+	width: 274px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 10px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	font-size: 20px;
+	letter-spacing: 4px;
 }
 

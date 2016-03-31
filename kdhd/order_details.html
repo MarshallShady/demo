@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>订单详细</title>
+    <link rel="stylesheet" href="static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/submit_order.css">
+    <link rel="stylesheet" href="static/mobile/css/order_details.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="go-back">
+			<p><a href="#"><</a></p>
+		</div>
+		<div class="headline">
+			<div class="headline-body">
+				<p>订单详细</p>
+			</div>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<div class="memu-pull-down">
+   				<ul>
+   					<li><a href="#">个人中心</a></li>
+   					<li><a href="#">订单中心</a></li>
+   				</ul>
+   			</div>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="status-now">
+			<div class="plan">
+				<!-- 0 : 已下单，1 ：付款成功，2 ：已派送，3 ：送达寝室-->
+				<div class="plan-val" data-value="1">
+					<div>
+						<span></span>
+					</div>
+				</div>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="plan-font">
+				<ul>
+					<li><p>已下单</p></li>
+					<li><p>付款成功</p></li>
+					<li><p>已派送</p></li>
+					<li><p>送达寝室</p></li>
+				</ul>
+			</div>
+		</article>
+		<article class="user-msg">
+			<header class="user-msg-title">
+				<ul>
+					<li><p>用户信息</p></li>
+				</ul>
+			</header>
+			<section class="user-msg-body">
+				<a href="">
+					<div class="user-msg-img">
+						<img src="static/mobile/image/address.png" alt="">
+					</div>
+					<div class="user-msg-data">
+						<h3>高少辉</h3>
+						<p>15658033953</p>
+						<p>杭州电子科技大学5号南楼504</p>
+					</div>
+					<div class="arrows"><span>&gt;</span></div>
+				</a>
+			</section>
+		</article>
+		<article class="order-date">
+			<header class="order-date-title">
+				<ul>
+					<li><p></p></li>
+					<li>
+						<p>配送日期</p>
+					</li>
+					<li>
+						<p>配送时间</p>
+					</li>
+				</ul>
+			</header>
+			<section class="order-date-body">
+				<div>
+					<h3>午餐</h3>
+				</div>
+				<div>
+					<select disabled>
+						<option value="">2016-3-30</option>
+					</select>
+					<span>▼</span>
+				</div>
+				<div>
+					<p>12:20~13:30</p>
+				</div>
+			</section>
+		</article>
+		<article class="detail">
+			<header class="detail-title">
+				<div>
+					<p>已选菜品</p>
+				</div>
+				<span>金额</span>
+			</header>
+			<section class="detail-body">
+				<ul>
+					<li>
+						<div>
+							<p>【经典】奥尔良烤翅鸡排*1</p>
+						</div>
+						<span>￥16</span>
+					</li>
+					<li>
+						<div>
+							<p>打包费*1</p>
+						</div>
+						<span>￥0.5</span>
+					</li>
+					<li>
+						<div>
+							<p> 配送费*1</p>
+						</div>
+						<span>￥1</span>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="remark">
+			<header class="remark-title">
+				<p>留言备注</p>
+			</header>
+			<section class="remark-body">
+				<p class="in-text">少加辣，不要葱！！！</p>
+			</section>
+		</article>
+		<article class="order-number">
+			<p>订单号：<span>201303280016</span></p>
+		</article>
+		<article>
+			<a href="javascript:;" class="gw-btn orider-btn">催&nbsp;&nbsp;单</a>
+			<a href="javascript:;" class="gw-btn orider-btn disabled">申请退款</a>
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
+<script src="static/mobile/js/module/init.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		var planValWidth = ( parseInt( $('.plan-val').attr('data-value') )/0.03 );
+		$('.plan-val').css( 'width', planValWidth + '%' );
+	});
+</script>
+</body>
+</html>

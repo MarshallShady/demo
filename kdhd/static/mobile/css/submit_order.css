@@ -1,0 +1,160 @@
+
+.page {
+	background: #E6E6E6;
+}
+.user-msg-title,.order-date-title {
+	height: 30px;
+}
+
+.user-msg-title ul,.order-date-title ul {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.user-msg-title li,.order-date-title li {
+	width: 33.33%;
+	height: 100%;
+	padding-left: 10px;
+	display: block;
+	float: left;
+}
+.user-msg-title p,.order-date-title p {
+	line-height: 30px;
+	font-size: 13px;
+}
+
+.user-msg-body,.order-date-body {
+	background: #fff;
+	position: relative;
+}
+.user-msg-body a {
+	width: auto;
+	overflow: hidden;
+	padding:10px;
+	display: block;
+
+}
+.user-msg-img {
+	padding: 16px;
+	float: left;
+}
+.user-msg-data {
+	float: left;
+	color: #000;
+	padding-left: 10px;
+}
+.user-msg-data p {
+	font-size: 14px;
+}
+.arrows {
+	position: absolute;
+	right: 10px;
+	top:49.5%;
+	color: #000;
+	transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);  /* IE 9 */
+	-webkit-transform: translate(-50%,-50%); /* Safari and Chrome */
+	-o-transform: translate(-50%,-50%);   /* Opera */
+	-moz-transform: translate(-50%,-50%);
+}
+
+.order-date-title li {
+	padding-left: 0;
+
+}
+.order-date-title p {
+	text-align: center;
+}
+.order-date-body {
+	width: 100%;
+	overflow: hidden;
+}
+.order-date-body div {
+	display: block;
+	float: left;
+	line-height: 40px;
+	height: 40px;
+	width: 33.33%;
+	text-align: center;
+}
+.order-date-body h3 {
+	text-align: left;
+	margin-left: 30px;
+	font-size: 18px;
+}
+.order-date-body p,.order-date-body select,.order-date-body span {
+	font-size: 14px;
+	color: #6B6B6B;
+}
+.order-date-body select {
+	border:none;
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	padding-left: 10px;
+}
+.order-date-body span {
+	float: left; 
+	width: 10px;
+	margin-left: -30px;
+}
+
+.detail-title {
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	font-size: 13px;
+}
+.detail-title div,.detail-body div {
+	width: 80%;
+	float: left;
+}
+.detail-title p {
+	padding-left: 10px;
+}
+.detail-title span,.detail-body span {
+	width: 20%;
+	display: block;
+	float: left;
+}
+.detail-body {
+	width: 100%;
+	background: #fff;
+}
+.detail-body li {
+	width: 100%;
+	overflow: hidden;
+}
+.detail-body p {
+	padding-left: 30px;
+	font-size: 14px;
+	line-height: 26px;
+}
+.detail-body span {
+	font-size: 12px;
+	line-height: 26px;
+}
+
+.remark-title p {
+	padding-left: 10px;
+	font-size: 13px;
+	line-height: 30px;
+}
+.remark-body {
+	background: #fff;
+	padding: 14px 20px;
+}
+.in-text {
+	width: 100%;
+	margin:0;
+	padding: 0;
+	border: none;
+	font-size: 14px;
+}
+textarea.in-text:active,textarea.in-text:focus {
+	border: none;
+}
+p.in-text {
+	color:#B0B0B0;
+}

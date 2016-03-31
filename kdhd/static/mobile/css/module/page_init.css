@@ -28,6 +28,7 @@ select {-webkit-appearance:none;font-family:"Microsoft YaHei","微软雅黑",ari
 	text-align: center;
 	font-size: 20px;
 	color: #FFF;
+	z-index: 99;
 }
 .go-back {
 	width: 50px;
@@ -134,102 +135,23 @@ select {-webkit-appearance:none;font-family:"Microsoft YaHei","微软雅黑",ari
 }
 
 .gw-btn {
-	width: 100%;
-	background: rgb(255, 101, 80);
+	width:auto;
 	color: #fff;
+	display: block;
+	background: rgb(255, 101, 80);
+	text-align: center;
+	letter-spacing: 2px;
 }
-.gw-btn:hover {
+button.gw-btn{
+	width:100%;
+}
+.gw-btn:active {
 	background: #C9302C;
-}
-
-
-
-.user-msg-title,.order-date-title {
-	height: 30px;
-}
-
-.user-msg-title ul,.order-date-title ul {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-.user-msg-title li,.order-date-title li {
-	width: 33.33%;
-	height: 100%;
-	padding-left: 10px;
-	display: block;
-	float: left;
-}
-.user-msg-title p,.order-date-title p {
-	line-height: 30px;
-	font-size: 13px;
-}
-
-.user-msg-body,.order-date-body {
-	background: #fff;
-	position: relative;
-}
-.user-msg-body a {
-	width: 100%;
-	overflow: hidden;
-	padding:10px;
-	display: block;
 
 }
-.user-msg-img {
-	padding: 16px;
-	float: left;
-}
-.user-msg-data {
-	float: left;
-	color: #000;
-	padding-left: 10px;
-}
-.user-msg-data p {
-	font-size: 14px;
-}
-.arrows {
-	position: absolute;
-	right: 10px;
-	top:49.5%;
-	color: #000;
-	transform: translate(-50%,-50%);
-	-ms-transform: translate(-50%,-50%);  /* IE 9 */
-	-webkit-transform: translate(-50%,-50%); /* Safari and Chrome */
-	-o-transform: translate(-50%,-50%);   /* Opera */
-	-moz-transform: translate(-50%,-50%);
-}
-
-.order-date-title li {
-	padding-left: 0;
-
-}
-.order-date-title p {
-	text-align: center;
-}
-.order-date-body {
-	width: 100%;
-	overflow: hidden;
-}
-.order-date-body div {
-	display: block;
-	float: left;
-	line-height: 40px;
-	height: 40px;
-	width: 33.33%;
-	text-align: center;
-}
-.order-date-body h3 {
-	text-align: left;
-	margin-left: 30px;
-}
-.order-date-body p,.order-date-body select,.order-date-body span {
-	font-size: 14px;
-	color: #6B6B6B;
-}
-.order-date-body select {
-	border:none;
-	line-height: 40px;
+.disabled,.disabled:active {
+	background: #9f9f9f;
+	border-color: #9f9f9f;
 }
 
 
