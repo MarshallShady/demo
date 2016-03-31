@@ -109,7 +109,6 @@ $(document).ready(function(ready) {
 				for( var i = 0, len = initFood[electTime].length ; i < len; i++ ){
 					result += this.creatFood( i, initFood[electTime][i] );
 				}
-				$("#container").fadeOut();
 				$("#container")[0].innerHTML = '';
 				$("#container").append( result );
 			}
