@@ -212,3 +212,8 @@ p.in-text {
 .order-submit-btn .gw-btn:active {
 	background: #9E3E3E;
 }
+
+.order-submit-box {
+	height: 50px;
+	
+}
