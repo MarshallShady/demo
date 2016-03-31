@@ -327,10 +327,6 @@ ol-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
   text-align: center;
   box-sizing:border-box;
 }
-.tab a:focus,.tab a:hover,.tab a:active,.tab a:link,.tab a:visited {
-  background: #fff;
-}
-
 
 .clear-float {
 	clear: both;
