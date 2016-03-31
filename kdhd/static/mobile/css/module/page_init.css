@@ -153,5 +153,13 @@ button.gw-btn{
 	border-color: #9f9f9f;
 }
 
+.more {
+	width:100%;
+	font-size: 16px;
+	text-align: center;
+	line-height: 2.6;
+	letter-spacing: 4px;
+}
+
 
 /********************/

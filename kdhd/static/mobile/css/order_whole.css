@@ -1,0 +1,82 @@
+.page {
+	background: #E6E6E6;
+}
+
+.order-whole-title {
+	
+}
+.order-whole-title {
+    padding-left: 10px;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.order-ele {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	border-bottom: 1px solid #BBB6B6;
+}
+.order-ele-padding {
+	padding: 10px;
+	padding-right: 4px;
+}
+.order-ele-img {
+	width: 46%;
+	float: left;
+}
+
+.order-ele-img img {
+	width:100%;
+	margin-bottom: 0;
+	display: block;
+}
+.order-ele-article {
+	width: 54%;
+	float: left;
+}
+.order-ele-price {
+	font-size: 18px;
+	color: #FF9C8E;
+	position: relative;
+}
+.order-ele-price span {
+	line-height: 2;
+	font-size: 0.5em;
+	color: #9A9A9A;
+	position: absolute;
+	right: 10px;
+}
+.order-ele-data {
+	margin-top: 4px;
+	font-size: 14px;
+	color: #9A9A9A;
+}
+.order-ele-date {
+	margin-top: 10px;
+	font-size: 0.6em;
+}
+.order-ele-action{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 10px;
+}
+.order-ele-btn {
+	width: 50px;
+	font-size: 10px;
+	height: 1.6em;
+	line-height: 1.6em;
+	padding: 0 4px;
+	float: right;
+	margin-bottom: 0;
+	margin-right: 4px;
+}
+.order-btn-bg {
+	background: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+.order-btn-bg:active{
+	background: #736060;
+	color: #fff;
+}
