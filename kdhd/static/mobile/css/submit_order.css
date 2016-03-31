@@ -175,6 +175,9 @@ p.in-text {
 	float: left;
 	line-height: 50px;
 }
+.order-submit-num span {
+	padding: 0 4px;
+}
 .order-submit-money {
 	width: 40%;
 	height: 100%;
@@ -182,10 +185,13 @@ p.in-text {
 	float: left;
 }
 .order-submit p {
-	padding-left: 10px;
+	text-align: center;
 	font-size: 16px;
 	line-height: 50px;
-	letter-spacing: 2px;
+	letter-spacing: 3px;
+}
+.order-submit span {
+	color: #FF9898;
 }
 .order-submit-btn {
 	width: 37%;
@@ -200,6 +206,9 @@ p.in-text {
 	font-size: 18px;
 	padding: 0;
 	margin:0;
-	color: #F3CFCF;
+	color: #fff;
 	background: #FF6565;
+}
+.order-submit-btn .gw-btn:active {
+	background: #9E3E3E;
 }

@@ -140,7 +140,6 @@ select {-webkit-appearance:none;font-family:"Microsoft YaHei","微软雅黑",ari
 	display: block;
 	background: rgb(255, 101, 80);
 	text-align: center;
-	letter-spacing: 2px;
 }
 button.gw-btn{
 	width:100%;
