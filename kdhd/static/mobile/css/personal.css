@@ -1,0 +1,54 @@
+
+.page{
+}
+
+.personal-img {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+.personal-img img {
+	width: 93px;
+	height: 93px;
+	border-radius: 100%;
+	display: block;
+	margin: 0 auto;
+}
+
+.peisonal-data-ele {
+	width:84%;
+	margin:0 auto;
+	padding: 10px 0;
+	border-bottom: 1px solid #ff6550;
+	margin-bottom: 6px;
+}
+.peisonal-data-ele span {
+	width: 26%;
+	display: inline-block;
+}
+
+.peisonal-data-ele input{
+	width: 70%;
+}
+button.verify-btn {
+	width: 76px;
+	padding:0;
+	margin-bottom: 0;
+	font-size: 12px;
+	height: 26px;
+	line-height: 26px;
+	display: inline;
+	margin-left: -76px;
+}
+
+.hidden {
+	display: none;
+}
+
+.peisonal-submit {
+	width:50%;
+	margin:0 auto;
+	margin-top:30px;
+	letter-spacing: 14px;
+	font-size: 24px;
+	border-radius: 10px;
+}

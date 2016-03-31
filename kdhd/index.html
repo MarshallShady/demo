@@ -73,38 +73,6 @@
 						<li><a href="javascript:;">第2餐厅第14档口</a></li>
 						<li><a href="javascript:;">第2餐厅第15档口</a></li>
 						<li><a href="javascript:;">第2餐厅第16档口</a></li>
-						<li><a href="javascript:;">第2餐厅第17档口</a></li>
-						<li><a href="javascript:;">第2餐厅第18档口</a></li>
-						<li><a href="javascript:;">第2餐厅第19档口</a></li>
-						<li><a href="javascript:;">第2餐厅第20档口</a></li>
-						<li><a href="javascript:;">第2餐厅第21档口</a></li>
-						<li><a href="javascript:;">第2餐厅第22档口</a></li>
-						<li><a href="javascript:;">第2餐厅第23档口</a></li>
-						<li><a href="javascript:;">第2餐厅第24档口</a></li>
-						<li><a href="javascript:;">第2餐厅第25档口</a></li>
-						<li><a href="javascript:;">第2餐厅第26档口</a></li>
-						<li><a href="javascript:;">第2餐厅第27档口</a></li>
-						<li><a href="javascript:;">第2餐厅第28档口</a></li>
-						<li><a href="javascript:;">第2餐厅第29档口</a></li>
-						<li><a href="javascript:;">第2餐厅第30档口</a></li>
-						<li><a href="javascript:;">第2餐厅第31档口</a></li>
-						<li><a href="javascript:;">第2餐厅第32档口</a></li>
-						<li><a href="javascript:;">第2餐厅第33档口</a></li>
-						<li><a href="javascript:;">第2餐厅第34档口</a></li>
-						<li><a href="javascript:;">第2餐厅第35档口</a></li>
-						<li><a href="javascript:;">第2餐厅第36档口</a></li>
-						<li><a href="javascript:;">第2餐厅第37档口</a></li>
-						<li><a href="javascript:;">第2餐厅第38档口</a></li>
-						<li><a href="javascript:;">第2餐厅第39档口</a></li>
-						<li><a href="javascript:;">第2餐厅第1档口</a></li>
-						<li><a href="javascript:;">第2餐厅第2档口</a></li>
-						<li><a href="javascript:;">第2餐厅第3档口</a></li>
-						<li><a href="javascript:;">第2餐厅第4档口</a></li>
-						<li><a href="javascript:;">第2餐厅第5档口</a></li>
-						<li><a href="javascript:;">第2餐厅第6档口</a></li>
-						<li><a href="javascript:;">第2餐厅第7档口</a></li>
-						<li><a href="javascript:;">第2餐厅第8档口</a></li>
-						<li><a href="javascript:;">第2餐厅第9档口</a></li>
 					</ul>
 					<div class="clear-float"></div>
 				</div>
@@ -113,9 +81,9 @@
 	</div>
 	<div id="tab" class="tab">
 		<ul>
-			<li><a href="#" class="current-time">早餐</a></li>
-			<li><a href="#">午餐</a></li>
-			<li><a href="#">晚餐</a></li>
+			<li data-flag="0"><a href="#" class="current-time">早餐</a></li>
+			<li data-flag="1"><a href="#">午餐</a></li>
+			<li data-flag="2"><a href="#">晚餐</a></li>
 		</ul>
 	</div>
 	<div id="container" class="container">
@@ -205,7 +173,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="font-size:5px;margin-top:20%;width:100%;text-align:center;">Copyright Pocket University - Keyves</div>
+	<div style="font-size:5px;margin-top:20%;width:100%;text-align:center;">版权归：必点所有</div>
 	<div id="order" class="order">
 		<button id="order-icon" class="order-icon icon-number float-left"></button>
 		<label id="order-price" class="order-price float-left">￥1.0（米饭）</label>
@@ -219,250 +187,147 @@
 		<input id="order-input" type="hidden">
 	</div>
 </div>
-<style>
-</style>
+<script>
+	var initFood = [
+			[//早上
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '早餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+			],
+			[//中午
+				
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '午餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+			],
+			[//晚上
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+				{
+					name : '晚餐',
+					img : 'static/data/image/1.png',
+					sellNum : 1024,
+					cost : 12.5
+				},
+			]
+		];
+</script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script type="text/javascript" src="static/mobile/js/module/pageScoll.js"></script>
-<script>
-	// TouchSlide({ 
-	// 	slideCell:"#banner",
-	// 	interTime:2500,
-	// 	autoPlay:true
-	// });
-	$(document).ready(function(ready) {
-		var food_all_amount = 0					//初始菜数
-		,	$order_list = $("#order-list")		//菜单列表
-		,	$orderInfo = $("#order-icon")		//弹出式菜单icon & 当前总选菜数
-		,	$container = $("#container")		//获取卡片容器
-		,	$canteen = $("#canteen");			//选择餐厅
+<script type="text/javascript" src="static/mobile/js/index.js"></script>
 
-		$("#header").tap(function () {		//餐厅触发滑动
-			slide($canteen).toggle();
-		});
-
-
-
-		/********骚辉更改***********/
-		(function(){
-			//防止选择餐厅的a标签冒泡
-			$("#canteen a").tap(function(e){
-				e.stopPropagation();
-			});
-
-
-			//切换档口
-			var $restaurants = $("#restaurant a");
-			for( var len = $restaurants.length; len--; ){
-				(function(num){
-					$($restaurants[num]).tap(function(){
-						$("#restaurant p").html( $(this).html() );
-						$("#booth .booth-ele").css( 'display', 'none' );
-						$( $("#booth .booth-ele")[num] ).css( 'display', 'block' );
-					});
-				}(len));
-			}
-
-			//给 canteen 的 scroll 增加交互
-			pageScoll( $("#canteen")[0], 5 );
-
-			
-			//菜单初始化
-			var memu = {
-				onOff : false,
-				height : parseInt( $(".memu-pull-down li").css('height') ) * $(".memu-pull-down li").length,
-				move :	function (e){
-
-					if( this.onOff == false ){
-						$(".memu-pull-down").css({
-							'height' : this.height+'px',
-						});
-						this.onOff = true;
-					} else {
-						$(".memu-pull-down").css({
-							'height' : '0',
-						});
-						this.onOff = false;
-					}
-					
-				}
-			}
-			$("#memu").tap(function(e){
-				memu.move();
-				if( $( "#canteen" ).css('top') != '0px' ){
-					e.stopPropagation();
-				}
-			});
-
-			$(document).tap(function(){
-				if( memu.onOff == true && $( "#canteen" ).css('top') == '0px' ){
-					memu.move();
-				}
-			});
-				
-		}());
-
-
-		/***************************/
-
-
-
-
-		$("#order-icon").tap(function (ev) {	//购物车图标触发滑动
-			var ev = ev || event;
-			ev.preventDefault();
-			slide($order_list).toggle();
-		});
-		$("#order-list-clear").tap(function () {	//清空购物车
-			var r = confirm("确认清除购物车？");
-			if (!r) return;
-
-			slide($order_list).toggle();
-			$order_list.find(".food").remove();
-			$container.find(".food-amount").html("0");
-
-			food_all_amount = 0;
-			updateOrderIcon();
-			coutTotal();
-		});
-		$("#order-enter").tap(function () {
-			console.log("running");
-			var $order_input = $("#order-input")
-			,	order = [];			//弹出式菜单————获取所有已选菜式的总价
-			$order_list.find(".order-list-item").each(function () {
-				order.push({
-					amount : parseInt($(this).find(".item-food-amount").text()),
-					number : $(this).attr("data-number")
-				});
-			});
-			$order_input.val(JSON.stringify(order));
-			console.log($order_input.val());
-			$.ajax({
-				url:'#',
-				type:'POST',
-				data:{order:order},
-				success:function () {
-					console.log("successfully");
-				}
-			});
-		});
-		$(document).on("tap", ".icon-plus-minus", function (ev) {
-			var $that = $(this)
-			,	$food_est = $that.closest(".food");
-
-			var	type = $that.attr("data-icon");					//弹出式菜单————获取icon类型 用来判断+-号
-			
-			var $food = findFood($food_est);					//获取符合条件的菜式卡片和菜单条目
-			if ($food.length > 1) {
-				updateFood(type, $food);
-			} else {
-				if (type === "+")
-					createItemDD($food_est);
-			}
-			updateOrderIcon();
-
-			slide($order_list).update();
-			coutTotal();
-		});
-		function createItemDD (food) {
-			var	$food_name = food.find(".food-name")	
-			,	$food_unitprice = food.find(".food-unitprice")
-			,	$food_minus = food.find(".minus")
-			,	$food_amount = food.find(".food-amount");
-
-			var	food_number = food.attr("data-number")
-			,	food_unitprice = $food_unitprice.text()
-			,	food_name = $food_name.text();
-			var html = '<dd class="order-list-item food" data-number="' + food_number + '"data-unitprice="' + food_unitprice + '">'
-					 + '<span class="food-name">' + food_name + '</span>'
-					 + '<div  class="item-food-icon icon-plus-minus float-right plus" data-icon="+"></div>'
-					 + '<span class="item-food-amount float-right">' + 1 + '</span>'
-					 + '<div  class="item-food-icon icon-plus-minus float-right minus" data-icon="-"></div>'
-					 + '<span class="item-food-total float-right" >' + food_unitprice + '</span>'
-					 + '</dd>';
-			food_all_amount++;
-			$food_minus.removeClass("hidden");
-			$food_amount.removeClass("hidden");
-			$food_amount.html("1");
-			$("#order-list-title").after(html); //弹出式菜单标题
-		}
-		function updateOrderIcon () {
-			$orderInfo.attr("data-icon",food_all_amount);		//更新icon总菜式数量
-		}
-		function updateFood (type, food) {
-			var	$food_amount = food.find(".food-amount")				//卡片菜式显示的数量-对象获取
-			,	$item_food_total = food.find(".item-food-total")		//弹出式菜单-当前选取菜式的总价-对象获取
-			,	$item_food_amount = food.find(".item-food-amount")		//弹出式菜单-当前选取菜式的数量-对象获取
-
-			var amount = parseInt($item_food_amount.text());
-			if (type === "+") {
-				amount++;
-				food_all_amount++;
-			} else if (type === "-") {
-				if (amount === 1) {
-					food.filter(".order-list-item").remove();
-					var $card_food = food.filter(".card");
-					$card_food.find(".minus").addClass("hidden");
-					$card_food.find(".food-amount").addClass("hidden");
-					slide($order_list).update();
-				}
-				amount--;
-				food_all_amount--;
-			} else {
-				return;
-			}
-
-			var	unitprice = parseFloat(food.find(".food-unitprice").text().match(/\d+(\.\d+)?$/g));//获取单价
-			var price = unitprice * amount;
-
-			$food_amount.html(amount);							//卡片-当前选取菜式数量-更新
-			$item_food_amount.html(amount);						//弹出式菜单-当前选取菜式数量-更新
-			$item_food_total.html("￥" + price.toFixed(1));	//弹出式菜单-当前选取菜式总价-更新
-		}
-		function findFood (obj) {
-			var number = obj.attr("data-number");	//当前选择的菜的编号
-
-			var $dd = $(".food").filter(function () {
-				return $(this).attr("data-number") === number;
-			});	
-			return $dd;
-		}
-		function coutTotal () {
-			var $order_price = $("#order-price")
-			,	total = 0;			//弹出式菜单————获取所有已选菜式的总价
-
-			$order_list.find(".item-food-total").each(function () {
-				total += parseFloat($(this).text().match(/\d+(\.\d+)?$/g));
-			});
-			$order_price.html("￥" + total.toFixed(1));
-
-			var $order_enter = $("#order-enter");
-			if (total >= 6) {
-				$order_enter.removeAttr("disabled");
-				$order_enter.css("backgroundColor","#ff6550");
-			} else {
-				$order_enter.attr("disabled","disabled");
-				$order_enter.css("backgroundColor","#888");
-			}
-		}
-
-		function slide(obj) {
-			var $obj = obj;
-		
-			return {
-				toggle : function () {
-					var	height = $obj.height()
-					,	dist = $obj.css("top") === '0px' ? (-height + 'px') : '0px';
-					$obj.css("top", dist);
-				},
-				update : function () {
-					var	height = $obj.height()
-					,	dist = $obj.css("top") === '0px' ? '0px' : (-height + 'px');
-					$obj.css("top", dist);
-				}
-			};
-		}
-	});
-</script>
 </body>
 </html>
