@@ -3,12 +3,65 @@
 // 	interTime:2500,
 // 	autoPlay:true
 // });
+
 $(document).ready(function(ready) {
 	var food_all_amount = 0					//初始菜数
 	,	$order_list = $("#order-list")		//菜单列表
 	,	$orderInfo = $("#order-icon")		//弹出式菜单icon & 当前总选菜数
 	,	$container = $("#container")		//获取卡片容器
 	,	$canteen = $("#canteen");			//选择餐厅
+
+	/*********骚辉**********/
+	//菜品生成
+	var manageFood = {
+
+		nowType : 0,
+		status : [
+			'breakfast',
+			'lunch',
+			'dinner'
+		],
+		init : function(){
+			manageFood.creats( manageFood.nowType );
+			$("#tab li").tap(function(){
+				var temp = clearShopping('切换时间点将会清空购物车，您确定切换吗？');
+				if(!temp)return;
+				manageFood.creats( $(this).attr('data-flag') );
+				$("#tab li a").removeClass();
+				$(this).children().addClass('current-time');
+				manageFood.nowType = $(this).attr('data-flag');
+			}); 
+		},
+
+		//菜品生成函数，一次生成一个页面上的 dom 
+		//num：第几个菜品（早中晚分开）
+		//img：菜品对应的链接
+		//name：菜品名字
+		//selNum：销量
+		//cost：价格  imgSrc, name, sellNum, cost
+		//{
+		//		name : '晚餐'
+		//		img : 'static/data/image/1.png',
+		//		sellNum : 1024,
+		//		cost : 12.5
+		//},
+		creatFood : function( num, data ){
+			return '<div class="card food row"  data-number="'+ num +'"><img class="card-object	food-image col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
+		},
+
+		//electTime：选择早上中午晚上。0：早上，1：中午，2：晚上
+		creats : function( electTime ){
+			var numFood = 0;
+			var result = '';
+			for( var i = 0, len = initFood[electTime].length ; i < len; i++ ){
+				result += this.creatFood( i, initFood[electTime][i] );
+			}
+			$("#container").html('');
+			$("#container").append( result );
+		}
+	};
+	/*********END骚辉**********/
+
 
 	$("#header").tap(function () {		//餐厅触发滑动
 		slide($canteen).toggle();
@@ -75,51 +128,14 @@ $(document).ready(function(ready) {
 		
 
 				
-		//菜品生成
-		var manageFood = {
-			init : function(){
-				manageFood.creats( 0 );
-				$("#tab li").tap(function(){
-					manageFood.creats( $(this).attr('data-flag') );
-					$("#tab li a").removeClass();
-					$(this).children().addClass('current-time');
-				}); 
-			},
-
-			//菜品生成函数，一次生成一个页面上的 dom 
-			//num：第几个菜品（早中晚分开）
-			//img：菜品对应的链接
-			//name：菜品名字
-			//selNum：销量
-			//cost：价格  imgSrc, name, sellNum, cost
-			//{
-			//		name : '晚餐'
-			//		img : 'static/data/image/1.png',
-			//		sellNum : 1024,
-			//		cost : 12.5
-			//},
-			creatFood : function( num, data ){
-				return '<div class="card food row"  data-number="'+ num +'"><img class="card-object	food-image col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
-			},
-
-			//electTime：选择早上中午晚上。0：早上，1：中午，2：晚上
-			creats : function( electTime ){
-				var numFood = 0;
-				var result = '';
-				for( var i = 0, len = initFood[electTime].length ; i < len; i++ ){
-					result += this.creatFood( i, initFood[electTime][i] );
-				}
-				$("#container")[0].innerHTML = '';
-				$("#container").append( result );
-			}
-		};
+		
 		manageFood.init();
 
 			
 	}());
 
 
-	/***************************/
+	/**********END骚辉*****************/
 
 
 
@@ -129,20 +145,10 @@ $(document).ready(function(ready) {
 		ev.preventDefault();
 		slide($order_list).toggle();
 	});
-	$("#order-list-clear").tap(function () {	//清空购物车
-		var r = confirm("确认清除购物车？");
-		if (!r) return;
-
-		slide($order_list).toggle();
-		$order_list.find(".food").remove();
-		$container.find(".food-amount").html("0");
-
-		food_all_amount = 0;
-		updateOrderIcon();
-		coutTotal();
+	$("#order-list-clear").tap(function(){
+		clearShopping('您确定清空购物车吗？');
 	});
 	$("#order-enter").tap(function () {
-		console.log("running");
 		var $order_input = $("#order-input")
 		,	order = [];			//弹出式菜单————获取所有已选菜式的总价
 		$order_list.find(".order-list-item").each(function () {
@@ -151,16 +157,11 @@ $(document).ready(function(ready) {
 				number : $(this).attr("data-number")
 			});
 		});
-		$order_input.val(JSON.stringify(order));
-		console.log($order_input.val());
-		$.ajax({
-			url:'#',
-			type:'POST',
-			data:{order:order},
-			success:function () {
-				console.log("successfully");
-			}
-		});
+		var result = {
+			type :  manageFood.status[ manageFood.nowType ],
+			data : order
+		};
+		$order_input.val(JSON.stringify(result));
 	});
 	$(document).on("tap", ".icon-plus-minus", function (ev) {
 		var $that = $(this)
@@ -180,6 +181,27 @@ $(document).ready(function(ready) {
 		slide($order_list).update();
 		coutTotal();
 	});
+
+	function clearShopping( msg ) {	//清空购物车
+		var r = confirm( msg );
+		if (!r) return false;
+
+		$(".minus").addClass('hidden');
+		$(".food-amount").addClass('hidden');
+		if($order_list.css('top') != '0px'){
+			slide($order_list).toggle();
+		}
+		$order_list.find(".food").remove();
+		$container.find(".food-amount").html("0");
+
+		food_all_amount = 0;
+		updateOrderIcon();
+		coutTotal();
+
+		return true;
+	}
+
+
 	function createItemDD (food) {
 		var	$food_name = food.find(".food-name")	
 		,	$food_unitprice = food.find(".food-unitprice")
