@@ -177,9 +177,9 @@
 	<div id="order" class="order">
 		<button id="order-icon" class="order-icon icon-number float-left"></button>
 		<label id="order-price" class="order-price float-left">￥1.0（米饭）</label>
-		<form id="submit-data" action="">
-			<input id="order-input" name="order_data" type="hidden">
-			<input type="button" id="order-enter" name="submit" class="order-enter float-right" value="6元起送" disabled="disabled">
+		<form id="submit-data" action="" onsubmit="return false">
+			<input id="order-input" name="order-data" type="hidden">
+			<button type="submit" id="order-enter" name="submit" class="order-enter float-right" disabled="disabled">6元起送</button>
 		</form>
 		<div id="order-bg" class="order-bg"></div>
 		<dl id="order-list" class="order-list">
