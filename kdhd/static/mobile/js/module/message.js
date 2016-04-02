@@ -3,6 +3,7 @@
 		init : function(){
 			var result = selectAddr.creatOption( address );
 			$('#city').html( result );
+			selectAddr.addOption( 'city', address[ 0 ].dataAdd );
 
 			changeEle( 'city', address, function( data ){
 				changeEle( 'school_name', data, function( data ){
