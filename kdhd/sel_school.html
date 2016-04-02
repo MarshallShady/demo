@@ -36,34 +36,44 @@
 	</header>
 	<section class="main-section">
 		<header class="bidian-font">
-			<img src="static/mobile/image/bidian.jpg" alt="必点logo">
+			<img src="static/mobile/image/LOGO.png" alt="必点logo">
 		</header>
 		<article class="school-address">
-			<div class="select-ele">
-				<span>▼</span>
-				<select>
-					<option value="">请选择您所在的省份</option>
-					<option value="hdu">浙江</option>
-					<option value="杭师大">南京</option>
-				</select>
-			</div>
-			<div class="select-ele">
-				<span>▼</span>
-				<select >
-					<option value="">请选择您的学校</option>
-					<option value="hdu">杭州道电子科技大学</option>
-					<option value="杭师大">杭师大</option>
-				</select>
-			</div>
-			<div class="select-ele" style="display: none;">
-				<span>▼</span>
-				<select >
-					<option value="">请选择您的校区</option>
-					<option value="hdu">东校区</option>
-					<option value="杭师大">本部</option>
-				</select>
-			</div>
-			<button class="gw-btn">点我啊</button>
+			<form action="">
+				<div class="select-ele">
+					<span>▼</span>
+					<select id="city" name="city">
+						<!-- <option value="">请选择您所在的省份</option>
+						<option value="hdu">浙江</option>
+						<option value="杭师大">南京</option> -->
+					</select>
+				</div>
+				<div class="select-ele">
+					<span>▼</span>
+					<select id="school_name" name="school_name">
+						<!-- <option value="">请选择您的学校</option>
+						<option value="hdu">杭州道电子科技大学</option>
+						<option value="杭师大">杭师大</option> -->
+					</select>
+				</div>
+				<div class="select-ele">
+					<span>▼</span>
+					<select id="school_area" name="school_area">
+						<!-- <option value="">请选择您的校区</option>
+						<option value="hdu">东校区</option>
+						<option value="杭师大">本部</option> -->
+					</select>
+				</div>
+				<div class="select-ele">
+					<span>▼</span>
+					<select  id="dormitory" name="dormitory" >
+						<!-- <option value="">请选择您的校区</option>
+						<option value="hdu">东校区</option>
+						<option value="杭师大">本部</option> -->
+					</select>
+				</div>
+				<button id="submit" class="gw-btn" type="submit">点我啊</button>
+			</form>
 		</article>
 	</section>
 	<footer class="main-footer">
@@ -72,7 +82,128 @@
 </div>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
-<script src="static/mobile/js/module/init.js"></script>
+<script type="text/javascript" src="static/mobile/js/module/init.js"></script>
+<script type="text/javascript" src="static/mobile/js/module/message.js"></script>
+<script>
+	var address = [
+		{
+			name : '浙江',
+			dataAdd :[
+				{
+					name : '杭州电子科技大学',
+					dataAdd : [
+						{
+							name : '下沙校区',
+							dataAdd : [
+								{
+									name : '5南3201'
+								},
+								{
+									name : '5南321'
+								},
+								{
+									name : '5南322'
+								}
+							]
+						},
+						{
+							name : '东岳',
+							dataAdd : [
+								{
+									name : '123楼'
+								}
+							]
+						},
+						{
+							name : '文一',
+							dataAdd : [
+								{
+									name : '321'
+								}
+							]
+						}
+					]
+				},
+				{
+					name : '杭州电子科技大学1',
+					dataAdd : [
+						{
+							name : '下沙校区1',
+							dataAdd : [
+								{
+									name : '5南3201'
+								},
+								{
+									name : '5南3211'
+								},
+								{
+									name : '5南3221'
+								}
+							]
+						},
+						{
+							name : '东岳1',
+							dataAdd : [
+								{
+									name : '123楼1'
+								}
+							]
+						},
+						{
+							name : '文一1',
+							dataAdd : [
+								{
+									name : '3211'
+								}
+							]
+						}
+					]
+				},
+			]
+		},
+		{
+			name : '南京',
+			dataAdd :[
+				{
+					name : '南京大学',
+					dataAdd : [
+						{
+							name : '南京校区',
+							dataAdd : [
+								{
+									name : '5南320'
+								}
+							]
+						},
+						{
+							name : '南京校区1',
+							dataAdd : [
+								{
+									name : '5南3201'
+								}
+							]
+						}					
+					]
+				},
+				{
+					name : '南京大学1',
+					dataAdd : [
+						{
+							name : 'hidden',
+							dataAdd : [
+								{
+									name : '5南3202'
+								}
+							]
+						}					
+					]
+				}
+				
+			]
+		}
+	];
+	selectAddr.init();
+</script>
 <script>
 	
 </script>

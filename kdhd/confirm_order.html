@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>支付订单</title>
+    <link rel="stylesheet" href="static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/confirm_order.css">
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="go-back">
+			<p><a href="#"><</a></p>
+		</div>
+		<div class="headline">
+			<div class="headline-body">
+				<p>支付订单</p>
+			</div>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<div class="memu-pull-down">
+   				<ul>
+   					<li><a href="#">个人中心</a></li>
+   					<li><a href="#">订单中心</a></li>
+   				</ul>
+   			</div>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="pay-msg">
+			<header class="pay-msg-title">
+				<span class="pay-time-img"></span><span>支付剩余时间：</span><span class="pay-time">15:00</span>
+			</header>
+			<section class="pay-msg-body">
+				<ul>
+					<li>
+						<p><strong>订单编号：</strong>201603280016</p>
+					</li>
+					<li>
+						<p><strong>订单单价：</strong>￥12.5</p>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="pay-mode">
+			<header class="pay-mode-title">
+			</header>
+			<section class="pay-mode-body">
+				<div class="pay-money">
+					<p><strong>还需支付：</strong>￥12.5</p>
+				</div>
+				<article class="pay-mode-ele" data-mode="wechat">
+					<img src="static/mobile/image/wechat.png" alt="">
+					<div>
+						<p>微信支付</p>
+					</div>
+					<span class="gou-false gou-true"></span>
+				</article>
+				<article class="pay-mode-ele" data-mode="alipay" style="display: none;">
+					<img src="static/mobile/image/wechat.png" alt="">
+					<div>
+						<p>支付宝</p>
+					</div>
+					<span class="gou-false"></span>
+				</article>
+				<article class="pay-mode-ele" data-mode="baidu" style="display: none;">
+					<img src="static/mobile/image/wechat.png" alt="">
+					<div>
+						<p>百度支付</p>
+					</div>
+					<span class="gou-false"></span>
+				</article>
+			</section>
+			<div class="more">
+				<p>更多付款方式 ∨</p>
+			</div>
+		</article>	
+		<form action="">
+			<input type="hidden" name="order_num" value="201605063214">
+			<input type="hidden" id="mode" name="mode" value="wechat">
+			<button class="gw-btn" type="submit" name="submit" id="submit">确认支付</button> 
+		</form>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
+<script src="static/mobile/js/module/init.js"></script>
+<script>
+	$(".more").tap(function(){
+		$(".pay-mode-ele").show();
+	});
+	$(".pay-mode-ele").tap(function(){
+		$(".pay-mode-ele span").removeClass('gou-true');
+		$(this).children('span').addClass('gou-true');
+		$("mode").val( $(this).attr('data-mode') );
+	});
+</script>
+</body>
+</html>

@@ -34,6 +34,7 @@ $(document).ready(function(ready) {
 		},
 
 		//菜品生成函数，一次生成一个页面上的 dom 
+		//id:菜品的id
 		//num：第几个菜品（早中晚分开）
 		//img：菜品对应的链接
 		//name：菜品名字
@@ -45,8 +46,8 @@ $(document).ready(function(ready) {
 		//		sellNum : 1024,
 		//		cost : 12.5
 		//},
-		creatFood : function( num, data ){
-			return '<div class="card food row"  data-number="'+ num +'"><img class="card-object	food-image col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
+		creatFood : function( data ){
+			return '<div class="card food row"  data-number="'+ data.id +'"><img class="card-object	food-image col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
 		},
 
 		//electTime：选择早上中午晚上。0：早上，1：中午，2：晚上
@@ -54,7 +55,7 @@ $(document).ready(function(ready) {
 			var numFood = 0;
 			var result = '';
 			for( var i = 0, len = initFood[electTime].length ; i < len; i++ ){
-				result += this.creatFood( i, initFood[electTime][i] );
+				result += this.creatFood( initFood[electTime][i] );
 			}
 			$("#container").html('');
 			$("#container").append( result );
@@ -154,13 +155,14 @@ $(document).ready(function(ready) {
 		$order_list.find(".order-list-item").each(function () {
 			order.push({
 				amount : parseInt($(this).find(".item-food-amount").text()),
-				number : $(this).attr("data-number")
+				id : $(this).attr("data-number")
 			});
 		});
 		var result = {
 			type :  manageFood.status[ manageFood.nowType ],
 			data : order
 		};
+		console.log( result );
 		$order_input.val(JSON.stringify(result));
 	});
 	$(document).on("tap", ".icon-plus-minus", function (ev) {

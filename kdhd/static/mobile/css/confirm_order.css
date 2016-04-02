@@ -1,0 +1,100 @@
+.page {
+	background: #E6E6E6;
+}
+
+.pay-msg-title {
+	text-align: center;
+}
+.pay-msg-title span{
+	display: inline-block;
+	line-height: 26px;
+	font-size: 12px;
+}
+.pay-time-img {
+	width: 10px;
+	height: 10px;
+	background: url(../image/clock.png);
+	background-size: 100%;
+	margin-right: 10px;
+}
+
+.pay-msg-body, .pay-mode-body{
+	background: #fff;
+	padding: 6px 0;
+}
+.pay-msg-body p,.pay-money p {
+	font-size: 14px;
+	letter-spacing: 2px;
+	line-height: 34px;
+	padding: 0 20px;
+}
+.pay-mode-title {
+	min-height: 20px;
+}
+
+.pay-mode-body {
+	background: #fff;
+}
+.pay-money {
+	margin-bottom: 6px;
+}
+
+.pay-mode-ele {
+	width: auto;
+	overflow: hidden;
+	border-top: 1px solid #E6E6E6;
+	padding: 10px 30px;
+}
+.pay-mode-ele:last-child {
+	border-bottom: 1px solid #E6E6E6;
+}
+.pay-mode-ele img {
+	width: 40px;
+	display: block;
+	float: left;
+}
+.pay-mode-ele div {
+	width:100%;
+	margin-left: -40px;
+	float: left;
+	line-height: 36px;
+}
+.pay-mode-ele p {
+	padding-left: 80px;
+	font-size: 20px;
+	color: #8D8D8D;
+}
+.pay-mode-ele span {
+	width: 26px;
+	height: 26px;
+	margin-top: 4px;
+	display: block;
+	float: left;
+	margin-left: -30px;
+	border-radius: 100%;
+}
+
+
+.gou-false {
+	background: url(../image/gou_false.png);
+	background-size: 100% 100%;
+}
+.gou-true {
+	background: url(../image/gou_true.png);
+	background-size: 100% 100%;
+}
+
+.more {
+	background: #fff;
+	color: #8D8D8D;
+	line-height: 26px;
+}
+
+#submit {
+	width: 80%;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 30px;
+	font-size: 20px;
+	letter-spacing: 4px;
+}

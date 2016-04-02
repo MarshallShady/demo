@@ -21,13 +21,15 @@
 	border-bottom: 1px solid #ff6550;
 	margin-bottom: 6px;
 }
-.peisonal-data-ele span {
+.peisonal-data-ele label {
 	width: 26%;
 	display: inline-block;
 }
 
-.peisonal-data-ele input{
+.peisonal-data-ele input,.peisonal-data-ele select{
 	width: 70%;
+	border:  none;
+	font-size: 16px;
 }
 button.verify-btn {
 	width: 76px;

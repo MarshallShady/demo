@@ -38,7 +38,7 @@
 		<header class="order-whole-title">
 			<p>订单中心</p>
 		</header>
-		<article class="order-ele">
+		<!-- <article class="order-ele">
 			<div class="order-ele-img">
 				<div class="order-ele-padding">
 					<img src="static/data/image/1.png" alt="">
@@ -97,11 +97,11 @@
 					</div>
 				</div>
 			</div>
-		</article>
+		</article> -->
 	</section>
 	<div class="more">
-			<p>查看更多订单 ∨</p>
-		</div>
+		<p>查看更多订单 ∨</p>
+	</div>
 	<footer class="main-footer">
 		<p>版权归：必点所有</p>
 	</footer>
@@ -109,49 +109,162 @@
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script src="static/mobile/js/module/init.js"></script>
+<script src="static/mobile/js/order_whole.js"></script>
 <script>
-	var inData = '<article class="order-ele">\
-			<div class="order-ele-img">\
-				<div class="order-ele-padding">\
-					<img src="static/data/image/1.png" alt="">\
-				</div>\
-			</div>\
-			<div class="order-ele-article">\
-				<div class="order-ele-padding">\
-					<p class="order-ele-price">￥18<span>已下单</span></p>\
-					<div class="order-ele-data">\
-						<p class="order-ele-name">芭比馒头，黄焖鸡米饭</p>\
-						<p class="order-ele-date">12.30~13.00安排配送</p>\
-					</div>\
-					<div class="order-ele-action">\
-						<a href="#" class="gw-btn order-ele-btn order-btn-bg">取消订单</a>\
-						<a href="#" class="gw-btn order-ele-btn">立即支付</a>\
-					</div>\
-				</div>\
-			</div>\
-		</article><article class="order-ele">\
-			<div class="order-ele-img">\
-				<div class="order-ele-padding">\
-					<img src="static/data/image/1.png" alt="">\
-				</div>\
-			</div>\
-			<div class="order-ele-article">\
-				<div class="order-ele-padding">\
-					<p class="order-ele-price">￥18<span>已下单</span></p>\
-					<div class="order-ele-data">\
-						<p class="order-ele-name">芭比馒头，黄焖鸡米饭</p>\
-						<p class="order-ele-date">12.30~13.00安排配送</p>\
-					</div>\
-					<div class="order-ele-action">\
-						<a href="#" class="gw-btn order-ele-btn order-btn-bg">取消订单</a>\
-						<a href="#" class="gw-btn order-ele-btn">立即支付</a>\
-					</div>\
-				</div>\
-			</div>\
-		</article>';
-	$(".more").tap(function(){
-		$('.main-section').append(inData);
-	});
+
+	var inData = [
+		{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},
+		{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},
+		{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		},
+		{
+			status : 0,
+			cost : 12.5,
+			name : '芭比馒头，黄焖鸡米饭',
+			time : '12.30~13.00',
+			img : 'static/data/image/1.png',
+			operation : [
+				{
+					href : 'https:www.baidu.com',
+					name : '立即支付',
+					emphasize : true
+				},
+				{
+					href : 'https:www.baidu.com',
+					name : '申请退款',
+					emphasize : false
+				},
+			]
+		}
+	];
+
+	creatOrder.init( 3, 5 );
+
 </script>
 </body>
 </html>

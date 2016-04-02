@@ -87,7 +87,7 @@
 		</ul>
 	</div>
 	<div id="container" class="container">
-		<div class="card food row"  data-number="1">		
+		<!-- <div class="card food row"  data-number="1">		
 			<img class="card-object	food-image col-7" src="static/data/image/1.png" alt="">
 			<div class="card-text col-5">
 				<ul class="food-info card-middle card-right large">
@@ -171,12 +171,12 @@
 				<span class="food-amount hidden">0</span>
 				<div class="food-icon icon-plus-minus plus" data-icon="+"></div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div style="font-size:5px;margin-top:20%;width:100%;text-align:center;">版权归：必点所有</div>
 	<div id="order" class="order">
 		<button id="order-icon" class="order-icon icon-number float-left"></button>
-		<label id="order-price" class="order-price float-left">￥1.0（米饭）</label>
+		<label id="order-price" class="order-price float-left">￥0.0</label>
 		<form id="submit-data" action="" onsubmit="return false">
 			<input id="order-input" name="order-data" type="hidden">
 			<button type="submit" id="order-enter" name="submit" class="order-enter float-right" disabled="disabled">6元起送</button>
@@ -193,135 +193,177 @@
 	var initFood = [
 			[//早上
 				{
+					id : 201600,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201601,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201602,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201603,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201604,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201605,
 					name : '早餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费早餐+营养套餐+有爱晚餐'
 				},
 			],
 			[//中午
 				
 				{
+					id : 201606,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201607,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201608,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201609,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201610,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201611,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201612,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201613,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201614,
 					name : '午餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费午餐+营养套餐+有爱晚餐'
 				},
 			],
 			[//晚上
 				{
+					id : 201615,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费晚餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201616,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					components : '免费晚餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201617,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费晚餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201618,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费晚餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201619,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费晚餐+营养套餐+有爱晚餐'
 				},
 				{
+					id : 201620,
 					name : '晚餐',
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
-					cost : 12.5
+					cost : 12.5,
+					introduce : '免费晚餐+营养套餐+有爱晚餐'
 				},
 			]
 		];

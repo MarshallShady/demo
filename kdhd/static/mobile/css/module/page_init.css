@@ -9,7 +9,13 @@ header,section,article,aside,footer {
 ul,li {list-style:none;}
 button, input {outline:none;border:none;font-size:16px;}
 a{text-decoration:none;color:#fff;}
-select {-webkit-appearance:none;font-family:"Microsoft YaHei","微软雅黑",arial,simsun; background: rgba(0,0,0,0);}
+select {
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  font-family:"Microsoft YaHei","微软雅黑",arial,simsun; 
+  background: rgba(0,0,0,0);
+}
 
 .page {
   max-width: 600px;
