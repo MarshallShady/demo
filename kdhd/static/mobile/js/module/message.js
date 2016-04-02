@@ -3,7 +3,6 @@
 		init : function(){
 			var result = selectAddr.creatOption( address );
 			$('#city').html( result );
-			selectAddr.addOption( 'city', address[0].dataAdd );
 
 			changeEle( 'city', address, function( data ){
 				changeEle( 'school_name', data, function( data ){
@@ -39,14 +38,7 @@
 				result += '<option value="'+ i + ',' + msg[i].name +'">'+ msg[i].name +'</option>';
 			}
 			return result;
-		},
-		changeEle : function( id, data, childId ){
-			$('#'+ id ).change(function(){
-				var index = parseInt(  $(this).val() );
-				var result = selectAddr.creatOption( data[ index ].dataAdd );
-				$('#'+childId).html( result );
-			});
-		},
+		},		
 		addOption : function ( id, data ){
 			var result = '';
 			switch( id ){

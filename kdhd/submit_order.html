@@ -72,10 +72,10 @@
 					<h3>午餐</h3>
 				</div>
 				<div>
-					<select>
-						<option value="">2016-3-30</option>
-						<option value="">2016-3-31</option>
-						<option value="">2016-3-32</option>
+					<select id="date-value">
+						<option>2016-3-30</option>
+						<option>2016-3-31</option>
+						<option>2016-3-32</option>
 					</select>
 					<span>▼</span>
 				</div>
@@ -119,7 +119,7 @@
 				<p>留言备注</p>
 			</header>
 			<section class="remark-body">
-				<textarea name="" rows="3" class="in-text"></textarea>
+				<textarea id="remark-value" rows="3" class="in-text"></textarea>
 			</section>
 		</article>
 	</section>
@@ -135,12 +135,26 @@
 			<p>总计<span>￥19.5</span></p>
 		</div>
 		<div class="order-submit-btn">
-			<a href="javascript:;" class="gw-btn">立即付款</a>
+			<form action="">
+				<!-- type:为早午餐类型 1为早餐，2午餐，3晚餐 -->
+				<input type="hidden" id="type-result" name="type" value="2">
+				<!-- date:为送餐日期 -->
+				<input type="hidden" id="date-result" name="date">
+				<input type="hidden" id="remark-result" name="remark">
+				<button type="submit" id="submit" class="gw-btn">立即付款</button>
+			</form>
 		</div>
 	</div>
 </div>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script src="static/mobile/js/module/init.js"></script>
+<script>
+	$('#submit').click(function(){
+		$("#date-result").val( $("#date-value").val() );
+		$("#remark-result").val( $("#remark-value").val() );
+		return false;
+	});
+</script>
 </body>
 </html>

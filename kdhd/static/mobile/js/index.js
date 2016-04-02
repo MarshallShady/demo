@@ -15,11 +15,11 @@ $(document).ready(function(ready) {
 	//菜品生成
 	var manageFood = {
 
-		nowType : 0,
+		nowType : nowType - 1,
 		status : [
-			'breakfast',
-			'lunch',
-			'dinner'
+			'1',
+			'2',
+			'3'
 		],
 		init : function(){
 			manageFood.creats( manageFood.nowType );
@@ -31,6 +31,7 @@ $(document).ready(function(ready) {
 				$(this).children().addClass('current-time');
 				manageFood.nowType = $(this).attr('data-flag');
 			}); 
+			$("#tab li").eq( manageFood.nowType ).children('a').addClass( 'current-time' );
 		},
 
 		//菜品生成函数，一次生成一个页面上的 dom 
@@ -162,8 +163,11 @@ $(document).ready(function(ready) {
 			type :  manageFood.status[ manageFood.nowType ],
 			data : order
 		};
-		console.log( result );
-		$order_input.val(JSON.stringify(result));
+		var strResult = JSON.stringify(result);
+		// strResult = strResult.replace(/"/g, '\"');
+		// strResult = strResult.replace(/\[/, '{');
+		// strResult = strResult.replace(/\]/, '}');
+		$order_input.val( strResult );
 	});
 	$(document).on("tap", ".icon-plus-minus", function (ev) {
 		var $that = $(this)
@@ -278,9 +282,11 @@ $(document).ready(function(ready) {
 
 		var $order_enter = $("#order-enter");
 		if (total >= 6) {
+			$("#order-enter").html( '确认购买' );
 			$order_enter.removeAttr("disabled");
 			$order_enter.css("backgroundColor","#ff6550");
 		} else {
+			$("#order-enter").html( '6元起送' );
 			$order_enter.attr("disabled","disabled");
 			$order_enter.css("backgroundColor","#888");
 		}
