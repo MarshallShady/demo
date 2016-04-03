@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>本时段各档口菜品订单</title>
+    <link rel="stylesheet" href="static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/residence_advisor.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="go-back">
+			<p><a href="#"><</a></p>
+		</div>
+		<div class="headline">
+			<div class="headline-body">
+				<p>本时段各档口菜品订单</p>
+			</div>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<div class="memu-pull-down">
+   				<ul>
+   					<li><a href="#">个人中心</a></li>
+   					<li><a href="#">订单中心</a></li>
+   				</ul>
+   			</div>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="order-manage">
+			<section class="order-body">
+				<header class="order-title">
+					<ul>
+						<li>档口</li>
+						<li>份数</li>
+						<li>操作</li>
+					</ul>
+				</header>
+				<section>
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>132131</p> </li>
+								<li><p>1</p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>菜品</li>
+										<li>价格</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+									<ul>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</article>
+					
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>132131</p> </li>
+								<li><p>1</p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>菜品</li>
+										<li>价格</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+									<ul>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</article>
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>132131</p> </li>
+								<li><p>1</p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>菜品</li>
+										<li>价格</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+									<ul>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span>25</span>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</article>
+				</section>
+			</section>
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
+<script src="static/mobile/js/module/init.js"></script>
+<script>
+	$('.btn-bg-white').tap(function(){
+		var target = $(this).closest('.order-data-title').next('.detail');
+		var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+		target.height(height);
+	});
+	
+</script>
+</body>
+</html>

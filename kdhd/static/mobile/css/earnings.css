@@ -1,0 +1,32 @@
+.page {
+	background: #E6E6E6;
+}
+
+.total {
+	width: auto;
+	overflow: hidden;
+}
+.total div {
+	width: 50%;
+	float: left;
+	background: #fff;
+}
+.total p {
+	border: 1px solid #000;
+	line-height: 50px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.detail li {
+	width: auto;
+	overflow: hidden;
+}
+.detail span {
+	width: 33.33%;
+	display: block;
+	float: left;
+	text-align: center;
+	color: #6C6C6C;
+	line-height: 1.8;
+}
