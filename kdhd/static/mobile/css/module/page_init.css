@@ -41,6 +41,11 @@ select {
 	line-height: 50px;
 	float: left;
 }
+.go-back a{
+	font-family: "SimSun";
+	font-weight: bold;
+}
+
 .headline {
 	width: 100%;
 	margin-left: -50px;
