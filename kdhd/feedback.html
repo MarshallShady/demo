@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>用户反馈</title>
+    <link rel="stylesheet" href="static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/feedback.css">
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="go-back">
+			<p><a href="#"><</a></p>
+		</div>
+		<div class="headline">
+			<div class="headline-body">
+				<p>用户反馈</p>
+			</div>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<div class="memu-pull-down">
+   				<ul>
+   					<li><a href="#">个人中心</a></li>
+   					<li><a href="#">订单中心</a></li>
+   				</ul>
+   			</div>
+		</div>
+	</header>
+	<section class="main-section">
+		<header class="thank-title">
+			<p>感谢您使用必点订餐</p>
+		</header>
+		<article class="two-code">
+			<header class="two-code-title">
+				<p>会第一时间回复你哦</p>
+			</header>
+			<section class="two-code-body">
+				<img src="static/mobile/image/two_code.jpg" alt="">
+				<p>长按图中二维码加【点点】为好友</p>
+			</section>
+		</article>
+			<button class="gw-btn close-btn">关闭</button>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
+<script src="static/mobile/js/module/init.js"></script>
+<script>
+	$('.close-btn').tap(function(){
+		WeixinJSBridge.call('closeWindow');
+	});
+</script>
+</body>
+</html>

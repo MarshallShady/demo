@@ -1,0 +1,30 @@
+
+.thank-title {
+	font-size: 14px;
+	padding-left: 10px;
+	border-bottom: 1px solid #C28B8B;
+	color: #292525;
+	line-height: 1.8;
+}
+
+.two-code-title {
+	font-size: 30px;
+	color: #FF6550;
+	text-align: center;
+	padding-top: 30px;
+}
+.two-code-body img {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+.two-code-body p {
+	color: #FF6550;
+	text-align: center;
+}
+
+button.close-btn {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 20px;
+}

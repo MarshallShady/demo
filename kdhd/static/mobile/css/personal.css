@@ -16,6 +16,7 @@
 
 .peisonal-data-ele {
 	width:84%;
+	overflow: hidden;
 	margin:0 auto;
 	padding: 10px 0;
 	border-bottom: 1px solid #ff6550;
@@ -23,13 +24,19 @@
 }
 .peisonal-data-ele label {
 	width: 26%;
-	display: inline-block;
+	display: block;
+	line-height: 1.8;
+	float: left;
 }
 
 .peisonal-data-ele input,.peisonal-data-ele select{
 	width: 70%;
 	border:  none;
 	font-size: 16px;
+	display: block;
+	line-height: 1.8;
+	float: left;
+	border-radius: 0;
 }
 button.verify-btn {
 	width: 76px;

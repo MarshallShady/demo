@@ -150,7 +150,7 @@ $(document).ready(function(ready) {
 	$("#order-list-clear").tap(function(){
 		clearShopping('您确定清空购物车吗？');
 	});
-	$("#order-enter").tap(function () {
+	$("#order-enter").click(function () {
 		var $order_input = $("#order-input")
 		,	order = [];			//弹出式菜单————获取所有已选菜式的总价
 		$order_list.find(".order-list-item").each(function () {
@@ -164,10 +164,12 @@ $(document).ready(function(ready) {
 			data : order
 		};
 		var strResult = JSON.stringify(result);
+		alert( strResult );
 		// strResult = strResult.replace(/"/g, '\"');
 		// strResult = strResult.replace(/\[/, '{');
 		// strResult = strResult.replace(/\]/, '}');
 		$order_input.val( strResult );
+		return true;
 	});
 	$(document).on("tap", ".icon-plus-minus", function (ev) {
 		var $that = $(this)
