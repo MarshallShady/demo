@@ -30,7 +30,9 @@
 		memu.move();
 		e.stopPropagation();
 	});
-
+	$(".memu-pull-down").tap(function(){
+		e.stopPropagation();
+	});
 	$(document).tap(function(){
 		if( memu.onOff == true ){
 			memu.move();
