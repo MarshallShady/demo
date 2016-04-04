@@ -60,7 +60,21 @@
 			creatOrder.creats( numInit );
 			$(".more").tap(function(){
 				creatOrder.creats( addNum );
+				confirmMe('order-ele-btn');
 			});
+			confirmMe('order-ele-btn');
+
+
 		}
 	};
+	confirmMe('order-ele-btn');
+	function confirmMe( elmClassName ){
+		$('.' + elmClassName).click(function(){
+			var r = confirm( '是否' + $(this).html() + '?' );
+			if(!r){
+				return false;
+			}
+			return true;
+		});
+	}
 }());

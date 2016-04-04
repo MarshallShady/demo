@@ -48,7 +48,7 @@ $(document).ready(function(ready) {
 		//		cost : 12.5
 		//},
 		creatFood : function( data ){
-			return '<div class="card food row"  data-number="'+ data.id +'"><img class="card-object	food-image col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
+			return '<div class="card food row"  data-number="'+ data.id +'"><img class="card-object	food-image  col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
 		},
 
 		//electTime：选择早上中午晚上。0：早上，1：中午，2：晚上

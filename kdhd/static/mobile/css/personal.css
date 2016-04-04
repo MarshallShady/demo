@@ -37,7 +37,8 @@
 	line-height: 1.8;
 	float: left;
 	border-radius: 0;
-	padding-left: 0px;
+	padding: 0px;
+	margin: 0;
 }
 button.verify-btn {
 	width: 76px;
@@ -46,7 +47,8 @@ button.verify-btn {
 	font-size: 12px;
 	height: 26px;
 	line-height: 26px;
-	display: inline;
+	float: left;
+	display: block;
 	margin-left: -76px;
 }
 

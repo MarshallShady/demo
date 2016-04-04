@@ -16,23 +16,24 @@
 	overflow: hidden;
 	background: #fff;
 	border-bottom: 1px solid #BBB6B6;
+	position: relative;
+}
+
+.order-ele-img {
+	width: 46%;
+	float: left;
 }
 .order-ele-padding {
 	padding: 10px;
 	padding-right: 4px;
 }
-.order-ele-img {
-	width: 46%;
-	float: left;
-}
-
 .order-ele-img img {
 	width:100%;
 	margin-bottom: 0;
 	display: block;
 }
 .order-ele-article {
-	width: 54%;
+    width: 54%;
 	float: left;
 }
 .order-ele-price {
@@ -41,8 +42,8 @@
 	position: relative;
 }
 .order-ele-price span {
-	line-height: 2;
-	font-size: 0.5em;
+	line-height: 1.8;
+	font-size: 0.8em;
 	color: #9A9A9A;
 	position: absolute;
 	right: 10px;
@@ -57,13 +58,16 @@
 	font-size: 0.6em;
 }
 .order-ele-action{
-	width: 100%;
+	width: 54%;
+	height: auto;
 	overflow: hidden;
-	margin-top: 10px;
+	position: absolute;
+	right: 10px;
+	bottom:10px;
 }
 .order-ele-btn {
-	width: 50px;
-	font-size: 10px;
+	min-width: 50px;
+	font-size: 14px;
 	height: 1.6em;
 	line-height: 1.6em;
 	padding: 0 4px;

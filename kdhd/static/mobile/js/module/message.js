@@ -36,7 +36,7 @@
 		creatOption : function( msg ){
 			var result = '';
 			for( var i = 0; i < msg.length; i++ ){
-				result += '<option value="'+ i + ',' + msg[i].name +'">'+ msg[i].name +'</option>';
+				result += '<option value="'+ i + ',' + msg[i].id +'">'+ msg[i].name +'</option>';
 			}
 			return result;
 		},		
