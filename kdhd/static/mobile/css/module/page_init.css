@@ -40,11 +40,13 @@ select {
 	width: 50px;
 	height: 50px;
 	float: left;
+	margin-left: -100%;
 }
 .go-back a{
 	width: 100%;
-	display: block;
 	padding-top: 13px;
+	height: 37px;
+	display: block;
 }
 .go-back img{
 	display: block;
@@ -54,7 +56,6 @@ select {
 
 .headline {
 	width: 100%;
-	margin-left: -50px;
 	float: left;
 	line-height: 50px;
 }

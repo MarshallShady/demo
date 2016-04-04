@@ -188,10 +188,11 @@ p.in-text {
 	text-align: center;
 	font-size: 16px;
 	line-height: 50px;
-	letter-spacing: 3px;
+	letter-spacing: 1px;
 }
 .order-submit span {
 	color: #FF9898;
+	font-size: 20px;
 }
 .order-submit-btn {
 	width: 37%;

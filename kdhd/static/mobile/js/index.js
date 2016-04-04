@@ -164,7 +164,6 @@ $(document).ready(function(ready) {
 			data : order
 		};
 		var strResult = JSON.stringify(result);
-		alert( strResult );
 		// strResult = strResult.replace(/"/g, '\"');
 		// strResult = strResult.replace(/\[/, '{');
 		// strResult = strResult.replace(/\]/, '}');
