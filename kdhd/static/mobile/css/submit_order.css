@@ -47,7 +47,11 @@
 	font-size: 14px;
 }
 .arrows {
+	width: 16px;
+	height: 24px;
 	position: absolute;
+	background: url(../image/arrows.png);
+	background-size: 100% 100%;
 	right: 10px;
 	top:49.5%;
 	color: #000;
@@ -96,7 +100,8 @@
 .order-date-body span {
 	float: left; 
 	width: 10px;
-	margin-left: -30px;
+	line-height: 40px;
+	margin-left: -20px;
 }
 
 .detail-title {

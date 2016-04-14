@@ -1,0 +1,32 @@
+.page {
+	background: #E6E6E6;
+}
+
+.error-type {
+	width: 180px;
+	height: 180px;
+	border-radius: 100%;
+	background: #c6c6c6;
+	margin: 0 auto;
+	margin-top: 36px;
+}
+.error-type p {
+	text-align: center;
+	font-size: 80px;
+	padding-top: 34px;
+	color: #fff;
+}
+.error-data {
+	margin-top: 30px;	
+}
+.error-data p {
+	text-align: center;
+	font-size: 24px;
+}
+
+#auto-go {
+	margin-top: 30px;
+}
+#auto-go p {
+	text-align: center;
+}

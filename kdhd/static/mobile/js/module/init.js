@@ -30,7 +30,7 @@
 		memu.move();
 		e.stopPropagation();
 	});
-	$(".memu-pull-down").tap(function(){
+	$(".memu-pull-down").tap(function(e){
 		e.stopPropagation();
 	});
 	$(document).tap(function(){

@@ -71,8 +71,6 @@
 						<li><a href="javascript:;">第2餐厅第12档口</a></li>
 						<li><a href="javascript:;">第2餐厅第13档口</a></li>
 						<li><a href="javascript:;">第2餐厅第14档口</a></li>
-						<li><a href="javascript:;">第2餐厅第15档口</a></li>
-						<li><a href="javascript:;">第2餐厅第16档口</a></li>
 					</ul>
 					<div class="clear-float"></div>
 				</div>
@@ -81,19 +79,20 @@
 	</div>
 	<div id="tab" class="tab">
 		<ul>
-			<li data-flag="0"><a href="javascript:;" class="-current-time">
-				早餐
+			<li data-flag="q"><a href="javascript:;">
+				<span>早餐</span>
 				<p>暂未开通</p>
 			</a></li>
 			<li data-flag="1"><a href="javascript:;">
-				午餐
+				<span>午餐</span>
 				<p>12:00~13:00配送</p>
 			</a></li>
 			<li data-flag="2"><a href="javascript:;">
-				晚餐
+				<span>晚餐</span>
 				<p>17:00~18:00配送</p>
 			</a></li>
 		</ul>
+		<div id="up_to"></div>
 	</div>
 	<div id="container" class="container">
 		<!-- <div class="card food row"  data-number="1">		
@@ -102,6 +101,7 @@
 				<ul class="food-info card-middle card-right large">
 					<li class="food-name icon-after" data-icon="HOT">免费早餐</li>
 					<li class="food-components">免费早餐+营养套餐+有爱晚餐</li>
+					<li class="food-sold icon-before" data-icon="店">幸福便当</li>
 					<li class="food-sold icon-before" data-icon="售">1024份</li>
 					<li class="food-unitprice warning">￥12.0</li>
 				</ul>
@@ -114,7 +114,12 @@
 			</div>
 		</div> -->
 	</div>
-	<div style="font-size:5px;margin-bottom:30%; margin-top:20px;width:100%;text-align:center;">版权归：必点所有</div>
+
+		<div class="more">
+			<img src="static/mobile/image/loading.gif" alt="loading">
+			<span>全力为您加载中...</span>
+		</div>
+	<div style="font-size:5px;margin-bottom:50px;width:100%;text-align:center;"></div>
 	<div id="order" class="order">
 		<button id="order-icon" class="order-icon icon-number float-left" data-icon="0"></button>
 		<label id="order-price" class="order-price float-left">￥0.0</label>
@@ -132,6 +137,11 @@
 </div>
 <script>
 	var nowType = 2;
+
+	var nowHours = new Date().getHours();
+	if( nowHours >= 11 && nowHours <= 16 ){
+		nowType = 3;
+	}
 	var initFood = [
 			[//早上
 				{
@@ -140,7 +150,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201601,
@@ -148,7 +159,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201602,
@@ -156,7 +168,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201603,
@@ -164,7 +177,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201604,
@@ -172,7 +186,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201605,
@@ -180,7 +195,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费早餐+营养套餐+有爱晚餐'
+					introduce : '免费早餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 			],
 			[//中午
@@ -191,7 +207,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201607,
@@ -199,7 +216,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201608,
@@ -207,7 +225,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201609,
@@ -215,7 +234,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201610,
@@ -223,7 +243,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201611,
@@ -231,7 +252,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201612,
@@ -239,7 +261,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201613,
@@ -247,7 +270,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201614,
@@ -255,7 +279,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费午餐+营养套餐+有爱晚餐'
+					introduce : '免费午餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 			],
 			[//晚上
@@ -265,7 +290,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费晚餐+营养套餐+有爱晚餐'
+					introduce : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201616,
@@ -273,7 +299,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					components : '免费晚餐+营养套餐+有爱晚餐'
+					components : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201617,
@@ -281,7 +308,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费晚餐+营养套餐+有爱晚餐'
+					introduce : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201618,
@@ -289,7 +317,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费晚餐+营养套餐+有爱晚餐'
+					introduce : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201619,
@@ -297,7 +326,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费晚餐+营养套餐+有爱晚餐'
+					introduce : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 				{
 					id : 201620,
@@ -305,7 +335,8 @@
 					img : 'static/data/image/1.png',
 					sellNum : 1024,
 					cost : 12.5,
-					introduce : '免费晚餐+营养套餐+有爱晚餐'
+					introduce : '免费晚餐+营养套餐+有爱晚餐',
+					from : '幸福便当'
 				},
 			]
 		];
@@ -313,6 +344,7 @@
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script type="text/javascript" src="static/mobile/js/module/pageScoll.js"></script>
-<script type="text/javascript" src="static/mobile/js/index.js?now=1"></script>
+<script src="static/mobile/js/module/dynamic_load.js"></script>
+<script type="text/javascript" src="static/mobile/js/index.js"></script>
 </body>
 </html>

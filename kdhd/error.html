@@ -6,16 +6,16 @@
     <meta content="yes" name="apple-mobile-web-app-capable" /> 
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <title>用户反馈</title>
+    <title>必点</title>
     <link rel="stylesheet" href="static/mobile/css/module/page_init.css">
-    <link rel="stylesheet" href="static/mobile/css/feedback.css">
+    <link rel="stylesheet" href="static/mobile/css/error.css">
 </head>
 <body>
 <div class="page">
 	<header class="main-header">
 		<div class="headline">
 			<div class="headline-body">
-				<p>用户反馈</p>
+				<p>必点</p>
 			</div>
 		</div>
 		<div class="go-back">
@@ -36,19 +36,15 @@
 		</div>
 	</header>
 	<section class="main-section">
-		<header class="thank-title">
-			<p>感谢您使用必点订餐</p>
-		</header>
-		<article class="two-code">
-			<header class="two-code-title">
-				<p>会第一时间回复你哦</p>
-			</header>
-			<section class="two-code-body">
-				<img src="static/mobile/image/two_code.jpg" alt="">
-				<p>长按图中二维码加【点点】为好友</p>
-			</section>
-		</article>
-			<button class="gw-btn close-btn">关闭</button>
+		<div class="error-type">
+			<p>404</p>
+		</div>
+		<div class="error-data">
+			<p>啊哦！遇到的奇怪的错误</p>
+		</div>
+		<div id="auto-go">
+			<p><span>3</span>秒后，自动跳转回首页...</p>
+		</div>
 	</section>
 	<footer class="main-footer">
 		<p>版权归：必点所有</p>
@@ -58,9 +54,14 @@
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script src="static/mobile/js/module/init.js"></script>
 <script>
-	$('.close-btn').tap(function(){
-		WeixinJSBridge.call('closeWindow');
-	});
+	var autoTime = 2;
+	setInterval(function(){
+		$("#auto-go span").html( autoTime-- );
+		if( autoTime <= 0 ){
+			console.log(autoTime);
+			window.location = "https://www.baidu.com";
+		}
+	},1000);
 </script>
 </body>
 </html>

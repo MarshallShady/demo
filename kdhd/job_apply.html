@@ -6,7 +6,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable" /> 
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <title>个人中心</title>
+    <title>角色申请</title>
     <link rel="stylesheet" href="static/mobile/css/module/page_init.css">
     <link rel="stylesheet" href="static/mobile/css/personal.css">
 </head>
@@ -15,7 +15,7 @@
 	<header class="main-header">
 		<div class="headline">
 			<div class="headline-body">
-				<p>个人中心</p>
+				<p>角色申请</p>
 			</div>
 		</div>
 		<div class="go-back">
@@ -42,11 +42,11 @@
 		<form action="">
 			<article class="peisonal-data">
 				<div class="peisonal-data-ele">
-					<label>收货人</label>
+					<label>您的姓名</label>
 					<input type="text" name="namer" value="" placeholder="姓名" />
 				</div>
 				<div class="peisonal-data-ele" id="tel">
-					<label>手机号</label>
+					<label>手机号码</label>
 					<input type="text" name="tel" value="" placeholder="手机号" />
 				</div>
 				<div class="peisonal-data-ele hidden" id="verify">
@@ -55,7 +55,7 @@
 					<button class="gw-btn verify-btn">获取验证码</button>
 				</div>
 				<div class="peisonal-data-ele" >
-					<label>城市</label>
+					<label>所在城市</label>
 					<select id="city" name="city" >
 						<!-- <option >浙江</option>
 						<option >南京</option> -->
@@ -68,23 +68,32 @@
 					</select>
 				</div>
 				<div class="peisonal-data-ele">
-					<label>校区</label>
+					<label>所在校区</label>
 					<select id="school_area" name="school_area" >
 						<!-- <option >下沙校区</option> -->
 					</select>
 				</div>
 				<div class="peisonal-data-ele">
-					<label>楼号</label>
+					<label>所在楼号</label>
 					<select id="dormitory" name="dormitory" >
 						<!-- <option>5南320</option> -->
 					</select>
 				</div>
 				<div class="peisonal-data-ele">
-					<label>寝室</label>
-					<input type="text" name="namer" value="" placeholder="姓名" />
+					<label>寝室门牌</label>
+					<input type="text" name="namer" value="" placeholder="寝室门牌" />
+				</div>
+				<div class="peisonal-data-ele">
+					<label>角色选择</label>
+					<select id="job" name="job" >
+						<option value="">校园经理</option>
+						<option value="">配送员</option>
+						<option value="">出单员</option>
+						<option value="">楼长</option>
+					</select>
 				</div>
 			</article>
-			<button type="submit" id="submit" class="gw-btn peisonal-submit">保存</button>
+			<button type="submit" id="submit" class="gw-btn peisonal-submit">申请</button>
 		</form>
 		
 	</section>

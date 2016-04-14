@@ -6,16 +6,16 @@
     <meta content="yes" name="apple-mobile-web-app-capable" /> 
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <title>用户反馈</title>
+    <title>出单员端</title>
     <link rel="stylesheet" href="static/mobile/css/module/page_init.css">
-    <link rel="stylesheet" href="static/mobile/css/feedback.css">
+    <link rel="stylesheet" href="static/mobile/css/residence_advisor.css">
 </head>
 <body>
 <div class="page">
 	<header class="main-header">
 		<div class="headline">
 			<div class="headline-body">
-				<p>用户反馈</p>
+				<p>出单员端</p>
 			</div>
 		</div>
 		<div class="go-back">
@@ -36,19 +36,35 @@
 		</div>
 	</header>
 	<section class="main-section">
-		<header class="thank-title">
-			<p>感谢您使用必点订餐</p>
-		</header>
-		<article class="two-code">
-			<header class="two-code-title">
-				<p>会第一时间回复你哦</p>
+		<article class="order-manage">
+			<header class="message-title out-title">
+				<a href="#"><p>出单管理</p><span>本时段各档口菜品订单</span></a>
 			</header>
-			<section class="two-code-body">
-				<img src="static/mobile/image/two_code.jpg" alt="">
-				<p>长按图中二维码加【点点】为好友</p>
+			<section class="order-body">
+				<header class="out-body-title">
+					<p>本时段共有12个档口&nbsp;&nbsp;共计：200单</p>
+				</header>
+				<section>
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>本时段已经出单：3次</p>
+						</div>
+						<div class="out-data-right">
+							<button class="gw-btn">出单</button>
+						</div>
+					</article>
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>本时段已经出单：3次</p>
+						</div>
+						<div class="out-data-right">
+							<button class="gw-btn">出单</button>
+						</div>
+					</article>
+					
+				</section>
 			</section>
 		</article>
-			<button class="gw-btn close-btn">关闭</button>
 	</section>
 	<footer class="main-footer">
 		<p>版权归：必点所有</p>
@@ -58,9 +74,12 @@
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
 <script src="static/mobile/js/module/init.js"></script>
 <script>
-	$('.close-btn').tap(function(){
-		WeixinJSBridge.call('closeWindow');
+	$('.btn-bg-white').tap(function(){
+		var target = $(this).closest('.order-data-title').next('.detail');
+		var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+		target.height(height);
 	});
+	
 </script>
 </body>
 </html>

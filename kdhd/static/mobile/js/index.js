@@ -16,22 +16,48 @@ $(document).ready(function(ready) {
 	var manageFood = {
 
 		nowType : nowType - 1,
-		status : [
-			'1',
-			'2',
-			'3'
-		],
 		init : function(){
-			manageFood.creats( manageFood.nowType );
+
+			//数据初始化
+			// $.ajax({
+			// 	type : "post",
+			// 	url : "#",
+			// 	data : {
+
+			// 	},
+			// 	success : function(data){
+
+			// 	}
+			// });
+
+
+			manageFood.cut( manageFood.nowType );
+
+			upTo( manageFood.nowType );
+
+			//早餐午餐晚餐的时段切换菜单
 			$("#tab li").tap(function(){
-				var temp = clearShopping('切换时间点将会清空购物车，您确定切换吗？');
-				if(!temp)return;
-				manageFood.creats( $(this).attr('data-flag') );
+				var flag = $(this).attr('data-flag');
+				//当data-flag的值为 'q' 时说明不允许访问
+				if( flag == 'q' ){
+					alert( $(this).children().children('span').html() + "此时段暂未开通" );
+					return false;
+				}
+				//判断购物车是否为空，如果不为空则清空
+				if( food_all_amount > 0 ){
+					var temp = clearShopping('切换时间点将会清空购物车，您确定切换吗？');
+					if(!temp)return;
+				}
+				upTo(flag);
+				manageFood.cut( flag );
 				$("#tab li a").removeClass();
 				$(this).children().addClass('current-time');
-				manageFood.nowType = $(this).attr('data-flag');
+				manageFood.nowType = flag;
 			}); 
+
+			//初始化当前时间当前默认订餐时间的 active
 			$("#tab li").eq( manageFood.nowType ).children('a').addClass( 'current-time' );
+
 		},
 
 		//菜品生成函数，一次生成一个页面上的 dom 
@@ -48,20 +74,69 @@ $(document).ready(function(ready) {
 		//		cost : 12.5
 		//},
 		creatFood : function( data ){
-			return '<div class="card food row"  data-number="'+ data.id +'"><img class="card-object	food-image  col-7" src="'+ data.img +'" ><div class="card-text col-5"><ul class="food-info card-middle card-right large"><li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li><li class="food-components">'+ data.introduce +'</li><li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li><li class="food-unitprice warning">￥'+ data.cost +'</li></ul></div><div class="card-box food-box"></div><div class="food-icon-group"><div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div><span class="food-amount hidden">0</span><div class="food-icon icon-plus-minus plus" data-icon="+"></div></div></div>';
+			return '<div class="card food row"  data-number="'+ data.id +'">\
+			<img class="card-object	food-image  col-7" src="'+ data.img +'" >\
+			<div class="card-text col-5"><ul class="food-info card-middle card-right large">\
+			<li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li>\
+			<li class="food-components">'+ data.introduce +'</li>\
+			<li class="food-sold icon-before" data-icon="店">'+ data.from +'</li>\
+			<li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li>\
+			<li class="food-unitprice warning">￥'+ data.cost +'</li></ul>\
+			</div><div class="card-box food-box"></div><div class="food-icon-group">\
+			<div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div>\
+			<span class="food-amount hidden">0</span>\
+			<div class="food-icon icon-plus-minus plus" data-icon="+"></div>\
+			</div></div>';
 		},
 
 		//electTime：选择早上中午晚上。0：早上，1：中午，2：晚上
-		creats : function( electTime ){
-			var numFood = 0;
-			var result = '';
-			for( var i = 0, len = initFood[electTime].length ; i < len; i++ ){
-				result += this.creatFood( initFood[electTime][i] );
-			}
+		cut : function( electTime ){
+			
 			$("#container").html('');
+			manageFood.append( initFood[electTime] );
+		},
+
+		//添加懂内容到可视区
+		//data：对应添加的数据：早餐、午餐或晚餐的数组
+		//start：为从data的第几个元素开始添加，也就是页面已有几个元素
+		append : function( data ){
+			var result = '';
+			for( var i = 0, len = data.length ; i < len; i++ ){
+				result += manageFood.creatFood( data[i] );
+			}
 			$("#container").append( result );
+		},
+
+		//用来把后台获取到的数据添加到食物数组
+		upload : function ( data ){
+			initFood[ manageFood.nowType ].push(data);
+			manageFood.append( data );
 		}
 	};
+
+	//数据自动更新
+	dynamicLoad(function(){
+		// $.ajax({
+		// 	type : "post",
+		// 	url : "#",
+		// 	data : {
+
+		// 	},
+		// 	success : function(data){
+		// 		data = eval( data );
+		// 		manageFood.upload( data );
+		// 	}
+		// });
+		console.log('ok');
+	});
+
+	function upTo( flag ){
+		if( flag == 1 ){
+			$("#up_to").html( "每日11:00前可预订当日午饭哦" );
+		} else if( flag == 2 ) {
+			$("#up_to").html( "每日16:00前可预订当日晚饭哦" );
+		}
+	}
 	/*********END骚辉**********/
 
 
@@ -122,6 +197,10 @@ $(document).ready(function(ready) {
 			}
 		});
 
+		$(".memu-pull-down").tap(function(e){
+			e.stopPropagation();
+		});
+
 		$(document).tap(function(){
 			if( memu.onOff == true && $( "#canteen" ).css('top') == '0px' ){
 				memu.move();
@@ -147,9 +226,11 @@ $(document).ready(function(ready) {
 		ev.preventDefault();
 		slide($order_list).toggle();
 	});
+
 	$("#order-list-clear").tap(function(){
 		clearShopping('您确定清空购物车吗？');
 	});
+
 	$("#order-enter").click(function () {
 		var $order_input = $("#order-input")
 		,	order = [];			//弹出式菜单————获取所有已选菜式的总价
@@ -160,13 +241,11 @@ $(document).ready(function(ready) {
 			});
 		});
 		var result = {
-			type :  manageFood.status[ manageFood.nowType ],
+			type :   manageFood.nowType + 1,
 			data : order
 		};
 		var strResult = JSON.stringify(result);
-		// strResult = strResult.replace(/"/g, '\"');
-		// strResult = strResult.replace(/\[/, '{');
-		// strResult = strResult.replace(/\]/, '}');
+		
 		$order_input.val( strResult );
 		return true;
 	});

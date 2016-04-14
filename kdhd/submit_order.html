@@ -7,8 +7,9 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
     <title>确认订单</title>
-    <link rel="stylesheet" href="static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="static/mobile/css/module/page_init.css">
     <link rel="stylesheet" href="static/mobile/css/submit_order.css">
+</head>
 <body>
 <div class="page">
 	<header class="main-header">
@@ -51,7 +52,7 @@
 						<p>15658033953</p>
 						<p>杭州电子科技大学5号南楼504</p>
 					</div>
-					<div class="arrows"><span>&gt;</span></div>
+					<div class="arrows"></div>
 				</a>
 			</section>
 		</article>
@@ -73,9 +74,9 @@
 				</div>
 				<div>
 					<select id="date-value">
-						<option>2016-3-30</option>
-						<option>2016-3-31</option>
-						<option>2016-3-32</option>
+						<option value="1460131200">2016-04-09</option>
+						<option value="1460217600">2016-04-10</option>
+						<option value="1460304000">2016-04-11</option>
 					</select>
 					<span>▼</span>
 				</div>
@@ -119,7 +120,7 @@
 				<p>留言备注</p>
 			</header>
 			<section class="remark-body">
-				<textarea id="remark-value" rows="3" class="in-text"></textarea>
+				<textarea id="remark-value" rows="2" class="in-text"></textarea>
 			</section>
 		</article>
 	</section>
@@ -135,7 +136,7 @@
 			<p>总计<span>￥19.5</span></p>
 		</div>
 		<div class="order-submit-btn">
-			<form action="">
+			<form action="##">
 				<!-- type:为早午餐类型 1为早餐，2午餐，3晚餐 -->
 				<input type="hidden" id="type-result" name="type" value="2">
 				<!-- date:为送餐日期 -->
@@ -151,6 +152,18 @@
 <script src="static/mobile/js/module/init.js"></script>
 <script>
 	$('#submit').click(function(){
+		var nowTime = new Date(),
+			date = parseInt( Date.parse( nowTime.toString().slice( 0, 15 ) )/1000 ),
+			ctDate =  parseInt( $("#date-value").val() );
+
+		if( date != ctDate ){
+			var r = confirm( "您购买的不是当天的" 
+							+ $(".order-date-body h3").html() 
+							+ "，是否确认购买？" );
+			if(!r)
+				return false;
+		}
+
 		$("#date-result").val( $("#date-value").val() );
 		$("#remark-result").val( $("#remark-value").val() );
 		return false;
