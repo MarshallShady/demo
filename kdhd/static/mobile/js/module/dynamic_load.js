@@ -21,7 +21,7 @@ function dynamicLoad( dispose ){
 				timer = setTimeout(function(){
 					timer = null;
 					dispose();
-				},1000);
+				},300);
 			}
 		}
 	});
