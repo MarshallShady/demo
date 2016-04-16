@@ -3,6 +3,6 @@
  */
 var app = angular.module("myApp",[]);
 
-app.controller("myCtrl",function($scope){
+app.controller("myCtrl",[ "$scope" ,function($scope){
     $scope.name = "这是一个测试";
-});
+}]);

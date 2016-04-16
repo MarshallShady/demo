@@ -1,8 +1,6 @@
-// TouchSlide({ 
-// 	slideCell:"#banner",
-// 	interTime:2500,
-// 	autoPlay:true
-// });
+
+var initCanteen = {"data":{"when":{"id":"1","name":"\u672c\u90e8","breakfast_end":"39600","lunch_end":"39600","dinner_end":"0","school":"1","order":"0","status":"1","breakfast_order_end":"0","breakfast_send_start":"0","breakfast_send_end":"0","lunch_order_end":"0","lunch_send_start":"0","lunch_send_end":"0","dinner_order_end":"0","dinner_send_start":"0","dinner_send_end":"0"},"position":{"1":{"id":"1","name":"\u7f8e\u98df\u57ce\u9910\u5385","school_ext":"1","order":"0","status":"1","device":"4600403172044192","port":{"2":{"id":"2","name":"\u8bb8\u6751\u9762\u9986","image":"","canteen":"1","content":"","order":"0","status":"1"},"3":{"id":"3","name":"\u7802\u9505\u738b","image":"","canteen":"1","content":"","order":"0","status":"1"},"4":{"id":"4","name":"\u5c0f\u80a5\u725b\u62c9\u9762","image":"","canteen":"1","content":"","order":"0","status":"1"},"5":{"id":"5","name":"\u9ea6\u9999\u9986","image":"","canteen":"1","content":"","order":"0","status":"1"},"6":{"id":"6","name":"\u91cd\u5e86\u9ebb\u8fa3\u70eb","image":"","canteen":"1","content":"","order":"0","status":"1"},"7":{"id":"7","name":"\u5ddd\u5473\u9999\u9505","image":"","canteen":"1","content":"","order":"0","status":"1"},"8":{"id":"8","name":"\u5916\u5a46\u5bb6\u9762\u9986","image":"","canteen":"1","content":"","order":"0","status":"1"},"9":{"id":"9","name":"\u6e2f\u5f0f\u70e7\u814a","image":"","canteen":"1","content":"","order":"0","status":"1"},"10":{"id":"10","name":"\u946b\u946b\u7f8e\u98df\u574a","image":"","canteen":"1","content":"","order":"0","status":"1"},"11":{"id":"11","name":"\u9ec4\u7116\u9e21\u7c73\u996d","image":"","canteen":"1","content":"","order":"0","status":"1"},"12":{"id":"12","name":"\u571f\u8033\u5176\u70e4\u8089","image":"","canteen":"1","content":"","order":"0","status":"1"},"13":{"id":"13","name":"\u91d1\u8bb0\u4e00\u9505","image":"","canteen":"1","content":"","order":"0","status":"1"},"15":{"id":"15","name":"\u53f0\u5357\u5c0f\u94c1\u677f","image":"","canteen":"1","content":"","order":"0","status":"1"},"16":{"id":"16","name":"\u7f19\u4e91\u70e7\u997c","image":"","canteen":"1","content":"","order":"0","status":"1"},"17":{"id":"17","name":"\u82ad\u6bd4\u9992\u5934","image":"","canteen":"1","content":"","order":"0","status":"1"},"18":{"id":"18","name":"\u5112\u5bb6\u9999","image":"","canteen":"1","content":"","order":"0","status":"1"},"19":{"id":"19","name":"\u6816\u51e4\u6e21\u9c7c\u7c89","image":"","canteen":"1","content":"","order":"0","status":"1"},"20":{"id":"20","name":"\u9e2d\u5e97","image":"","canteen":"1","content":"","order":"0","status":"1"},"21":{"id":"21","name":"\u591a\u5473\u5c0f\u5403\u7ad9","image":"","canteen":"1","content":"","order":"0","status":"1"},"22":{"id":"22","name":"\u7f8e\u597d\u4e8b\u7269","image":"","canteen":"1","content":"","order":"0","status":"1"},"23":{"id":"23","name":"\u8425\u517b\u5957\u9910","image":"","canteen":"1","content":"","order":"0","status":"1"}}}}},"when":1,"canteen":"1","canteen_port":0,"len":0};
+var initEleData = {"data":{"when":{"id":"1","name":"\u672c\u90e8","breakfast_end":"39600","lunch_end":"39600","dinner_end":"0","school":"1","order":"0","status":"1","breakfast_order_end":"0","breakfast_send_start":"0","breakfast_send_end":"0","lunch_order_end":"0","lunch_send_start":"0","lunch_send_end":"0","dinner_order_end":"0","dinner_send_start":"0","dinner_send_end":"0"},"dish":[{"id":"1","name":"\u9e21\u7c73\u82b1\u5957\u9910","image":"static/data/image/1.png","port":"1","money":"1100","content":"\u751f\u83dc+\u6cb9\u9ea6\u83dc+\u5343\u5f20+\u65e5\u672c\u8c46\u8150+\u5927\u8089\u4e32+QQ\u9762+\u6cb9\u6761+\u897f\u84dd\u82b1+\u51ac\u74dc","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"0","total":"56"},{"id":"2","name":"\u9999\u80a0\u7092\u86cb\u5957\u9910","image":"static/data/image/1.png","port":"23","money":"1000","content":"","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"21"},{"id":"3","name":"\u91d1\u9488\u83c7\u725b\u67f3\u5957\u9910","image":"static/data/image/1.png","port":"23","money":"1200","content":"","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"23"},{"id":"4","name":"\u7ea2\u70e7\u8089\u5957\u9910","image":"static/data/image/1.png","port":"23","money":"1200","content":"","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"50"},{"id":"5","name":"\u7ea2\u70e7\u4ed4\u6392\u5957\u9910","image":"static/data/image/1.png","port":"23","money":"1200","content":"","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"79"},{"id":"6","name":"\u7ea2\u70e7\u8089\u5957\u9910","image":"static/data/image/1.png","port":"23","money":"12","content":"","rest":"10000","rest_default":"217","breakfast":"0","lunch":"1","dinner":"0","create_time":"0","update_time":"0","order":"0","status":"0","total":"0"},{"id":"7","name":"\u767d\u5207\u9e21\u5957\u9910","image":"static/data/image/1.png","port":"1","money":"1200","content":"+\u968f\u673a\u4e24\u7d20","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"23"},{"id":"8","name":"\u9999\u9165\u5927\u867e\u5957\u9910","image":"static/data/image/1.png","port":"1","money":"1300","content":"+\u968f\u673a\u4e24\u7d20","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"0","total":"178"},{"id":"9","name":"\u9b54\u65b9\u9e21\u5757\u5957\u9910","image":"static/data/image/1.png","port":"1","money":"1200","content":"+\u968f\u673a\u4e24\u7d20","rest":"10000","rest_default":"100","breakfast":"2","lunch":"1","dinner":"1","create_time":"0","update_time":"0","order":"0","status":"1","total":"9"},{"id":"10","name":"\u9b54\u65b9\u9e21\u5757\u5957\u9910","image":"static/data/image/1.png","port":"1","money":"12","content":"","rest":"10000","rest_default":"5","breakfast":"0","lunch":"0","dinner":"0","create_time":"0","update_time":"0","order":"0","status":"0","total":"0"}]},"when":1,"canteen":"1","canteen_port":0,"len":10};
 
 $(document).ready(function(ready) {
 	var food_all_amount = 0					//初始菜数
@@ -16,6 +14,7 @@ $(document).ready(function(ready) {
 	var manageFood = {
 
 		nowType : nowType - 1,
+		hint : [ , "每日11:00前可预订当日午饭哦", "每日16:00前可预订当日晚饭哦" ],
 		init : function(){
 
 			//数据初始化
@@ -29,11 +28,69 @@ $(document).ready(function(ready) {
 
 			// 	}
 			// });
+			
+			//餐厅和档口初始化
+			(function(data){
+				var initCanteen = data.data.position;
+				var resultCanteen = '';
+				var resultCanteenPort = '';
+
+				for( var i in initCanteen ){
+					resultCanteen += '<li><a href="javascript:;">'+ initCanteen[i].name +'</a></li>';
+					resultCanteenPort += '<div class="booth-ele"><ul>';
+
+					for(var j in initCanteen[i].port){
+						resultCanteenPort += '<li data-canteen="'
+						+ initCanteen[i].id +'" data-canteen-port="'
+						+ initCanteen[i].port[j].id +'"><a href="javascript:;">'
+						+ initCanteen[i].port[j].name +'</a></li>';
+					}
+					resultCanteenPort += '</ul><div class="clear-float"></div></div>';
+				}
+
+				$("#restaurant ul").append( resultCanteen );
+				$("#booth").append( resultCanteenPort );
+				
+				
+
+
+				//切换档口
+				var $restaurants = $("#restaurant a");
+				for( var len = $restaurants.length; len--; ){
+					(function(num){
+						$($restaurants[num]).tap(function(e){
+							$("#restaurant p").html( $(this).html() );
+							$("#booth .booth-ele").css( 'display', 'none' );
+							$( $("#booth .booth-ele")[num] ).css( 'display', 'block' );
+							e.stopPropagation();
+						});
+					}(len));
+				}
+				var canPort = $("#booth a");
+				for( var len = canPort.length; len--; ){
+					(function(num){
+						$(canPort[num]).tap(function(e){
+							$("#booth p").html( $(this).html() );
+							e.stopPropagation();
+						});
+					}(len));
+				}
+
+			}(initCanteen));
+
+
+			(function(data){
+				manageFood.nowType = data.when;
+				manageFood.upload( data.data.dish );
+			}(initEleData));
+			
+			//给 canteen 的 scroll 增加交互
+			pageScoll( $("#canteen")[0], 5 );
 
 
 			manageFood.cut( manageFood.nowType );
 
-			upTo( manageFood.nowType );
+			manageFood.upTo( manageFood.nowType );
 
 			//早餐午餐晚餐的时段切换菜单
 			$("#tab li").tap(function(){
@@ -48,7 +105,7 @@ $(document).ready(function(ready) {
 					var temp = clearShopping('切换时间点将会清空购物车，您确定切换吗？');
 					if(!temp)return;
 				}
-				upTo(flag);
+				manageFood.upTo(flag);
 				manageFood.cut( flag );
 				$("#tab li a").removeClass();
 				$(this).children().addClass('current-time');
@@ -74,14 +131,15 @@ $(document).ready(function(ready) {
 		//		cost : 12.5
 		//},
 		creatFood : function( data ){
+			// console.log( data );
 			return '<div class="card food row"  data-number="'+ data.id +'">\
-			<img class="card-object	food-image  col-7" src="'+ data.img +'" >\
+			<img class="card-object	food-image  col-7" src="'+ data.image +'" >\
 			<div class="card-text col-5"><ul class="food-info card-middle card-right large">\
 			<li class="food-name icon-after" data-icon="HOT">'+ data.name +'</li>\
-			<li class="food-components">'+ data.introduce +'</li>\
+			<li class="food-components">'+ data.content +'</li>\
 			<li class="food-sold icon-before" data-icon="店">'+ data.from +'</li>\
 			<li class="food-sold icon-before" data-icon="售">'+ data.sellNum +'份</li>\
-			<li class="food-unitprice warning">￥'+ data.cost +'</li></ul>\
+			<li class="food-unitprice warning">￥'+ data.money/1000 +'</li></ul>\
 			</div><div class="card-box food-box"></div><div class="food-icon-group">\
 			<div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div>\
 			<span class="food-amount hidden">0</span>\
@@ -93,6 +151,13 @@ $(document).ready(function(ready) {
 		cut : function( electTime ){
 			
 			$("#container").html('');
+
+			//如果数据为空则发起请求
+			if( initFood[electTime].length == 0 ){
+				// 这里需要ajax请求一次
+				return;
+			}
+
 			manageFood.append( initFood[electTime] );
 		},
 
@@ -109,8 +174,13 @@ $(document).ready(function(ready) {
 
 		//用来把后台获取到的数据添加到食物数组
 		upload : function ( data ){
-			initFood[ manageFood.nowType ].push(data);
+			initFood[ manageFood.nowType ] = initFood[ manageFood.nowType ].concat(data);
 			manageFood.append( data );
+		},
+
+		//首页提醒文字
+		upTo : function ( flag ){
+			$("#up_to").html( manageFood.hint[flag] );
 		}
 	};
 
@@ -127,16 +197,9 @@ $(document).ready(function(ready) {
 		// 		manageFood.upload( data );
 		// 	}
 		// });
-		console.log('ok');
 	});
 
-	function upTo( flag ){
-		if( flag == 1 ){
-			$("#up_to").html( "每日11:00前可预订当日午饭哦" );
-		} else if( flag == 2 ) {
-			$("#up_to").html( "每日16:00前可预订当日晚饭哦" );
-		}
-	}
+	
 	/*********END骚辉**********/
 
 
@@ -148,27 +211,6 @@ $(document).ready(function(ready) {
 
 	/********骚辉更改***********/
 	(function(){
-		//防止选择餐厅的a标签冒泡
-		$("#canteen a").tap(function(e){
-			e.stopPropagation();
-		});
-
-
-		//切换档口
-		var $restaurants = $("#restaurant a");
-		for( var len = $restaurants.length; len--; ){
-			(function(num){
-				$($restaurants[num]).tap(function(){
-					$("#restaurant p").html( $(this).html() );
-					$("#booth .booth-ele").css( 'display', 'none' );
-					$( $("#booth .booth-ele")[num] ).css( 'display', 'block' );
-				});
-			}(len));
-		}
-
-		//给 canteen 的 scroll 增加交互
-		pageScoll( $("#canteen")[0], 5 );
-
 		
 		//菜单初始化
 		var memu = {
