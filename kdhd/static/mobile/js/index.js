@@ -151,7 +151,9 @@ $(document).ready(function(ready) {
 						//如果没有 < 10 个数据说明没有更多数据了
 						if( data.data.dish.length < 10 ){
 							$(".more").html("没有更多菜品了");
+							return;
 						}
+						manageFoodeAjaxFood();
 					}
 					else if( data.status == 2 ){
 						//这个判断只是为了安全以免出错
@@ -293,6 +295,10 @@ $(document).ready(function(ready) {
 
 	//数据自动更新
 	dynamicLoad(function(){
+		manageFoodeAjaxFood();
+	});	
+	function manageFoodeAjaxFood(){
+		//用于递归调用，用于无缝加载
 		manageFood.ajax({
 			when : manageFood.nowType + 1,
 			canteen : manageFood.nowCanteen,
@@ -301,13 +307,14 @@ $(document).ready(function(ready) {
 			success : function(data){
 				if( data.status == 1 ){
 					manageFood.upload( data.data.dish );
+					manageFoodeAjax();
 				}
 				else if( data.status == 2 ){
 					$(".more").html( data.message );
 				}
 			}
 		});
-	});	
+	}
 
 	/*********END骚辉**********/
 
