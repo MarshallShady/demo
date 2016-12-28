@@ -221,6 +221,39 @@ $(document).ready(function(ready) {
 			}
 
 
+<<<<<<< HEAD
+=======
+			//菜品初始化
+			manageFood.ajax({
+				canteen : 1,
+				cantentPort : 0,
+				when : 0,
+				len : 0,
+				success : function(data){
+					manageFood.nowType = data.when-1;
+
+					//初始化当前时间当前默认订餐时间的 active
+					$("#tab li").eq( manageFood.nowType ).children('a').addClass( 'current-time' );
+
+					if( data.status == 1 ){
+						manageFood.upload( data.data.dish );
+
+						//如果没有 < 10 个数据说明没有更多数据了
+						if( data.data.dish.length < 10 ){
+							$(".more").html("没有更多菜品了");
+							return;
+						}
+						manageFoodeAjaxFood();
+					}
+					else if( data.status == 2 ){
+						//这个判断只是为了安全以免出错
+						
+						$(".more").html("没有更多菜品了");
+					}
+				}
+			});
+
+>>>>>>> fdb57f7bf69e1253a43caaded8dcaff0574a63c4
 			//给 canteen 的 scroll 增加交互
 			$("#canteen").css( "-webkit-overflow-scrolling:", "touch" );
 
@@ -541,6 +574,7 @@ $(document).ready(function(ready) {
 				// console.log(data);
 				if( data.status == 1 ){
 					manageFood.upload( data.data.dish );
+<<<<<<< HEAD
 					
 					// console.log( data.message );
 
@@ -550,6 +584,9 @@ $(document).ready(function(ready) {
 						//停止加载
 						manageFood.stopLoad = true;
 					}
+=======
+					manageFoodeAjax();
+>>>>>>> fdb57f7bf69e1253a43caaded8dcaff0574a63c4
 				}
 				else if( data.status == 2 ){
 					$(".more").html( data.message );
