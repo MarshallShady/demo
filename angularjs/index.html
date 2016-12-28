@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/lib/bootstrap.css">
+    <script src="js/lib/angular.js"></script>
+    <style>
+        * {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+
+        div[contenteditable] {
+            background: #d8d8d8;
+            color: #000000;
+        }
+
+        .col-11 [
+
+        ]
+    </style>
 </head>
 <body ng-app="myApp">
-<div class="container">
-    <div class="col-md-12" ng-controller="myCtrl">
-        <input type="text" ng-model="name">
-        <h1 ng-bind="name"></h1>
-    </div>
+<div class="container" ng-controller="myBaby">
+    <!--<h1>背背单词</h1>-->
+    <!--<div ng-repeat=" book in books ">{{book}}</div>-->
 </div>
-<script src="js/lib/angular.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

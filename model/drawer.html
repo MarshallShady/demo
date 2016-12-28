@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>测试</title>
+    <style>
+    	html,body,#page {
+			height: 100%;
+    	}
+    	body {
+    		overflow: hidden;
+    	}
+    	#page {
+    		overflow: auto;
+    	}
+		#main-header {
+			height: 200px;
+			background-color: red;
+		}
+		#body-header {
+			height: 100px;
+			background-color: yellow;
+		}
+		#body-page {
+			height: 560px;
+			border: solid #000 1px;
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		#data {
+			height: 2000px;
+		}
+    </style>
+</head>
+<body>
+<div id="page">
+	<div id="main-header"></div>
+	<div id="main-body">
+		<div id="body-header"></div>
+		<div id="body-page">
+			<div id="data">
+				
+
+新浪博客
+
+
+新浪首页GW_iron个人中心发博文消息
+最初的你的博客
+http://blog.sina.com.cn/u/1359252903 [订阅][手机订阅]
+首页博文目录图片关于我
+个人资料
+最初的你
+最初的你
+微博
+加好友发纸条
+写留言加关注
+博客十周年地图
+博客等级：
+博客积分：90积分
+博客访问：402,341
+关注人气：108
+获赠金笔：58
+赠出金笔：0
+荣誉徽章：精英博主兑换图片博主服务兑换私密博文现有金笔1支
+相关博文
+美国突然对日改口：承认中国拥有钓鱼岛控制权-钓鱼岛与领海权
+用户377892773
+2016年被骂成渣的十个男明星,刘恺威第六,第一名纯属活该!
+海涛司兄
+刚刚！惊现崩盘！天后王菲跌落神坛！
+网贷天地
+五爷街头摄影：时尚潮人最爱去的拍照圣地，北京三里屯潮流圣地
+皇城根五爷
+官方：4.4亿买个奥斯卡？上港等着哭吧
+用户374456730
+马容性感私照泄露网友调侃宝宝艳福不浅
+用户374091035
+李铁一语透露玄机，疑运作中国球员去英超，五大联赛再现中国人？
+大大爱的机械人
+刘晓庆结过4次婚为何一生无子？老梁道出了惊人真相
+用户332429810
+女排又现统治级超新星力压郎平爱将称霸三项数据
+用户374456730
+即使没有爱情，也请爱自己如珍
+苏小昨
+更多>>
+推荐博文
+国美做手机?这可能是手机圈20
+从《驴得水》张一曼到《罗曼》小
+特殊地域独有的乡村文化（之一）
+20161221【早评】120
+清朝末年社会老照片看得人心里难
+台湾科技挣扎，人祸大于天灾？
+美团能帮高星酒店揽客？牛鞭都被
+收入份额=市场份额，虎嗅想干什
+传奇的谢幕，谈岩田聪和他的任天
+家常主食轻松做之——培根香葱花
+查看更多>>
+谁看过这篇博文
+加载中…
+正文字体大小：大 中 小
+手机端html5触屏事件(touch事件) (2013-11-19 14:19:27)转载▼
+标签： touch事件 touchstart touchend html5 移动端事件 it 	分类： 移动端开发
+touchstart：触摸开始的时候触发
+
+touchmove：手指在屏幕上滑动的时候触发
+
+touchend：触摸结束的时候触发
+
+而每个触摸事件都包括了三个触摸列表，每个列表里包含了对应的一系列触摸点（用来实现多点触控）：
+
+touches：当前位于屏幕上的所有手指的列表。
+
+targetTouches：位于当前DOM元素上手指的列表。
+
+changedTouches：涉及当前事件手指的列表。
+
+每个触摸点由包含了如下触摸信息（常用）：
+
+identifier：一个数值，唯一标识触摸会话（touch session）中的当前手指。一般为从0开始的流水号（android4.1，uc）
+
+target：DOM元素，是动作所针对的目标。
+
+pageX/pageX/clientX/clientY/screenX/screenY：一个数值，动作在屏幕上发生的位置（page包含滚动距离,client不包含滚动距离，screen则以屏幕为基准）。　
+
+radiusX/radiusY/rotationAngle：画出大约相当于手指形状的椭圆形，分别为椭圆形的两个半径和旋转角度。初步测试浏览器不支持，好在功能不常用，欢迎大家反馈。
+
+
+
+var obj = document.getElementByIdx_x('id');
+obj.addEventListener('touchmove', function(event) {
+     // 如果这个元素的位置内只有一个手指的话
+    if (event.targetTouches.length == 1) {
+　　　　 event.preventDefault();// 阻止浏览器默认事件，重要 
+        var touch = event.targetTouches[0];
+        // 把元素放在手指所在的位置
+        obj.style.left = touch.pageX-50 + 'px';
+        obj.style.top = touch.pageY-50 + 'px';
+        }
+}, false);
+
+
+分享： 
+141
+喜欢
+5
+赠金笔赠金笔
+阅读(72065)┊ 评论 (10)┊	收藏(2) ┊转载(8)	┊ 喜欢▼ ┊打印┊举报
+已投稿到：	排行榜 排行榜
+前一篇：jQuery之防止冒泡事件
+后一篇：jquery数组操作
+评论 重要提示：警惕虚假中奖信息 [发评论]
+评论加载中，请稍候...
+发评论
+GW_iron :
+
+小新小浪炮炮兵张富贵旺狗悠嘻猴酷巴熊更多>>
+就不买你股市发霉陈水边裁员音乐贴你抢车位
+ 分享到微博 新   评论并转载此博文新
+
+按住左边滑块，拖动完成上方拼图
+
+匿名评论
+发评论
+以上网友发言只代表其个人观点，不代表新浪网的观点或立场。
+< 前一篇
+jQuery之防止冒泡事件
+后一篇 >
+jquery数组操作
+
+新浪BLOG意见反馈留言板　不良信息反馈　电话：4006900000 提示音后按1键（按当地市话标准计费）　欢迎批评指正
+新浪简介 | About Sina | 广告服务 | 联系我们 | 招聘信息 | 网站律师 | SINA English | 会员注册 | 产品答疑
+Copyright © 1996 - 2016 SINA Corporation, All Rights Reserved
+新浪公司 版权所有
+ 
+
+幻灯播放
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+	var mouseMoveHeight = 0,
+		mouseDowntTop = 0,
+		mouseUpTop = 0;
+
+	$("#body-page").height( document.body.clientHeight - 100 );
+
+	$(document).bind("touchstart",function(){
+		mouseDowntTop =  $('#page').scrollTop() ;
+	});
+	$(document).bind("touchend",function(){
+		mouseUpTop = $('#page').scrollTop() ;
+		mouseMoveHeight = mouseUpTop - mouseDowntTop;
+		console.log( mouseMoveHeight );
+		if( mouseMoveHeight > 1 && mouseDowntTop < 200 ){
+			if(mouseMoveHeight>10){
+				$('#page').scrollTop(200);
+			} else if(mouseMoveHeight > 1){
+				$('#page').scrollTop(0);
+			}
+		}
+		if( mouseMoveHeight < -1 && mouseUpTop < 200 ){
+			if( mouseMoveHeight < -10 ){
+				$('#page').scrollTop(0);
+			} else if(mouseMoveHeight < -1){
+				$('#page').scrollTop(200);
+			}
+		}
+	});
+
+</script>
+</body>
+</html>

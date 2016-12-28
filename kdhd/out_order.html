@@ -9,6 +9,14 @@
     <title>出单员端</title>
     <link rel="stylesheet" href="static/mobile/css/module/page_init.css">
     <link rel="stylesheet" href="static/mobile/css/residence_advisor.css">
+    <style>
+		.detail-body a {
+			width: auto;
+			height: auto;
+			line-height: 1.3;
+			margin: 0;
+		}
+    </style>
 </head>
 <body>
 <div class="page">
@@ -47,22 +55,64 @@
 				<section>
 					<article class="out-data">
 						<div class="out-data-left">
-							<p>本时段已经出单：3次</p>
+							<p>全部菜品：3次</p>
 						</div>
 						<div class="out-data-right">
-							<button class="gw-btn">出单</button>
+							<button class="gw-btn">出订单</button>
 						</div>
 					</article>
 					<article class="out-data">
 						<div class="out-data-left">
-							<p>本时段已经出单：3次</p>
+							<p>未出单菜品：3次</p>
 						</div>
 						<div class="out-data-right">
-							<button class="gw-btn">出单</button>
+							<button class="gw-btn">出底单</button>
 						</div>
 					</article>
-					
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>已出订单菜品：10</p>
+						</div>
+					</article>
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>已出底单菜品：10</p>
+						</div>
+					</article>
+					<hr>
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>漏单补打</p> </li>
+								<li><p> </p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>档口</li>
+										<li>订单</li>
+										<li>底单</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+									<ul>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span><a href="##">出订单</a></span>
+											<span><a href="##">出底单</a></span>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</article>
 				</section>
+				
 			</section>
 		</article>
 	</section>

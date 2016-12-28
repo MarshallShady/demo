@@ -108,9 +108,6 @@ $(document).ready(function(ready) {
 				var resultCanteen = '';
 				var resultCanteenPort = '';
 
-
-
-
 				//时间初始化
 				manageFood.placeOrderTime( data );
 
@@ -666,7 +663,7 @@ $(document).ready(function(ready) {
 	$(document).on("tap", ".icon-plus-minus", function (ev) {
 		var $that = $(this)
 		,	$food_est = $that.closest(".food");
-		var	type = $that.attr("data-icon");					//弹出式菜单————获取icon类型 用来判断+-号
+		var	type = $that.attr("data-icon");				//弹出式菜单————获取icon类型 用来判断+-号
 		var $food = findFood($food_est);				//获取符合条件的菜式卡片和菜单条目
 
 		if ($food.length > 1) {
@@ -825,7 +822,6 @@ $(document).ready(function(ready) {
 		var $dd = $(".food").filter(function () {
 			return $(this).attr("data-number") === number;
 		});	
-		console.log($dd)
 		return $dd;
 	}
 	function coutTotal () {

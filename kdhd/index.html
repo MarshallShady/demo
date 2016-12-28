@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
     <title>必点</title>
-    <link rel="stylesheet" href="static/mobile/css/index.css">
-<style>
+    <link rel="stylesheet" href="static/mobile/css/index.css?5">
 
-</style>
 </head>
 <body>
 <div class="page">
@@ -24,12 +22,7 @@
 	   				<span></span>
 	   				<span></span>
 	   			</div>
-	   			<div class="memu-pull-down">
-	   				<ul>
-	   					<li><a href="#">个人中心</a></li>
-	   					<li><a href="#">订单中心</a></li>
-	   				</ul>
-	   			</div>
+	   			<include file="Public/menu"/>
 	   		</div>
 	    </div>
 		<div id="canteen" class="canteen">
@@ -79,24 +72,28 @@
 	</div>
 	<div id="tab" class="tab">
 		<ul>
-			<li data-flag="q"><a href="javascript:;">
+			<li data-flag="0"><a href="javascript:;">
 				<span>早餐</span>
-				<p>暂未开通</p>
+				<p></p>
 			</a></li>
 			<li data-flag="1"><a href="javascript:;">
 				<span>午餐</span>
-				<p>12:00~13:00配送</p>
+				<p></p>
 			</a></li>
 			<li data-flag="2"><a href="javascript:;">
 				<span>晚餐</span>
-				<p>17:00~18:00配送</p>
+				<p></p>
 			</a></li>
 		</ul>
-		<div id="up_to"></div>
+		<div id="up_to">
+		</div>
 	</div>
 	<div id="container" class="container">
-		<!-- <div class="card food row"  data-number="1">		
+		<div class="card food row"  data-number="1">
 			<img class="card-object	food-image col-7" src="static/data/image/1.png" alt="">
+			<div class="activity">
+				<img src="static/mobile/image/limit.png" alt="">
+			</div>
 			<div class="card-text col-5">
 				<ul class="food-info card-middle card-right large">
 					<li class="food-name icon-after" data-icon="HOT">免费早餐</li>
@@ -112,13 +109,13 @@
 				<span class="food-amount hidden">0</span>
 				<div class="food-icon icon-plus-minus plus" data-icon="+"></div>
 			</div>
-		</div> -->
-	</div>
-
+		</div>
 		<div class="more">
 			<img src="static/mobile/image/loading.gif" alt="loading">
 			<span>全力为您加载中...</span>
 		</div>
+	</div>
+
 	<div style="font-size:5px;margin-bottom:47px;width:100%;text-align:center;"></div>
 	<div id="order" class="order">
 		<button id="order-icon" class="order-icon icon-number float-left" data-icon="0"></button>
@@ -137,8 +134,7 @@
 </div>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="static/mobile/js/lib/zepto.touch.js"></script>
-<script type="text/javascript" src="static/mobile/js/module/pageScoll.js"></script>
-<script src="static/mobile/js/module/dynamic_load.js"></script>
-<script type="text/javascript" src="static/mobile/js/index.js"></script>
+<script src="static/mobile/js/module/dynamic_load.js?1"></script>
+<script type="text/javascript" src="static/mobile/js/index.js?7"></script>
 </body>
 </html>

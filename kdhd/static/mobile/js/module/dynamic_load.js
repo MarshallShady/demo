@@ -7,7 +7,7 @@
 ;
 function dynamicLoad( dispose ){
 
-	var WINDOW_HERGTH = window.innerHeight + 20;
+	var WINDOW_HERGTH = window.innerHeight + 1334;
 	var timer = null;
 	var eleLen = 0;
 
@@ -21,7 +21,7 @@ function dynamicLoad( dispose ){
 				timer = setTimeout(function(){
 					timer = null;
 					dispose();
-				},300);
+				},30);
 			}
 		}
 	});

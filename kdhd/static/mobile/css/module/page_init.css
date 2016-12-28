@@ -83,6 +83,7 @@ select {
 	width: 60%;
 	height: 20%;
 	display: block;
+	box-sizing: content-box;
 	margin: 0 auto;
 	border-bottom: 2px solid #fff;
 }
