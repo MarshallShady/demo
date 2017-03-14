@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Sure" email="Sure@tuiyilin.com">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>口袋蛋糕房</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<style>
+		*,h1,h2,h3,h4,h5,p,ul,li,.container {
+			margin:0;
+			padding:0;
+		}
+		ul,li {
+			list-style: none;
+		}
+		body {
+		}
+		html,body,.container {
+			width: 100%;
+			height: 100%;
+		}
+		.bg-blur {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 0;
+			background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+			-webkit-filter: blur(6px);
+            -moz-filter: blur(6px);
+            -o-filter: blur(6px);
+            -ms-filter: blur(6px);
+            filter: blur(6px);
+		}
+		.bg-blur img {
+			height: 100%;
+		}
+
+		.container{
+			position: relative;
+			z-index: 1;
+		}
+
+		.main-head {
+			height: 30px;
+			transition: height 1s;
+    		-webkit-transition: height 1s; /* Safari */
+		}
+
+		.content {
+			padding: 0 14%;
+			position: relative;
+			overflow: hidden;
+		}
+		.content li {
+			display: none;
+			float: left;
+		}
+		.float-content{
+			overflow: hidden;
+		}
+		#content {
+			overflow: auto;
+			transition: left 1s;
+    		-webkit-transition: left 1s; /* Safari */
+    		position: relative;
+    		left: 0;
+    		top: 0;
+		}
+
+		.main-content {
+			background: #fff;
+		}
+		.cake-img {
+			position: relative;
+		}
+		.cake-img img {
+			width: 100%;
+			display: block;
+		}
+		.cake-img p {
+			width: 100%;
+			line-height: 1.8;
+			text-align: center;
+			font-size: 13px;
+			color: white;
+			position: absolute;
+			bottom:0;
+			left: 0;
+			background:rgba(255,255,255,.5);
+			filter:alpha(opacity=80); /*IE滤镜，透明度50%*/
+			opacity:0.8;/*其他，透明度50%*/
+			animation:cake-click 2s;
+			animation-iteration-count:infinite;
+			animation-direction:alternate;
+
+			/* Safari and Chrome */
+			-webkit-animation:cake-click 2s;
+			-webkit-animation-iteration-count:infinite;
+			-webkit-animation-direction:alternate;
+
+		}
+
+/*		@keyframes cake-click
+		{
+			from {opacity:0.8;}
+			to {opacity:0;}
+		}
+
+		@-webkit-keyframes cake-click
+		{
+			from {opacity:0.8;}
+			to {opacity:0;}
+		}*/
+
+
+		.sel-left {
+			width: 14%;
+			height: 100%;
+			position: absolute;
+			top:0;
+			left: 0;
+			background: url(img/left.png) no-repeat;
+			background-size: 50% auto;
+			background-position: 50% 40%;
+		}
+		.sel-right {
+			width: 14%;
+			height: 100%;
+			position: absolute;
+			top:0;
+			right: 0;
+			background: url(img/right.png) no-repeat;
+			background-size: 50% auto;
+			background-position: 50% 40%;
+		}
+		.ele-msg {
+			padding: 10px;
+		}
+		.ele-msg h2 {
+			margin-bottom: 10px;
+			font-family: "Microsoft YaHei ";
+			font-weight: 800;
+		}
+		.ele-msg p {
+			font-size: 14px;
+			color: #BAAFAF;
+		}
+		
+		.sel-norms {
+			overflow: auto;
+			padding-top: 10px;
+		}
+		.cake-size {
+			overflow: auto;
+			position: relative;
+			margin-bottom: 10px;
+			padding-right: 60px;
+		}
+		.cake-size p {
+			position: absolute;
+			right: 10px;
+			top: -4px;
+			color: #835521;
+			font-size: 1.3em;
+		}
+		.cake-size .recommend {
+			background: rgba(0,0,0,0);
+			padding-top: 2px;
+		}
+
+
+		.cake-norms {
+			overflow: auto;
+		}
+		.delivery-time strong{
+			color: red;
+		}
+
+		.sel-norms span {
+			min-width: 26px;
+			text-align: center;
+			display: block;
+			float: left;
+			padding: 0 4px;
+			line-height: 1.6em;
+			font-size: 12px;
+			margin-right: 2px;
+			margin-top: 4px;
+			background: #EEE;
+		}
+		.sel-norms .item-norms {
+			border:solid 1px #7F501A;
+			background: #fff;
+			line-height: 1.4em;
+		}
+
+		.btn-submit {
+			padding: 0 23%;
+			padding-top: 24px;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg-blur" class="bg-blur">
+	</div>
+	<div class="container">
+		<header class="main-head"></header>
+		<section class="main-section">
+			<div class="content">
+				<div class="float-content">
+					<ul id="content">
+						<li>
+							<div class="main-content">
+								<div class="cake-img">
+									<img src="img/8c148.png">
+									<p>点击图片购买</p>
+								</div>
+
+								<div class="ele-msg">
+									<h2>芒果撒哈拉</h2>
+									<h4>Mango Sahara</h4>
+									<p>芒果撒哈拉蛋糕，加更多水果甜儿不腻</p>
+									<div class="sel-norms" data-cake-id="123456" data-size="1" data-norms1="水果芒果" data-norms2="红心火龙果" data-price="158">
+										<div class="cake-size">
+											<span class="item-norms" data-size="1" data-price="148" data-recommend="3-4人食用哦">6寸</span>
+											<span data-size="2" data-price="158" data-recommend="3-5人食用哦">8寸</span>
+											<span class="recommend">3-4人食用哦</span>
+											<p>￥158</p>
+										</div>
+										<!-- <div class="cake-norms cake-norms1">
+											<span class="item-norms">水果芒果</span>
+											<span>红心火龙果</span>
+											<span>白心火龙果</span>
+											<span>香蕉</span>
+											<span>榴莲</span>
+										</div>
+										<div class="cake-norms cake-norms2">
+											<span class="item-norms">水果芒果</span>
+											<span>红心火龙果</span>
+											<span>白心火龙果</span>
+											<span>香蕉</span>
+											<span>榴莲</span>
+										</div> -->
+										<p class="delivery-time">现在购买，预计<strong></strong>(可选)送达寝室楼下</p>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="main-content">
+								<div class="cake-img">
+									<img src="img/8c148.png">
+									<p>点击图片购买</p>
+								</div>
+
+								<div class="ele-msg">
+									<h2>芒果慕斯</h2>
+									<h4>Mango Jerry</h4>
+									<p>/这里有一场芒果的盛宴，等你来遇见/ /香甜蜜与酸甜直击味蕾/</p>
+									<div class="sel-norms" data-cake-id="123456" data-size="1" data-norms1="水果芒果" data-norms2="红心火龙果" data-price="148">
+										<div class="cake-size">
+											<span class="item-norms" data-size="1" data-price="148" data-recommend="3-4人食用哦">6寸</span>
+											<span data-size="2" data-price="158" data-recommend="3-5人食用哦">8寸</span>
+											<span class="recommend">3-4人食用哦</span>
+											<p>￥158</p>
+										</div>
+										<!-- <div class="cake-norms cake-norms1">
+											<span class="item-norms">水果芒果</span>
+											<span>红心火龙果</span>
+											<span>白心火龙果</span>
+											<span>香蕉</span>
+											<span>榴莲</span>
+										</div>
+										<div class="cake-norms cake-norms2">
+											<span class="item-norms">水果芒果</span>
+											<span>红心火龙果</span>
+											<span>白心火龙果</span>
+											<span>香蕉</span>
+											<span>榴莲</span>
+										</div> -->
+										<p class="delivery-time">现在购买，预计<strong></strong>(可选)送达寝室楼下</p>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<span id="sel-left" class="sel-left"></span>
+				<span id="sel-right" class="sel-right"></span>
+			</div>
+			<div class="btn-submit" style="padding:0;">
+				<form id="form-value" action="">
+					<input type="hidden" name="cake_id" value="">
+					<input type="hidden" name="cake_size" value="">
+					<!-- <input type="hidden" name="norms1" value="">
+					<input type="hidden" name="norms2" value=""> -->
+					<button id="submit" style="display: none;"  type="submit" class="btn btn-primary btn-lg btn-block">点 击 购 买</button>
+				</form>
+			</div>
+		</section>
+		<footer class="main-footer"></footer>
+	</div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script>
+    	$(document).ready(function(){
+    		// $("#submit").click();
+
+    		var WINDOW_HEIGHT = $('html').height();
+
+    		// 初始化样式
+    		var eleLi = $('#content li'),
+    		eleWidth = eleLi.width();
+
+    		eleLi.width( eleWidth );
+    		$('#content').width( 
+    			eleWidth * eleLi.length
+    		);
+
+    		eleLi.fadeIn(500,function(){
+
+    			var contentHeight = $('#content').height();
+
+    			// $.each( eleLi,function( i, val ){
+	    		// 	var result = (contentHeight - $(val).height())/2;
+	    		// 	$(val).css(
+	    		// 		'padding-top',
+	    		// 		result +'px'
+	    		// 	);
+	    		// } );
+
+	    		var headHeight = 30;
+	    		if( WINDOW_HEIGHT > contentHeight ){
+	    			headHeight = (WINDOW_HEIGHT - contentHeight)/2;
+	    		}
+	    		$(".main-head").height(
+	    			headHeight
+	    		);
+	    		$(".main-footer").height(
+	    			headHeight
+	    		);
+    		});
+    		
+
+    		//选择元素
+    		var electEle = (function (){
+    			var content = $('#content'),
+    				bgBlur = $('#bg-blur');
+
+    			return function (i){
+    				content.css(
+    					'left',
+    					-1 * i * eleWidth + 'px'
+    				);
+    				var src = 'url(' 
+	    					+ eleLi.eq(i).find('img').prop('src')
+	    					+ ')';
+	    			bgBlur.css('background-image', src );
+    			}
+    		})();
+    		electEle(0);
+    	  		
+    		// 初始化预计送达时间
+    		var date = new Date(),
+    			nowSecond = date.getTime(),
+    			planSecond = nowSecond + 10800000,
+    			strTime = ''
+    			;
+    		planTime();
+    		setInterval(planTime,60000);
+
+    		function planTime(){
+    			date.setTime(planSecond);
+    			strTime = date.toTimeString();
+    			strTime = strTime.substr(0,2);
+    			strTime = parseInt( strTime );
+    			if( strTime >= 19 || strTime == 0 ){
+    				strTime = '次日12';
+    			}
+    			$(".delivery-time strong").html( strTime + ':00' );
+    			planSecond += 60000;
+    		}
+    			
+
+
+    		var cakeItem = 0;
+
+    		$("#sel-left").click(function(){
+
+    			if( --cakeItem < 0 ){
+    				cakeItem = $("#content li").length - 1;
+    			}
+    			electEle(cakeItem);
+    			
+    		});
+
+    		$("#sel-right").click(function(){
+    			var len = $("#content li").length;
+    				
+				if( ++cakeItem >= len ){
+    				cakeItem = 0;
+    			}
+    			electEle(cakeItem);
+
+    		});
+
+
+    		$("#content li .cake-size span[class!='recommend']").click(function(){
+    			var size = $(this).attr("data-size");
+    			$(this).parent().children().removeClass('item-norms');
+    			$(this).addClass('item-norms');
+
+    			$(this).parent().parent().attr("data-size",size);
+
+    			$(this).parent().parent().attr("data-price", $(this).attr('data-price') );
+    			$(this).parent().find('.recommend').html( $(this).attr('data-recommend') );
+    			$(this).parent().find('p').html( '￥' + $(this).attr('data-price') );
+    		});
+
+    		// $("#content li .cake-norms1 span").click(function(){
+    			
+    		// 	$(this).parent().children().removeClass('item-norms');
+    		// 	$(this).addClass('item-norms');
+    		// 	$(this).parent().parent().attr("data-norms1",$(this).html());
+
+    		// });
+    		// $("#content li .cake-norms2 span").click(function(){
+    		// 	$(this).parent().children().removeClass('item-norms');
+    		// 	$(this).addClass('item-norms');
+    		// 	$(this).parent().parent().attr("data-norms2",$(this).html());
+    		// });
+
+    		$("#submit").click(function(){
+    			var obj = $("#content li").eq(cakeItem).find(".sel-norms"),
+    				form = $("#form-value input"),
+   					cakeId = obj.attr('data-cake-id'),
+    				size = parseInt( obj.attr('data-size') ),
+    				norms1 = obj.attr('data-norms1'),
+    				norms2 = obj.attr('data-norms2');
+
+    			form.eq(0).val( cakeId );
+    			form.eq(1).val( size );
+    			// form.eq(2).val( norms1 );
+    			// form.eq(3).val( norms2 );
+    			
+    			var arrAlert = [
+    				'',
+    				'/(ㄒoㄒ)/~~小口袋，暂为提供6寸的哦~',//6寸
+    				'小口袋温馨提示-！3-4人食用哦~',//7寸
+    				'小口袋温馨提示-！3-5人食用哦~',//8寸
+    				''//10寸
+    			];
+    			if( 0<=size && size<=arrAlert.length ){
+    				alert(arrAlert[size]);
+    			}
+
+    		});
+    		$("#content img").click(function(){
+
+    			$("#submit").click();
+    		});
+    	});
+    </script>
+</body>
+</html>

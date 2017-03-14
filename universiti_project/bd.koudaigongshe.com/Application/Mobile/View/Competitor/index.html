@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>必点送接单中心</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/residence_advisor.css"></head>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .tel_info h3{
+            font-weight: normal;
+            font-size: 1em;
+            margin:5px 0;
+        }
+        .tel_info h3:first-child{
+            color:blue;
+        }
+        .tel_info h3:first-child span{
+            font-size: 1em;
+            color:rgba(0,0,0,.8);
+            width: 75px;
+        }
+        .tel_info h3 .lou_btn{
+            display: inline-block;
+            width: 80px;
+            height: 25px;
+            line-height: 25px;
+            font-size: 1em;
+            float: right;
+            margin-right: 20px;
+            margin-bottom: 5px;
+            color: #fff;
+            text-align: center;
+            background-color:rgb(255, 101, 80);
+            border-radius: 5px;
+        }
+        .detail-body a {
+            width: 80px;
+            margin-left:0;
+            float: right;
+            line-height: 25px;
+            color: #fff;
+        }
+        button.mini-btn {
+            padding:4px;
+        }
+        .detail-body span{
+            font-size: .8em;
+        }
+        .order-title ul li{
+            text-align: center;
+        }
+        .order-title ul li:first-child{
+            width: 20%;
+        }
+        .order-data-title ul li:first-child {
+            width: 30%;
+        }
+        .order-data-title p{
+            text-align: center;
+        }
+        button .mini-btn{
+            padding:4px;
+        }
+        .order-data-title li{
+            width: 15%;
+            font-size: .8em;
+        }
+        button.btn-bg-white{
+            margin-right: 12px;
+        }
+        .order-data-title ul {
+            padding-left: 10px;
+        }
+/*        button.btn-disable, button.btn-disable:active {
+            background: #5096FF;
+            color: #fff;
+            letter-spacing: 2px;
+            border: 1px solid #5096FF;
+        }*/
+    </style>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>必点送接单中心</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="message">
+			<header class="message-title">
+				<a href="#"><p>信息中心</p>
+                </a>
+			</header>
+			<section class="message-body">
+				<ul>
+					<li>
+						<p id="order_undo"></p>
+						<span>本时段待送</span>
+					</li>
+					<li>
+						<p id="order_total"></p>
+						<span>本时段已送</span>
+					</li>
+					<li>
+						<p id="num_order_rest"></p>
+						<span>未结算收益</span>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="order-manage">
+			<header class="message-title">
+				<a href="#"><p>订单管理</p></a>
+			</header>
+			<section class="order-body">
+				<header class="order-title">
+					<ul>
+						<li style="width:24%;">寝室</li>
+                        <li style="width:16%;text-align:right;">时间</li>
+						<li style="width:25%;">份数</li>
+						<li style="width:27%;">操作</li>
+					</ul>
+				</header>
+				<section>
+        <div id="test"></div>
+		<div id="order_ready"></div>
+        <div id="order_finished"></div>
+		<div id="order_prepare"></div>
+<!--         <article class="order-data">
+            <header class="order-data-title">
+                <ul>
+                    <li><span style="font-size:1em;">5号南楼219</span></li><li>13:00</li>
+                    <li><p>23 </p></li><li>
+                    <button class="gw-btn mini-btn btn-bg-white">查看</button><a href=""><button class="gw-btn mini-btn">送达</button></a></li>
+                </ul>
+            </header>
+            <div class="detail"><div>
+            <header class="detail-title">
+                <ul>
+                    <li>菜品</li>
+                    <li>档口</li>
+                    <li>小票号</li>
+                </ul>
+            </header>
+            <section class="detail-body">
+            <ul>
+                <li><span>砂锅</span><span>砂锅王</span><span>3306</span></li>
+                <li class="tel_info"><p>联系方式:<a style="margin-right:120px;color:#6175D2;" href="tel:13777837239">13777837239</a></p>
+                <h3><span>姓名：张烁</span><span class="lou_btn">
+                <a href="3306">漏单补打</a></span></h3></li>
+             </ul>
+        </article> -->
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script>
+    $('.btn-bg-white').tap(function(){
+        var target = $(this).closest('.order-data-title').next('.detail');
+        var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+        target.height(height);
+    });
+    $.ajax({
+        type:"get",
+        url:"http://bd.koudaigongshe.com/mobile/competitor/apishow",
+        dataType:"json",
+        success:function(data){
+            console.log(1);
+
+            /* ---- 信息展示 start ---- */
+            if ( data['count']['did'] == 0) {
+                $("#order_total").html('<p>0单</p>');
+            } else{
+                $("#order_total").html('<p>' + data['count']['did'] + '单</p>');
+            }
+            if (data['count']['undo'] == 0) {
+                $("#order_undo").html('<p>0单</p>');
+            } else{
+                $("#order_undo").html('<p>' + data['count']['undo'] + '单</p>');
+            }
+            if (data['role']['num_order_rest'] ==0||undefined||null) {
+            	$("#num_order_rest").html('<p>' + data['role']['num_order_rest'] + '单</p>');
+            } else{
+                $("#num_order_rest").html('<p>' + data['role']['num_order_rest'] + '单</p>');
+            };
+            /* ---- 信息展示 end ---- */
+
+            var tpls_a = "";
+            var tpls_b = "";
+            var tpls_c = "";
+
+            /* ---- 已抢订单多重遍历 start ---- */
+            $.each(data.did,function (i,v){
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                	var sp = '';
+                    $.each(v,function(k,val){
+                    sp = '<li class="tel_info"><p>联系方式:<a style="margin-right:120px;color:#6175D2;" href="tel:' + val['mobile'] + '">' + val['mobile'] +
+                         '</a></p><h3><span>姓名：' + val['name'] + '</span><span class="lou_btn">'+
+                        '<a href="/mobile/competitor/backuphandle/id/' + val['order_basic_id'] + '">漏单补打</a></span></h3></li>'
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span style="font-size:1em;">' + s['building_name'] + s['dormitory'] + '</span></li>'+
+                            '<li>' + s['pay_time'] + '</li>';
+                    });
+                    return ps;
+                };
+                var surer = function(v){
+                    var pst = '';
+                    $.each(v, function(pt,st){
+                        pst = '<button class="gw-btn mini-btn"><a href="/mobile/competitor/sended/id/' + st['order_basic_id'] + '">送达</a></button></li>';
+                    });
+                    return pst;
+                };
+                tpls_a += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    sure(v['order'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看</button>'+
+                                    surer(v['order'])+
+                                    // '<a href=""><button class="gw-btn mini-btn btn-disable">送达</button></a></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['order'])+
+                            bbbb(v['order'])+
+                    '</ul>'+
+                        '</article>';
+            });
+            /* ---- 已抢订单多重遍历 end ---- */
+
+            /* ---- 抢单订单多重遍历 start ---- */
+            $.each(data.undo,function (i,v){
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                    $.each(v,function(k,val){
+                        sp = '<li class="tel_info"><p>联系方式:<a style="margin-right:120px;color:#6175D2;" href="tel:' + val['mobile'] + '">' + val['mobile'] +
+                         '</a></p><h3><span>姓名：' + val['name'] + '</span><span class="lou_btn">'+
+                        '<a href="/mobile/competitor/backuphandle/id/' + val['order_dish_id'] + '">漏单补打</a></span></h3></li>'
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                	console.log(7);
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span style="font-size:1em;">' + s['building_name'] + s['dormitory'] + '</span></span></li>'+
+                            '<li>' + s['pay_time'] + '</li>';
+                    });
+                    return ps;
+                };
+                var surer = function(v){
+                    var pst = '';
+                    $.each(v, function(pt,st){
+                        pst = '<button class="gw-btn mini-btn"><a href="/mobile/competitor/catch/id/' + st['order_basic_id'] + '">抢单</a></button></li>';
+                    });
+                    return pst;
+                };
+                tpls_b += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    sure(v['order'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看'+
+                                    surer(v['order'])+
+                                    // '<button class="gw-btn mini-btn"><a href="catch/id/' +  + '">抢单</a></button></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['order'])+
+                            bbbb(v['order'])+
+                    '</ul>'+
+                        '</article>';
+            });
+            /* ---- 抢单订单多重遍历 end ---- */
+
+            /* ---- 已送达订单多重遍历 start ---- */
+            $.each(data.finished,function (i,v){
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                    $.each(v,function(k,val){
+                        sp = '<li class="tel_info"><p>联系方式:<a style="margin-right:120px;color:#6175D2;" href="tel:' + val['mobile'] + '">' + val['mobile'] +
+                         '</a></p><h3><span>姓名：' + val['name'] + '</span><span class="lou_btn">'+
+                        '<a href="/mobile/competitor/backuphandle/id/' + val['order_basic_id'] + '">漏单补打</a></span></h3></li>'
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span style="font-size:1em;">' + s['building_name'] + s['dormitory'] + '</span></span></li>'+
+                            '<li>' + s['pay_time'] + '</li>';
+                    });
+                    return ps;
+                };
+                // var surer = function(v){
+                //     var pst = '';
+                //     $.each(v, function(pt,st){
+                //         pst = '<button class="gw-btn mini-btn">">已送达</a></button></li>';
+                //     });
+                //     return pst;
+                // };
+                tpls_c += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    sure(v['order'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看'+
+                                    '<button class="gw-btn mini-btn btn-disable">已送</button></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['order'])+
+                            bbbb(v['order'])+
+                    '</ul>'+
+                        '</article>';
+            });
+            /* ---- 已送达订单多重遍历 end ---- */
+
+            /* ---- 模板插入 start ---- */
+            $("#order_finished").html(tpls_a);
+            $("#order_ready").html(tpls_b);
+            $("#order_prepare").html(tpls_c);
+            /* ---- 模板插入 end ---- */
+
+            /* ---- toggle按钮事件绑定 start ---- */
+            $('.btn-bg-white').tap(function(){
+                var target = $(this).closest('.order-data-title').next('.detail');
+                var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+                target.height(height);
+            });
+            /* ---- toggle按钮事件绑定 end ---- */
+        },
+        error:function(data){
+            console.log("error");
+        }
+    });
+</script>
+</body>
+</html>

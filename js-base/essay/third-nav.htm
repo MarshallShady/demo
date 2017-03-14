@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />  
+	<title>三级菜单</title>
+	<style>
+        div,body,h1,h2,h3,h4,h5,ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        html,body {
+        	height: 100%;
+        }
+       	ul,li {
+       		list-style: none;
+       	}
+        html {
+        	font-size: 100%;
+        }
+        body {
+        	font-size: 1em;
+        }
+		
+		.main-nav {
+			height: 50px;
+		}
+		.main-nav .main-nav-first {
+			width: 30%;
+			height: 50px;
+			float: left;
+			line-height: 50px;
+			text-align: center;
+			position: relative;
+		}
+		.main-nav  .main-nav-first-child {
+			width: 100%;
+			background-color: red;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			display: none;
+		}
+		.main-nav .main-nav-second {
+			position: relative;
+		}
+		.main-nav .main-nav-second-child {
+			width: 100%;
+			background-color: green;
+			position: absolute;
+			left: 100%;
+			top: 0;
+			display: none;
+		}
+		.main-nav .main-nav-second {
+			position: relative;
+		}
+
+		.clear-float:after{
+			content:"";
+			height:0;
+			display:block;
+			visibility:hidden;
+			clear:both;
+		}
+		.clear-float{
+			zoom:1;/*IE*/
+		}
+    </style>
+	
+</head>
+<body> 
+<header class="main-nav">
+	<ul>
+		<li class="main-nav-first">
+			<div class="main-nav-first-key">这是一级菜单</div>
+			<div class="main-nav-first-child">
+				<ul>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li class="main-nav-first">
+			<div class="main-nav-first-key">这是一级菜单</div>
+			<div class="main-nav-first-child">
+				<ul>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li class="main-nav-first">
+			<div class="main-nav-first-key">这是一级菜单</div>
+			<div class="main-nav-first-child">
+				<ul>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-nav-second">
+						<div class="main-nav-second-key">这是二级菜单</div>
+						<div class="main-nav-second-child">
+							<ul>
+								<li class="main-nav-third">
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+									<div class="main-nav-third-key">这是三级菜单</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</header>
+
+<script>
+	(function initVav(argument) {
+		var mainNav = document.querySelector('.main-nav')
+		,   
+			firstNavs = mainNav.querySelectorAll('.main-nav-first')
+		,   secondNavs = mainNav.querySelectorAll('.main-nav-second')
+		,   thirdNavs = mainNav.querySelectorAll('.main-nav-third')
+
+			// secondChild = mainNav.querySelector('.main-nav-second-child')
+			
+
+		for(var i = 0,len = firstNavs.length; i < len; i++){
+			(function(i){
+				var child = firstNavs[i].querySelector('.main-nav-first-child')
+				firstNavs[i].onmouseover = function(event){
+					var event = event || window.event
+					child.style.display = 'block'
+
+				}
+				firstNavs[i].onmouseout = function(event){
+					var event = event || window.event
+					child.style.display = 'none'
+					
+				}
+			}(i))
+		}
+		for(var i = 0,len = secondNavs.length; i < len; i++){
+			(function(i){
+				var child = secondNavs[i].querySelector('.main-nav-second-child')
+				secondNavs[i].onmouseover = function(event){
+					var event = event || window.event
+					child.style.display = 'block'
+
+				}
+				secondNavs[i].onmouseout = function(event){
+					var event = event || window.event
+					child.style.display = 'none'
+					
+				}
+			}(i))
+		}
+	
+	}())
+</script>
+</body>
+</html>

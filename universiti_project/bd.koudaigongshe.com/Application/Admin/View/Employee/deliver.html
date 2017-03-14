@@ -1,0 +1,113 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+
+</script>
+<html >
+<head>
+    <title>出单员管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/Employee/js/deliver.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">人员管理</a></li>
+  <li class="active">出单员管理</li>
+</ol>
+
+<div  ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>省份</th>
+                <th>学校</th>
+                <th>校区</th>
+            </tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <!-- <td><select class="form-control" ng-model="select_building"ng-options="x.name for x in building|filter:{school_ext:select_school_ext['id']}"></select></td> -->
+            </tr>
+            <tr><td colspan="5"><button class='btn form-control btn-info' ng-click="getInfo()">查询</button></td></tr>
+        </table>
+    </div>
+    <div>
+    <table class="table table-striped">
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <!-- <th>身份</th> -->
+            <th>学校</th>
+            <th>校区</th>
+            <th>手机号码</th>
+            <th>支付宝账号</th>
+            <th>备注</th>
+            <th>查看</th>
+            <th>修改</th>
+            <th>状态</th>
+            <th>删除</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="x in data" id="tr-{{x.id}}">
+            <td>{{x.id}}</td>
+            <td><input class="form-control"id="name-{{x.id}}" value="{{x.name}}"/></td>
+            <!-- <td>{{x.role_name}}</td> -->
+            <td>{{x.school_name}}</td>
+            <td>{{x.school_ext_name}}</td>
+            <td><input class="form-control"id="mobile-{{x.id}} "type="tel" value="{{x.mobile}}"/></td>
+            <td><input class="form-control"id="alipay-{{x.id}}" value="{{x.alipay}}"/></td>
+            <td><input class="form-control"id="comment-{{x.id}}" value="{{x.comment}}"/></td>
+            <td id="st-{{x.id}}">{{x.status_2}}</td>
+            <td><button type="button" class="btn btn-primary btn-info" data-toggle="modal" data-target="#myModal" ng-click="getCanteen(x.id,x.name)">负责餐厅</button></td>
+            <td><button class="btn btn-default" id="e-{{x.id}}" ng-click="edit(x.id)">修改</button></td>
+            <td><button class="btn btn-default" id="s-{{x.id}}" ng-click="status(x.id,x.status)">{{x.status_3}}</button></td>
+            <td><button class="btn btn-default" id="d-{{x.id}}" ng-click="delete(x.id)">删除</button></td>
+        </tr>
+    </table>
+    </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{spec.name}} 管理的餐厅</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+            <tr>
+                <th>增加新负责餐厅</th>
+                <th><select class="form-control" ng-model="select_canteen"ng-options="x.name for x in canteen"></select></th>
+                <th><button class="form-control" ng-click="addCanteen()" >增加</button></th>
+            </tr>
+        </table>
+        <table class="table table-striped">
+            <tr>
+                <th>序号</th>
+                <th>负责餐厅</th>
+                <th>状态</th>
+                <th>改变状态</th>
+            </tr>
+            <tr ng-repeat="x in aim">
+                <td>{{x.id}}</td>
+                <td>{{x.aim_name}}</td>
+                <td>{{x.status_name}}</td>
+                <td><button ng-click="aim_status(x.id)">改变状态</button></td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

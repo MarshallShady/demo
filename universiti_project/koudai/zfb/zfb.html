@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Sure" email="Sure@tuiyilin.com">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>口袋高校蛋装逼神器</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<style>
+		*,h1,h2,h3,h4,h5,p,ul,li,.container{
+			margin:0;
+			padding:0;
+		}
+
+		body {
+
+		}
+		ul,li {
+			list-style: none;
+		}
+		.container {
+			position: relative;
+		}
+		#tulip {
+			width: 100%;
+			display: none;
+		}
+		.main-head {
+			text-align: center;
+			padding-top: 50px;
+		}
+		.main-head img {
+			margin-bottom: 20px;
+			width: 30%;
+		}
+		.in-data {
+			padding: 20px;
+		}
+
+		.success {
+			display: none;
+			padding-top: 20px;
+		}
+
+		.main-footer {
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 6px;
+			font-size: 12px;
+		}
+		
+		.preview {
+			position: absolute;
+			top:0;
+			left: 0;
+			display: none;
+		}
+		.preview img{
+			width: 100%;
+		}
+
+		#continiu {
+			margin-top: 30px;
+		}
+
+		.more {
+			text-align: center;
+			margin-top: 8px;
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="preview">
+			<img src="img/preview.png">
+		</div>
+		<header class="main-head">
+			<img src="img/logo.jpg" alt="">
+		 	<h4>双十一装逼神器(<a id="preview" href="javascript:;">点击预览</a>)</h4>
+		</header>
+		<section class="main-section">
+			<div id="in-data" class="in-data">
+				 <div class="form-group">
+				    <label for="name">姓名</label>
+				    <input type="text" class="form-control" id="name">
+				  </div>
+				  <div class="form-group">
+				    <label for="address">收货地址（别超过21个中文）</label>
+				    <input type="text" class="form-control" id="address" >
+				  </div>
+				  <div class="form-group">
+				    <label for="tel">手机号</label>
+				    <input type="tel" class="form-control" id="tel" >
+				  </div>
+				  <div class="form-group">
+				    <label for="qq">QQ前三位</label>
+				    <input type="tel" class="form-control" id="qq" >
+				  </div>
+				  <div class="form-group">
+				    <label for="money">金额（包括小数点别超过15位）</label>
+				    <input type="tel" class="form-control" id="money" >
+				  </div>
+				  <button id="submit" type="button" class="btn btn-primary btn-lg btn-block">点 击 生 成</button>
+				  <div class="more">
+				  	<a href="http://www.pocketuniversity.cn/">更多好玩请点击这里</a>
+				  </div>
+			</div>
+			<div id="success" class="success">
+				<img id="tulip" src="img/zfb.jpg"/>
+				<canvas id="myCanvas"></canvas>
+			</div>
+		</section>
+		<footer class="main-footer">
+			<p>@版权归口袋高校所有</p>
+		</footer>
+	</div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script>
+    	var WINDOW_WIDTH = 375,
+    		HEIGHT = 1.78 * WINDOW_WIDTH;
+    	var canvas=document.getElementById('myCanvas');
+    	canvas.width = WINDOW_WIDTH;
+    	canvas.height = HEIGHT;
+		var ctx=canvas.getContext('2d');
+		var img = $("#tulip")[0];
+		ctx.drawImage(img,0,0,WINDOW_WIDTH,HEIGHT);
+
+		// ctx.font="12px  Microsoft YaHei";
+		// ctx.fillText("高少辉",88,86);
+
+		// ctx.fillText("15658033953",270,86);
+
+		// ctx.fillText("浙江省杭州市江干区杭州电子科技大学下沙校区",100,106);
+
+		// ctx.font="14px  Microsoft YaHei";
+		// ctx.fillStyle= "#6d6d6d";
+		// ctx.fillText("462",226,282);
+
+		// ctx.font="500 30px  Microsoft YaHei";
+		// ctx.textAlign = "end";
+		// ctx.fillStyle= "#000";
+		// ctx.fillText("320000000000.00",310,405);
+		
+		$("#preview").click(function(){
+			$(".preview").show();
+		});
+
+		$(".preview").click(function(){
+			$(".preview").hide();
+		});
+		
+		$("#submit").click(function(){
+			var name = $('#name').val(),
+				tel = $('#tel').val(),
+				address = $('#address').val(),
+				qq = $('#qq').val(),
+				money = $('#money').val();
+			var t = create(name,tel,address,qq,money);
+
+			if(!t){
+				return false;
+			}
+			$("#in-data").hide();
+			$("#success").show();
+			$('.main-head h2').html("长按保存，刷新重来");
+		});
+
+		function create(name,tel,address,qq,money){
+
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+
+			if(name.length == 0){
+				alert('姓名不能为空');
+				return false;
+			}
+
+			if(address.length == 0){
+				alert('地址不能为空');
+				return false;
+			}
+			if(address.length > 21){
+				alert('请不要超过21个字符');
+				return false;
+			}
+			if(!myreg.test(tel)){
+				alert('手机号格式不对');
+				return false;
+			}
+			myreg = /^[0-9]{3}$/; 
+			if(!myreg.test(qq)){
+				alert('请输入三位数字');
+				return false;
+			}
+			myreg = /^[0-9\.]+$/; 
+			if(!myreg.test(money)){
+				alert('金额为数字可以有小数点');
+				return false;
+			} 
+
+			ctx.font="12px  Microsoft YaHei";
+			ctx.fillText(name,88,86);
+
+			ctx.fillText(tel,270,86);
+
+			ctx.fillText(address,100,106);//别超过21个中文
+
+			ctx.font="14px  Microsoft YaHei";
+			ctx.fillStyle= "#6d6d6d";
+			ctx.fillText(qq,226,282);//qq前三位
+
+
+			ctx.font="500 30px  Microsoft YaHei";
+			ctx.textAlign = "end";
+			ctx.fillStyle= "#000";
+			ctx.fillText(money,310,405);//包括小数点别超过15位
+			return true;
+		}
+    </script>
+</body>
+</html>

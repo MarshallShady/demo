@@ -1,0 +1,122 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>图书馆</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="css/show.css">
+<script type="text/javascript" src="js/show.js"></script>
+<body>
+
+<div id="loading">
+	<img src="img/loading.gif">
+	<p>加载中...</p>
+</div>
+<div id="box">
+	<!-- 搜索显示 -->
+	<div id="search-text">
+		<ul class="search-text">
+		</ul>
+		<div id="search-sub" class="sub1" style="display:none">
+			<ul></ul>
+		</div>
+	</div>
+	<!-- 搜索显示结束 -->
+
+	<!-- 首页显示 -->
+	<div class="page" style="left:0">
+		<div id="head1">
+			<input type="text" placeholder="搜索您要的书目">
+			<button type="button" class="btn btn-default">取消</button>
+		</div>
+		<div class="sub1">
+			<p class="centent-menu">热门借阅</p>
+			<ul></ul>
+		</div>
+		<p class="copyright">Copyright © hduhelp</p>
+	</div>
+	<!-- 首页显示结束 -->
+
+	<!-- 预约页显示 -->
+	<div class="page">
+		<div class="sub1">
+			<p class="centent-menu">预约</p>
+			<ul></ul>
+		</div>
+		<p class="copyright">Copyright © hduhelp</p>
+	</div>
+	<!-- 预约页显示结束 -->
+
+	<!-- 我的图书馆 -->
+	<div class="page">
+		<div id="person">
+			<div>
+				<img src="http://img1.27.cn/images/201109/09/1315556574_64057100.jpg"><!-- img/xll.jpg -->
+				<p>高少辉</p>
+				<p>已借阅10本</p>
+			</div>
+		</div>
+		<div class="sub1">
+			<p class="centent-menu">当前借阅</p>
+			<ul></ul>
+		</div>
+		<div class="sub1">
+			<p class="centent-menu">借阅历史</p>
+			<ul></ul>
+		</div>
+		<p class="copyright">Copyright © hduhelp</p>
+	</div>
+	<!-- 我的图书馆结束 -->
+
+	<!-- 书的详细介绍 -->
+	<div class="page">
+		<div id="returns">
+			<span class="glyphicon glyphicon-menu-left"></span> 
+			<span>返回</span>
+		</div>
+		<div id="introduction"></div>
+		<div id="library">	
+			<ol>
+				<li>校区</li>
+				<li>馆藏地</li>
+				<li>书刑状态</li>
+			</ol>
+			<ul></ul>
+			<button type="button" class="btn btn-default">续借</button>
+		</div>
+		<p class="copyright">Copyright © hduhelp</p>
+	</div>
+	<!-- 书的详细介绍结束 -->
+</div>
+
+<!-- 菜单区 -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+	<div id="menu" class="container">
+		<div>
+			<img src="img/sy.png">
+		</div>
+		<div>
+			<img src="img/yy.png">
+		</div>
+		<div>
+			<img src="img/me.png">
+		</div>
+	</div>
+</nav>
+<!-- 菜单区结束 -->
+<script type="text/javascript">
+	var oWidth=document.documentElement.clientWidth||document.body.clientWidth,
+		oHeight=document.documentElement.clientHeight||document.body.clientHeight;
+
+	$1('#loading').style.height = oHeight +'px';
+	//屏蔽右上角按钮
+	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		WeixinJSBridge.call('hideOptionMenu');
+	});
+	//屏蔽右上角按钮结束
+</script>
+
+</body>
+</html>

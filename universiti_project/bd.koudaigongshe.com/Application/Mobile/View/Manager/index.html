@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+<!-- 	<meta content="telephone=no" name="format-detection" /> -->
+
+	<title>校园经理监测中心</title>
+
+	<link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+
+	<!-- <link rel="stylesheet" href="./page_init.css"> -->
+
+	<style>
+
+		.page {
+
+			background: #E6E6E6;
+
+			overflow: hidden;
+
+			padding-bottom: 40px;
+
+		}
+
+
+
+		/*main section statr*/
+
+		#main-section {
+
+			margin-top: 50px;
+
+		}
+
+		.section {
+
+			background: rgb(249,249,249);
+
+		}
+
+		.tips {
+
+			height: auto;
+
+			color: rgb(255,105,116);
+
+			font-size: 14px;
+
+			text-align: center;
+
+			padding: 3px 0;
+
+			background: #E6E6E6;
+
+		}
+
+		.title{
+
+			overflow: hidden;
+
+			border-bottom: 1px solid #E6E6E6;
+
+			padding: 5px 13px;
+
+		}
+
+		#title-text-two {
+
+			font-size: 13px;
+
+			color: #ADABAB;
+
+			height: 100%;
+
+			line-height: 21px;
+
+			padding-right: 17px;
+
+			margin-right: -5px;
+
+			background: url('/Public/static/mobile/image/down-arrow.png') right center/12px no-repeat;
+
+		}
+
+		
+
+		.box{
+
+			width: 33.3%;
+
+			-webkit-box-sizing: border-box;
+
+			box-sizing: border-box;
+
+		}
+
+
+
+		#data-part{
+
+			overflow: hidden;
+
+			padding: 10px 0;
+
+		}
+
+
+
+		.data-text{
+
+			font-size: 30px;
+
+			color: rgb(249,91,95);
+
+			font-weight: 300;
+
+			text-align: center;
+
+		}
+
+
+
+		.box-name{
+
+			font-size: 12px;
+
+			color: #ADABAB;
+
+			margin-top: 2px;
+
+			text-align: center;
+
+		}
+
+
+
+		.before-load-ok {
+
+			font-size: 12px;
+
+		}
+
+		/*main section end*/
+
+
+
+		/*footer section start*/
+
+		#footer-section {
+
+			text-align: right;
+
+			font-size: 14px;
+
+			background: rgb(249,249,249);
+
+			border-top: 2px solid #E6E6E6;
+
+			border-bottom: 2px solid #E6E6E6;
+
+		}
+
+		#footer-section p {
+
+			color: #ADABAB;
+
+			padding: 7px 10px;
+
+		}
+
+		/*footer section start*/
+
+
+
+		/*income list start*/
+		
+		#income-section{
+			display: none;
+		}
+		#income-list{
+			overflow: hidden;
+
+		}
+		#income-list .list-details {
+			width: 33.3%;
+		}
+		ul {
+
+			overflow: hidden;
+
+			background: rgb(249,249,249);
+
+		}
+
+		.list-item{
+
+			list-style: none;
+
+			overflow: hidden;
+
+			border-top: 1px solid #E6E6E6;
+
+			min-height: 35px;
+
+		}
+		#user-list .list-item{
+			background: #E6E6E6;
+		}
+		p.list-item button {
+			width: 100%;
+			padding: 0 3px;
+		}
+		.list-header{
+
+			background: #E6E6E6;
+
+		}
+
+		.list-details{
+
+			width: 15%;
+
+			float: left;
+
+			text-align: center;
+
+			font-size: 14px;
+
+			padding: 5px 0;
+
+		}
+
+
+
+		.list-header .list-details{
+
+			color: black;
+
+		}
+
+
+
+		#load-more{
+
+			width: 100%;
+
+			font-size: 15px;
+
+			text-align: center;
+
+			color: white;
+
+			padding: 5px;
+
+			background: rgb(224, 224, 224);
+
+		}
+		
+		#show-income{
+			padding-right: 21px!important;
+			background: url('/Public/static/mobile/image/down-arrow.png') 110px/16px no-repeat;
+		}
+		
+
+		/*income list end*/
+
+
+
+		/*order operation start*/
+
+		#order-list .list-details{
+			width: 15%;
+		}	
+
+		.big-list-details {
+
+			width: 30%!important;
+		}					
+
+		.operation-btn{
+
+			width: 80%;
+
+			height: 25px;
+
+			font-size: 12px;
+
+			background: white;
+
+			border-radius: 5px;
+
+			/*margin: 3px 0;*/
+
+		}
+
+		.change-menu-btn {
+
+			border: 1px solid black;
+
+		}
+
+
+
+		#take-order-btn {
+
+			background: rgb(249,91,95);
+
+			margin-top: 6px;
+
+			color: white;
+
+			border: 0;
+
+		}
+
+/*		.take-order-btn {
+
+			background: rgb(249,91,95);
+
+			margin-top: 6px;
+
+			color: white;
+
+		}*/
+
+		.has-take-btn {
+
+		    margin-top: 6px;
+		    /* border: 1px solid black; */
+		    background: rgb(249,249,249);
+		    color: #8E8D8D;
+		    font-size: 12px;
+
+		}
+
+		/*	
+
+		#order-list .list-details{
+
+			width: 20%;
+
+		}*/
+
+		.width-30-per{
+
+			width: 30%!important;
+
+		}
+		.width-20-per{
+			width: 20%!important;
+		}
+
+
+		#append{
+			height: 0;
+			transition: height 1s linear;
+			-webkit-transition: height 1s linear;
+		}
+		#user-list .list-details {
+
+			width: 33.3%;
+
+		}
+		#user-list .list-header{
+			border-bottom: 2px solid white;
+		}
+
+		#user-list .deliver{
+			background: #E6E6E6;
+			font-size: 12px;
+			padding: 5px 20px;
+		}
+	
+		#user-list .deliver-name{
+			padding-right: 20px;
+		}
+
+		.tel{
+
+			color: rgb(140,183,245)
+
+		}
+
+		/*order operation end*/
+
+
+
+		/*common UI*/
+
+		.float-l {
+
+			float: left;
+
+		}
+
+		.float-r {
+
+			float: right;
+
+		}
+
+		.t-align-r{
+
+			text-align: right;
+
+		}
+
+		select{
+			border:0;
+		}
+
+		/*common UI*/
+
+	</style>
+
+</head>
+
+<body>
+
+    <div class="page">
+
+		<header class="main-header">
+
+			<div class="headline">
+
+				<div class="headline-body" style="font-weight:300">
+
+					<p>校园经理监测中心</p>
+
+				</div>
+
+			</div>
+
+			<div class="go-back">
+
+				<a href="http://bd.koudaigongshe.com/mobile/index/index.html"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+
+			</div>
+
+		</header>
+
+		<section id="main-section" class="section">
+
+			<p class="tips"><!-- 欢迎你，xxx平台运营者 --></p>
+
+			<article class="title">
+
+				<p class="float-l">信息中心</p>
+				<style>
+				</style>
+				<div id="title-text-two" class="float-r">
+					<select name="school-list" id="school-list">
+					</select>
+				</div>
+
+			</article>
+
+			<article id="data-part">
+
+				<div id="not-take-box" class="box float-l">
+
+					<p id="not-take-text" class="data-text"><!-- ￥0.0 --><span class="before-load-ok">数据载入中...</span></p>
+
+					<p class="box-name ">本时段未接单</p>
+
+				</div>
+
+				<div id="order-num-box" class="box float-l">
+
+					<p id="order-num-text" class="data-text"><!-- 0单 --><span class="before-load-ok">数据载入中...</span></p>
+
+					<p class="box-name">本时段已接单</p>
+
+				</div>
+
+				<div id="money-box" class="box float-l">
+
+					<p id="money-text" class="data-text"><!-- ￥0.0 --><span class="before-load-ok">数据载入中...</span></p>
+
+					<p class="box-name ">本时段营业额</p>
+
+				</div>
+
+			</article>
+
+		</section>
+
+		<section id="footer-section" style="overflow:hidden">
+
+			<!-- <p id="total-money" class="float-l">累计营业额：<span style="color:rgb(255,105,116)">数据载入中...</span></p> -->
+			
+			<p id="show-income" class="float-r">查看营业额记录</p>
+		</section>
+
+		<section id="income-section" class="section">
+
+			<article id="income-list">
+
+				<ul>
+
+					<li class="list-item list-header">
+
+						<p class="list-details">日期</p>
+		
+						<p class="list-details">时段</p>
+						<p class="list-details">营业额</p>
+
+					</li>
+
+				</ul>
+
+			</article>
+
+			<button id="load-more" style="margin-bottom:10px;">点击加载更多</button>
+
+		</section>
+
+		<section id="order-operation" class="section">
+
+			<header id="order-ope-header" class="title">
+
+				<p>订单操作</p>
+
+			</header>
+
+			<article id="order-list">
+
+				<ul>
+
+					<li class="list-item list-header">
+
+						<p class="list-details width-30-per">寝室号</p>
+
+						<p class="list-details">份数</p>
+
+						<p class="list-details width-20-per">下单时间</p>
+
+						<p class="list-details width-20-per">查看</p>
+	
+						<p class="list-details">状态</p>
+					</li>
+
+				</ul>
+
+			</article>
+
+<!-- 			<article id="user-list">
+
+				<ul>
+
+					<li class="list-item list-header">
+
+						<p class="list-details">用户姓名</p>
+
+						<p class="list-details">联系方式</p>
+
+						<p class="list-details">小票号</p>
+
+					</li>
+
+				</ul>
+
+			</article> -->
+
+		</section>	
+
+    </div>
+
+</body>
+
+<script>
+
+	
+
+	;(function () {
+
+
+
+		/*doms get start*/
+
+		var notTakeText = getDom('#not-take-text'),
+
+			orderNumText = getDom('#order-num-text'),
+
+			moneyText = getDom('#money-text');
+
+
+
+		var totalMoneyText = getDom('#total-money span');
+
+		var incomeList = getDom('#income-list');	
+
+		/*doms get end*/
+
+		/* 流程控制变量 */
+		var len = 0;
+
+		var ifFinish = false;
+
+		/* 流程控制变量 */
+
+ 
+		/*****************
+		*	@allDish: {Array} 所有订单
+		*	@dishDeatail: {Array} 所有订单里面的每一份
+		*	@competitor: {Array} 必点送人员名单
+		*	@history: {Array} 历史记录
+		*
+		*****************/
+		var allDish = [];
+		var dishDeatail = [];
+		var competitor = [];
+		var history = [];
+		var schoolList = [];
+
+		getData();
+
+
+
+		// document.querySelector("#order-list ul").addEventListener('click', function (e) {
+
+		// 	if(e.target.id == 'take-order-btn') {
+		// 		e.target.innerHTML = '接单中';
+
+		// 		takeOrder(e.target, e.target.dataset.id);
+
+		// 	}
+
+		// })
+
+		
+		document.querySelector('#school-list').onchange = function (e) {
+			clearAllData();
+
+			getData(this.value);
+		}
+
+		document.querySelector("#load-more").addEventListener('click', function (e) {
+
+			if(ifFinish){
+
+				return;
+
+			}
+
+			loadMore(len);
+
+		})
+
+
+		// create order infomation
+		var dataIndex = null;
+		document.querySelector("#order-list ul").addEventListener('click', function (e) {
+
+			if(e.target.id !== 'change-menu-btn') {
+
+				return;
+
+			}
+			if(e.target.dataset.index == dataIndex) {
+				
+				if(getDom('#append').style.height == '0px') {
+					getDom('#append').style.height = 'auto';
+					return;
+				}
+				getDom('#append').style.height = 0;
+
+				return;
+			}
+
+			if(getDom('#user-list'))  {
+
+				getDom('#append').parentNode.removeChild(getDom('#append'));
+
+				// return
+
+			}
+
+			if(e.target.id == 'change-menu-btn') {
+
+				// var frag = document.createDocumentFragment();
+
+				var frag = document.createElement('div');
+				frag.id = 'append';
+
+
+				/********
+				*	@dishs: {Array} 点击后通过添加在button上的索引取出对应的某一个订单内的所有份数
+				*			'dishs':[{'id'},{'id'}]，有些数据是两份都是一样的，通过dishs[0]来获取
+				********/
+				dataIndex = e.target.dataset.index;
+				var dishs = dishDeatail[e.target.dataset.index];
+				var domStrFrag = "";
+				for(var i = dishs.length - 1; i >= 0; i --) {
+					domStrFrag += "<li class='list-item'><p class='list-details'>"+ dishs[i]['dish_name'] +"</p><p class='list-details'>"+ dishs[i]['port_name'] +"</p><p class='list-details'>"+ dishs[i]['order_dish_id'] +"</p></li>"
+				}
+
+				
+				/***********
+				*	
+				*	@deliverManId: {Number} 本订单分拨员编号，通过这个到deliver内查找分拨员详细信息
+				*	@housemasterId: {Number} 本订单楼长编号，通过这个到housemaster内查找楼长详细信息
+				*	@deliver：{Array} 所有分拨员
+				*	@housemaster{Array} 所有楼长
+				***********/
+				var deliverManId = dishs[0]['deliver_man'],
+					housemasterId = dishs[0]['housemaster'],
+					deliver = null,
+					housemaster = '';
+				
+
+				var domStrFragTwo = '';
+
+				// deliverManId == 0 代表是必点送，不给出分拨员
+				if(deliverManId !== '0') {
+
+					var name = ''
+
+					//如果是必点送
+					if(dishs[0]['status'] == '13' || dishs[0]['status'] == '12') {
+						for(var del in competitor) {
+							if(competitor[del]['id'] == deliverManId) {
+								deliver = competitor[del];
+								deliverName = '必点送：' + competitor[del]['name'];
+							}
+						}
+					} else {
+						// 如果不是必点送，在某一订单内的第一份取出分拨员信息
+						// 遍历分拨员名单找出和deliverManId一样的
+						for(var del in dishs[0]['deliver']) {
+
+							if(dishs[0]['deliver'][del]['id'] == deliverManId) {
+								deliver = dishs[0]['deliver'][del];
+								deliverName = '分拨员姓名：' + dishs[0]['deliver'][del]['name'];
+							}
+						}
+					}
+
+					domStrFragTwo = "<p class='deliver'><span class='deliver-name'>" + deliverName +"</span><span>联系方式：</span><a href='tel:"+ deliver['mobile'] +"'><span class='tel'>"+ deliver['mobile'] +"</span></a></p>"
+				}
+				
+
+				var domStrFragThree = '';
+
+				// housemasterId == 0 代表是必点送，不给出楼长
+				if(housemasterId !== '0') {
+
+					// 如果是必点送
+					if(dishs[0]['status'] == '13' || dishs[0]['status'] == '12') {
+
+						domStrFragThree = '';
+					} else {
+						// 遍历楼长名单
+						for(var hou in dishs[0]['houser']) {
+							if(dishs[0]['houser'][hou]['id'] == housemasterId) {
+
+								housemaster = dishs[0]['houser'][hou];
+							}	
+
+							domStrFragThree = "<p class='deliver'><span>楼长姓名：</span><span class='deliver-name'>"+ housemaster['name'] +"</span><span>联系方式：</span><a href='tel:"+ housemaster['mobile'] +"'><span class='tel'>"+ housemaster['mobile'] +"</span></a></p>";
+						}					
+					}
+
+				}	
+
+
+				var domStr = "<article id='user-list'><ul style='width:100%'><li class='list-item list-header'><p class='list-details'>菜品</p><p class='list-details'>档口</p><p class='list-details'>小票号</p></li>"+ domStrFrag +"<p class='deliver'><span>用户姓名：</span><span  class='deliver-name'>"+ dishs[0]['name'] +"</span><span>联系方式：</span><a href='tel:"+  dishs[0]['mobile']+"'><span class='tel'>"+ dishs[0]['mobile'] +"</span></a></p>"+ domStrFragTwo + domStrFragThree +"<p class='deliver'>配送已用时："+ nowDeliverTime(dishs[0]) +"</p><p class='deliver'>订单号："+ dishs[0]['order_basic_id'] +"</p></ul></article>";
+
+
+				frag.innerHTML = domStr;
+
+				var parDom = e.target.parentNode.parentNode;
+
+				parDom.appendChild(frag);
+
+				getDom('#append').style.height = 'auto';
+
+			}
+
+		})
+
+		
+		getDom('#show-income').addEventListener('click', function () {
+
+			if(getDom('#income-section').style.display == 'block') {
+				getDom('#income-section').style.display = 'none';
+				return;
+			}
+
+			getDom('#income-section').style.display = 'block';
+		})
+
+
+		// 接单
+		// function takeOrder(dom, id) {
+
+			// var xhr = new XMLHttpRequest();
+
+			// xhr.onreadystatechange = function () {
+
+			// 	if(xhr.readyState == 4 && xhr.status == 200) {
+
+					// dom.innerHTML = '已 接';
+
+					// dom.classList.remove('take-order-btn');
+
+					// dom.classList.add('has-take-btn');
+
+					// dom.id = '';
+
+			// 	}
+
+			// }
+
+			// var queryStr = '' + id;
+
+			// xhr.open('GET',queryStr);
+
+			// xhr.send();
+		// }
+
+
+		// 获取所有信息
+		function getData(schoolId) {
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function () {
+
+				if(xhr.readyState == 4 && xhr.status == 200) {
+
+					var data = JSON.parse(xhr.responseText);
+
+					var order = data.order;
+
+					/******
+					*	@competitor: {Array} 所有必点送人员
+					*
+					*******/
+					competitor = data.competitor;
+
+					schoolList = data.data.school;
+					// console.log(schoolList)
+					/*********
+					* get all dish
+					*	
+					* @allDish: {Array} 所有订单，'8723':{'dish':[{}]}
+					* @dishDeatail: {Array} 所有订单详情	'dish':[{}]
+					**********/
+					for(var inorder in order) {
+						for(var dishid in order[inorder]) {
+							allDish.push(order[inorder][dishid]);
+							dishDeatail.push(order[inorder][dishid]['dish'])
+
+						}
+					}
+					// console.log(dishDeatail)
+					/******
+					*	@len: {Number} 当前返回的历史记录数量，作为标记，用于加载更多
+					*
+					*******/
+					len = data.len;
+
+					if(data.history.length < 3) {
+						getDom('#load-more').innerText = '已无更多数据';
+
+						ifFinish = true;
+					}
+
+					// main section val set
+
+					setVal(notTakeText, data.count.undo);
+
+					setVal(orderNumText, data.count.did);
+
+					setVal(moneyText, data.count.money / 100);
+
+
+
+					// total money val set
+
+					// setVal(totalMoneyText, '￥' + data.money / 100);
+
+
+					history = data.history.reverse();
+
+					createList(['#income-list ul', '#order-list ul', '#user-list ul'], 1, allDish);
+
+					createSchoolOptions(schoolList);
+
+				}
+
+			}
+
+			if(schoolId) {
+				xhr.open('GET', 'http://bd.koudaigongshe.com/mobile/manager/apishowindex/id/'+schoolId);
+			}else{
+				xhr.open('GET', 'http://bd.koudaigongshe.com/mobile/manager/apishowindex');
+			}
+			
+			xhr.send();
+
+		}
+
+		// 加载更多历史记录
+		function loadMore(lenArg) {
+
+			var xhr = new XMLHttpRequest();
+
+			var queryStr = 'http://bd.koudaigongshe.com/mobile/manager/apishowindex/len/' + lenArg + '/id/' + getDom('#school-list').value;
+
+			getDom('#load-more').innerText = '加载中...';
+
+
+			xhr.onreadystatechange = function () {
+
+				if(xhr.readyState == 4 && xhr.status == 200) {
+
+
+					getDom('#load-more').innerText = '点击加载更多';
+
+					var data = JSON.parse(xhr.responseText);
+
+					var history = data.history.reverse();
+
+					if(history.length == 0) {
+
+						getDom('#load-more').innerText = '已无更多数据';
+
+						ifFinish = true;
+
+					}
+
+					len = data.len;
+
+					for(var i = history.length - 1; i >= 0; i --) {
+
+						var resetfulTime = resetTimeYYMMDD(history[i].order_date);
+
+						var when = changeTimeInterval(history[i].when);
+
+						var domString = "<li class='list-item'><p class='list-details'>" + resetfulTime + "</p><p class='list-details'>" + when + "</p><p class='list-details'>￥" + history[i].money / 100 + "</p></li>";
+
+						incomeList.innerHTML += domString;
+
+					}
+
+				}
+
+			}
+
+			xhr.open('GET', queryStr);
+
+			xhr.send();
+
+		}
+
+
+
+		function getDom(name) {
+
+			return dom = document.querySelector(name);
+
+		}
+
+		function nowDeliverTime (dish) {
+			// var spendStamp = now - begin;
+			// console.log(begin)
+			// console.log(now)
+			// console.log(spendStamp)
+			if(dish.pack_time == "0") {
+				
+				return "待出单";
+			} else if(dish.housemaster_time == 0) {
+
+				return Math.round( (new Date().getTime()/1000 - dish.deliver_time) / 60 ) + '分钟';
+			} else if(dish.housemaster_time != 0){
+
+				return '已送达，共用时' + Math.round( (dish.housemaster_time - dish.deliver_time)/60 ) + '分钟'
+			}
+			
+		}
+
+		function clearAllData () {
+			document.querySelector('#income-list ul').remove();
+			document.querySelector('#order-list ul').remove();
+
+			document.querySelector('#income-list').innerHTML = '<ul></ul>'
+			document.querySelector('#order-list').innerHTML = '<ul></ul>'
+		}
+
+
+		function setVal(dom, val) {
+
+			dom.innerHTML = val;
+
+		}
+
+
+
+		function createList(listBoxs, domStrNum, data) {
+
+			var boxOne = document.querySelector(listBoxs[0]);
+
+			var boxTwo = document.querySelector(listBoxs[1]);
+
+			var boxThree = document.querySelector(listBoxs[2]);
+
+
+			// var unpack = data.order.unpack;
+			var dish = [];
+
+			for(var i = data.length - 1; i >= 0; i --) {
+				dish.push(data[i]['dish'][0]);
+			}
+
+			dish.reverse();
+			// var dish = data;
+			// console.log(dish)
+
+			// var orderNum = dish['num'];
+
+			// for(var order in unpack) {
+			// 	dish.push(unpack[order]['dish'][0]);  
+			// }
+			// console.log(dish)
+
+			var count = data.count;
+
+
+
+			reverseData = data.reverse();
+
+			for(var i = history.length - 1; i >= 0; i--) {
+
+
+
+				// 格式化时间
+
+				var resetfulTime = resetTimeYYMMDD(history[i].order_date);
+
+
+
+				var when = changeTimeInterval(history[i].when);
+
+				var domStringOne = "<li class='list-item'><p class='list-details'>" + resetfulTime + "</p><p class='list-details'>" + when + "</p><p class='list-details'>￥" + history[i].money / 100 + "</p></li>";
+
+
+
+				boxOne.innerHTML += domStringOne;
+
+			}
+
+
+
+			for(var j = dish.length - 1; j >= 0; j --) {
+				// var statusText = setOrderStatus(dish[j].status);
+
+				var statusText = setOrderStatus('3');
+
+				var resetfulTime = resetTimeHHMM(dish[j].create_time);
+
+				// var id = setId(dish[j].status);
+				var id = setId('3');
+
+				// console.log(data[dish.length - j - 1]['num'])
+				var domStringTwo = "<li class='list-item'><p class='list-details width-30-per'>" + dish[j].building_name + dish[j].dormitory + "</p><p class='list-details'>"+ data[dish.length - j - 1]['num'] +"</p><p class='list-details width-20-per'>" + resetfulTime + "</p><p class='list-details width-20-per'><button id='change-menu-btn' class='operation-btn change-menu-btn' data-dishid="+ dish[j].dish_id +" data-basicid="+ dish[j].basic_id +" data-name="+ dish[j].name +" data-tel=" + dish[j].mobile + " data-index="+ j +">" + '详情' + "</button></p><p class='list-item'><button id=" + id + " class='has-take-btn' data-id="+ dish[j].id +">" + dish[j].status_name + "</button></p></li>"
+
+
+				boxTwo.innerHTML += domStringTwo;	
+
+			}
+
+		}
+
+
+		function createSchoolOptions(school) {
+			var schoolSelect = document.querySelector('#school-list');
+			// console.log(school)
+			for(var i = 0; i < school.length; i ++) {
+				console.log(school[i].school_name)
+				schoolSelect.options.add(new Option(school[i].school_name + school[i].ext_name,school[i].id));
+			}
+			
+		}
+
+		// YY-MM-DD 格式化时间
+		function resetTimeYYMMDD(time) {
+
+			var d = new Date();
+
+			d.setTime(time*1000);
+
+			var year = d.getFullYear();
+
+			var month = (d.getMonth()+1).toString().length == 1 ? '0' + (d.getMonth() + 1): (d.getMonth() + 1);
+
+			var day = d.getDate().toString().length == 1 ? '0' + d.getDate() : d.getDate();
+
+			var timeStr = year + '-' + month + '-' + day;
+
+			return timeStr;
+
+		}
+
+
+		// HH-MM 格式化时间
+		function resetTimeHHMM(time) {
+
+			var d = new Date();
+
+			d.setTime(time*1000);
+
+			var year = d.getFullYear();
+
+			var hours = d.getHours() .toString().length == 1 ? '0' + d.getHours(): d.getHours();
+
+			var minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes();
+
+			var timeStr = hours + ':' + minutes;
+
+			return timeStr;
+
+		}
+
+
+
+		function showUserInfo() {
+
+			for(var k = dish.length - 1; k >= 0; k --) {
+
+				var domStringThree = "<li class='list-item'><p class='list-details'>" + dish[k].name + "</p><a href=tel:" + dish[k].mobile + "><p class='list-details tel'>" + dish[k].mobile + "</p></a><p class='list-details'>" + dish[k].id + "</p></li>";
+
+				boxThree.innerHTML += domStringThree;
+
+			}
+
+		}
+
+
+
+		function changeTimeInterval(timeIntervalNum) {
+
+			var timeInterval = '';
+
+			switch(timeIntervalNum) {
+
+				case '2': timeInterval = '午餐';
+
+						break;
+
+				case '3': timeInterval = '晚餐';
+
+				 		break;
+
+			}
+
+			return timeInterval
+
+
+
+		}
+
+
+
+		function setOrderStatus(status) {
+
+			var statusText = '';
+
+
+
+			switch(status) {
+
+				case '1': statusText = '接 单';
+
+						break;
+
+				case '3': statusText = '已接单';
+
+				 		break;
+
+			}
+
+			return statusText	
+
+		}
+
+
+
+		function setId(status) {
+
+			var id = '';
+
+
+
+			switch(status) {
+
+				case '1': id = 'take-order-btn';
+
+						break;
+
+				case '3': id = '""';
+
+				 		break;
+
+			}
+
+			return id;		
+
+		}
+
+
+
+	})()
+
+</script>
+
+</html>

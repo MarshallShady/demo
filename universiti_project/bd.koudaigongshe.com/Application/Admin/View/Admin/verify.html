@@ -1,0 +1,59 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+</script>
+<html >
+<head>
+    <title>后台账号审核页面</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/admin/js/verify.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">人员管理</a></li>
+  <li class="active">后台账号审核</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl'>
+    <div>
+        <table class="table table-striped ">
+            <tr><th>省份</th></tr>
+            <tr>
+                <td><select class="form-control" ng-change="getInfo()"ng-model="select_province"ng-options="x.name for x in province"></select></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>序号</th>
+                <th>申请时间</th>
+                <th>角色</th>
+                <th>姓名</th>
+                <th>手机</th>
+                <th>负责城市</th>
+                <th>负责校区</th>
+                <th>负责餐厅</th>
+                <th>负责档口</th>
+                <th>通过审核</th>
+                <th>删除</th>
+            </tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.id}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.role_name}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.mobile}}</td>
+                <td>{{x.province_name}}</td>
+                <td>{{x.school_name+x.school_ext_name}}</td>
+                <td>{{x.canteen_name}}</td>
+                <td>{{x.port_name}}</td>
+                <td><button class="btn btn-info" ng-click="verify(x.id)">通过审核</button></td>
+                <td><button class="btn btn-default" ng-click="delete(x.id)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

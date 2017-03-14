@@ -1,0 +1,75 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    // window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+</script>
+<html >
+<head>
+    <title>餐厅管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body >
+    <ol class="breadcrumb">
+      <li><a href="#">功能管理</a></li>
+      <li class="active">餐厅管理</li>
+    </ol>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div class="panel panel-default" >
+            <table class="table " >
+                <tr><th>省份</th><th>学校</th><th>校区</th><tr>
+                <tr>
+                    <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                    <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                    <td><select class="form-control" ng-model="select_school_ext"ng-change="getInfo()"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-info ">
+            <div class="panel-heading text-center">给{{select_school['name']+select_school_ext['name']}} 增加餐厅</div>
+            <div class="panel-body">
+                <table class="table table-default">
+                    <tr>
+                        <label class="text-center">新增的餐厅名称</label>
+                        <input class="form-control" ng-model="name"/>
+                    </tr>
+                    <tr>
+                        <button class="form-control btn-info" ng-click="add()">新增餐厅</button>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading text-center">{{select_school['name']+select_school_ext['name']}} 的餐厅列表</div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>学校</th>
+                        <th>食堂</th>
+                        <th>机器码</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                        <th>删除</th></tr>
+                </thead>
+                <tr ng-repeat="x in data">
+                    <td>{{x.id}}</td>
+                    <td>{{x.school_name+x.school_ext_name}}</td>
+                    <td><input class="form-control" id="name-{{x.id}}"   value="{{x.name}}"/></td>
+                    <td><input class="form-control" id="device-{{x.id}}" value="{{x.device}}" /></td>
+                    <td><button class="btn btn-default"ng-click="edit(x.id)">修改</button></td>
+                    <td><span class="label label-warning">{{x.status_name}}</span></td>
+                    <td><button class="btn btn-default"ng-click="status(x.id)">修改状态</button></td>
+                    <td><button class="btn btn-default"ng-click="delete(x.id)">删除</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/product/js/canteen.js"></script>
+</body>
+</html>

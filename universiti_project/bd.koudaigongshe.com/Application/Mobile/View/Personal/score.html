@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>评价</title>
+    <link rel="stylesheet" href="/Public/static/mobile/css/module/page_init.css">
+    <style>
+		.title h3{
+			font-weight: normal;
+		}
+		.title h3:nth-child(1){
+			width: 90%;
+			margin:0 auto;
+			padding:5px 0;
+			color: rgba(0,0,0,.8);
+			font-size: .8em;
+		}
+		.title h3:nth-child(2){
+			height: 20px;
+			color: #fff;
+			font-size: 1em;
+			background-color: rgba(0,0,0,.2);
+		}
+		.food-list{
+			width: 90%;
+			height:100px;
+			margin:0 auto;
+			margin-bottom: 20px;
+			padding: 20px 0;
+			box-sizing:border-box;
+			border-top: 1px solid rgba(0,0,0,.1);
+		}
+		.list-left{
+			width: 36%;
+			height: auto;
+			float: left;
+			overflow: hidden;
+		}
+		.list-left img{
+			border-radius: 10px;
+		}
+		.list-right{
+			width: 64%;
+			height: 80px;
+			float: left;
+		}
+		.list-right h3{
+			margin-bottom:5px;
+			font-size: .8em;
+			font-weight: normal;
+			padding-left: 5%;
+		}
+		.list-right h3:nth-child(1){
+			text-align: right;
+			color:rgba(0,0,0,.6);
+		}
+		.list-right h3:nth-child(2){
+			font-size: 1em;
+			color: #ff9384;
+		}
+		.list-right h3:nth-child(4) span:nth-child(2){
+			display: inline-block;
+ 			width: 50px;
+ 			height: 20px;
+ 			float: right;
+ 			color: rgba(0,0,0,.8);
+ 			text-align: center;
+ 			line-height: 22px;
+ 			border:1px solid rgba(0,0,0,.6);
+ 			border-radius: 5px;
+		}
+		.list-right h3:nth-child(4) span a{
+			display:block;
+			width: 50px;
+			height: 20px;
+			color:rgba(0,0,0,.8);
+		}
+		.text{
+			width: 90%;
+			height: auto;
+			margin:0 auto;
+			margin-top:20px;
+			border-top: 1px solid rgba(0,0,0,.1);
+		}
+		textarea{
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin:0 5%;
+			padding:10px;
+			border-radius: 5px;
+			box-sizing:border-box;
+			margin-top:20px;
+			font-family: "微软雅黑";
+			font-size: 1em;
+			color:rgba(0,0,0,.6);
+		}
+		.lucky_btn{
+			display: block;
+			width: 120px;
+			height: 40px;
+			margin:20px auto;
+			font-size: 1.2em;
+			color: #fff;
+			border-radius: 5px;
+			background-color: #FF6550;
+		}
+		.main-footer{
+			margin-top:0;
+			margin-bottom:20px;
+		}
+		.size{
+			width: 16px;
+			height: 16px;
+		}
+    </style>
+</head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>评价</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="index.html"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+			<include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+	 	<div class="title">
+	 		<h3>订单号：<span id="order_number"></span></h3>
+	 	</div>
+	 	<form action="#" method="#" id="complain_form">
+	 		<div class="append_data"></div>
+	 		<div class="text">
+	 			<textarea name="" id="" cols="30" rows="10" maxlength="50" placeholder="写下你的建议,这对我们很重要!(选填)"></textarea>
+	 		</div>
+	 	    <button type="button" class="lucky_btn">提交评价</button>
+	 	</form>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="/Public/static/mobile/js/module/init.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="/Public/static/mobile/js/module/jquery.raty.js"></script>
+<script>
+	$(".more").click(function(){
+		$(".pay-mode-ele").show();
+	});
+	$(".pay-mode-ele").click(function(){
+		$(".pay-mode-ele span").removeClass('gou-true');
+		$(this).children('span').addClass('gou-true');
+		$("mode").val( $(this).attr('data-mode') );
+	});
+
+	/** -- 获取url参数id start -- */
+	// console.log(window.location.href);
+	var name = (window.location.href).toString();
+	function GetUrlId(name)
+	{
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+	var urlId = GetUrlId("id");
+	// console.log(urlId);
+	var order_number = urlId;
+	$("#order_number").html(order_number);
+	/** -- 获取url参数id start -- */
+
+	/* -- 获取菜单列表信息 start -- */
+	$.ajax({
+		type:"get",
+		url:"http://bd.koudaigongshe.com/mobile/personal/apiShowDetail/id/"+urlId,
+		dataType:"json",
+		success:function (data){
+			// console.log("success!");
+			// console.log(data);
+			var tpl = "";
+			$.each(data.dish,function (i,v){
+				var ID = v.id;
+				console.log(v);
+				tpl = '<div class="food-list">'+
+						'<div class="list-left">'+
+							'<img src="' + v.image + '" alt="" width="100%" height="auto">'+
+						'</div>'+
+						'<div class="list-right">'+
+							'<h3>流水号：' + v.id + '</h3>'+
+							'<h3><span>' + v.money + '￥</span></h3>'+
+							'<h3>' + v.name + '</h3>'+
+							'<h3><span class="star" data-number="5" id="' + v.id + '" data-star="5"></span>'+
+							// '<span><a href="complain.html?id=' + urlId + '">投诉</a></span>'+
+							'</h3>'+
+							// '<input type="hidden" name="star" id="">'+
+						'</div>'+
+			         '</div>'
+				$(".append_data").append(tpl);
+			});
+
+			/* --- 评价功能模块实现 start--- */
+			$('.star').raty({
+			  click: function(score) {
+			  	// alert("您的评分为" + score + "分！感谢本次评价。");
+                // g($(this).parent().find('input[type="hidden"]').attr("value"));
+			  	$(this).attr("data-star");
+			  }
+			});
+			$(".star img").addClass("size");
+
+			//提交评价评分
+			$(".lucky_btn").one("click",function (){
+				// console.log($("form").serializeArray());
+				var dishs = new Array();
+				var dish = [];
+				for (var i = 0; i<data.dish.length; i++) {
+					var input_val = "";
+					if($(".star").eq(i).find('input[type="hidden"]').attr("value") == undefined){
+						input_val = "0";
+					} else{
+						input_val =input_val = $(".star").eq(i).find('input[type="hidden"]').attr("value");
+					}
+					var this_id = $(".star").eq(i).attr("id");
+					var list = {
+						"id":this_id,
+						"score":input_val
+					};
+					dish.push(list);
+				}
+				var text_val = "";
+				// console.log($("textarea").val());
+				if($("textarea").val() == undefined||$("textarea").val() == ""){
+					text_val = "";
+				} else{
+					text_val = $("textarea").val();
+				}
+				dishs[0] = {
+					"id":urlId,
+					"word":text_val,
+					"dish":dish
+				};
+				var s = JSON.stringify(dishs);
+				s = s.substring(1,s.length-1);
+				// console.log(s);
+				$.ajax({
+					type:"post",
+					url:"http://bd.koudaigongshe.com/mobile/personal/score/id/" + urlId,
+					data:s,
+					dataType:"json",
+					success:function (msg){
+						console.log("success!");
+						alert(msg.message);
+						setTimeout('javascript:location.href="http://bd.koudaigongshe.com' + msg.url + '"', 500);
+					},
+					error:function (msg){
+						console.log("error!");
+						console.log(msg);
+					}
+				});
+			});
+			/* --- 评价功能模块实现 end --- */
+		},
+		error:function (data){
+			console.log("error!");
+		}
+	});
+	/* -- 获取菜单列表信息 start -- */
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>必点·学校评级系统</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/investigate.css">
+    <style>
+
+		#result-page{
+			display:none;
+			width:100%;
+			height:100%;
+			position:absolute;
+			background: #f8f8f8;
+			z-index:10;
+			top: 0;
+			left: 0;
+		}
+		.result-item{
+			font-size: 16px;
+			padding: 10px;
+			margin: 10px;
+			background: white;
+		}
+    </style>
+</head>
+<body>
+<div class="page" id="form-page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>必点·学校评级系统</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="#"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<div class="memu-pull-down">
+   				<ul>
+   					<li><a href="#">个人中心</a></li>
+   					<li><a href="#">订单中心</a></li>
+   				</ul>
+   			</div>
+		</div>
+	</header>
+	<section class="main-section">
+		<div class="explanation">
+			<h4>【填写说明】</h4>
+			<hr>
+			<p class="text-muted">
+				1. 请按照要求填写调研结果
+			</p>
+			<p class="text-muted">
+				2. 如想知道如何评分，请点击<a class="text-primary" href="http://note.youdao.com/yws/public/redirect/share?id=de9f183387575215ede0dc62367d8f87&type=false">查看评分标准</a>
+			</p>
+			<p class="text-muted">
+				3. 你们的选择关乎到我们来判读，本阶段是否进军这个学校，so请认真对待
+			</p>
+		</div>
+		<form id="rank" action="http://bd.koudaigongshe.com/mobile/temp/temp1.html" target="data-temp" method="POST">
+			
+			<div class="form-group">
+				<label >请填写你的学校名称</label>
+				<input type="text" class="form-control" name="option1" placeholder="请填写你的学校名称">
+			</div>		
+			<div class="form-group">
+				<label >1. 单时段食堂打包份数</label>
+				<input type="number" class="form-control" name="option2" placeholder="请填写数字" onblur="caculMarkOne(this.name,this.value)">
+			</div>
+			<div class="form-group">
+				<label >2. 单时段餐厅就餐人数</label>
+				<input type="number" class="form-control" name="option3" placeholder="请填写数字" onblur="caculMarkTwo(this.name,this.value)">
+			</div>
+			<div class="form-group form-group-radio">
+				<label >3. 学校对校外外卖的态度</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option4" value="完全开放" data-mark="20">
+				    完全开放
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option4" value="有学生团队" data-mark="20">
+				    有学生团队
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option4" value="完全拦截，但是允许自己打包" data-mark="20" >
+				    完全拦截，但是允许自己打包
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option4" value="学校不允许外卖" data-mark="0">
+				    学校不允许外卖
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option5" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group form-group-radio">
+				<label >4. 食堂和寝室的距离</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option6" value="很近：就在食堂边上，单次配送时间 10分钟以内"  data-mark="7.5">
+				    很近：就在食堂边上，单次配送时间 10分钟以内 
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option6" value="中等：单次配送时间 10到20分钟"  data-mark="4.5">
+				    中等：单次配送时间 10到20分钟
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option6" value="很远：单次配送时间 20分钟以上"  data-mark="0">
+				    很远：单次配送时间 20分钟以上
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option7" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group form-group-radio">
+				<label >5. 食堂菜品是否丰富</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option8" value="菜品种类齐全"  data-mark="20">
+				    菜品种类齐全
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option8" value="菜品种类一般"  data-mark="12">
+				    菜品种类一般
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option8" value="菜品种类很少" data-mark="0">
+				    菜品种类很少
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option9" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group form-group-radio">
+				<label >6. 食堂对必点外卖的支持程度</label>
+				<p class="text-muted">1）优先制作必点外卖</p>
+				<p class="text-muted">2）允许在餐厅进行宣传物料粘贴</p>
+				<p class="text-muted">3）使用必点要求的打包盒</p>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option10" value="很好：三项均满足" data-mark="7.5" >
+				    很好：三项均满足
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option10" value="中等：满足其中一至两项"  data-mark="4.5">
+				    中等：满足其中一至两项
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option10" value="很差：三项均不满足" data-mark="0">
+				    很差：三项均不满足
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option11" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group form-group-radio">
+				<label >7. 是否有公众号</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option12" value="商业性（个人或团体运营）" data-mark="7.5">
+				    商业性（个人或团体运营）
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option12" value="官方性（学校组织运营）"data-mark="4.5">
+				    官方性（学校组织运营）
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option12" value="无公众号" data-mark="0">
+				    无公众号
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option13" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group form-group-radio">
+				<label >8. 是否有竞争对手</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option14" value="销量在200单以上" data-mark="4.5">
+				    销量在200单以上
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option14" value="销量在100到200" data-mark="3">
+				    销量在100到200
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option14" value="销量在50到100" data-mark="1.5">
+				    销量在50到100
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option14" value="销量在50以下" data-mark="0">
+				    销量在50以下
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="option14" value="无竞争对手"  data-mark="7.5">
+				    无竞争对手
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				 	<input type="text" name="option15" class="form-control input-sm" placeholder="补充说明">
+				  </label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label >9. 每小时平均兼职工资</label>
+				<input type="number" name="option16" class="form-control" placeholder="请填写数字" onblur="caculMarkThree(this.name,this.value)">
+			</div>
+			<div class="form-group">
+				<label >10. 特殊说明</label>
+				<textarea type="text" name="option17" class="form-control" placeholder="由调研人员，观察本地情况，得出特别的情报信息，或者因地制宜地推广方式等" rows="5"></textarea>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="form-control" >提交</button>
+			</div>
+
+			<input id="hidden" type="hidden" name="option18" readonly="true">
+		</form>
+	</section>
+
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+
+<div class="page" id="result-page">
+	<h2 style="text-align:center">学校评级分数展示</h2>
+</div>
+
+<iframe frameborder="0" name="data-temp" width="100%" height="300" style="display:none"></iframe>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="/Public/static/mobile/js/module/init.js"></script>
+</body>
+<script>
+
+	// data model
+	var	mark = 0;
+	var markObj = {};
+	// data model
+
+	function caculMarkOne(name,val) {
+		if( val >= 500 ) {
+
+			markObj[name] = 100 * 0.2;
+		} else {
+
+			markObj[name] = val / 500 * 100 * 0.2;
+		}
+		// console.log(name)
+		mark = 0;
+		for(var item in markObj) {
+					
+			mark += parseFloat( markObj[item] );
+		}
+		document.querySelector("#hidden").value = mark;
+	}
+
+	function caculMarkTwo(name,val) {
+		if( val >= 2000 ) {
+
+			markObj[name] = 100 * 0.05;
+		} else {
+
+			markObj[name] = val / 2000 * 100 * 0.05;
+		}	
+
+		mark = 0;
+		for(var item in markObj) {
+					
+			mark += parseFloat( markObj[item] );
+		}
+		document.querySelector("#hidden").value = mark;
+	}
+
+	function caculMarkThree(name,val) {
+
+		if(val > 20) {
+
+			markObj[name] = 0
+		}else if(val >= 15 && val <= 20) {
+
+			markObj[name] = 2;
+		}else if(val >= 10 && val < 15) {
+
+			markObj[name] = 3;
+		}else {
+
+			markObj[name] = 5;
+		}
+		mark = 0;
+		for(var item in markObj) {
+					
+			mark += parseFloat( markObj[item] );
+		}
+		document.querySelector("#hidden").value = mark;
+	}
+
+	var radioGroup = document.querySelectorAll('.form-group-radio');
+	for(var i = radioGroup.length -1; i >= 0; i --) {
+		(function (i) {
+			radioGroup[i].addEventListener('click', function () {
+				markObj[this.querySelector("input:checked").name] = this.querySelector("input:checked").dataset.mark;
+				mark = 0;
+				for(var item in markObj) {
+					
+					mark += parseFloat( markObj[item] );
+				}
+				document.querySelector("#hidden").value = mark;
+			})
+		})(i)
+	}
+
+	var formGroup = document.querySelectorAll('.form-group');
+
+	document.querySelector('#rank').onsubmit = function () {
+
+		if(document.querySelector("input[name='option1']").value == "" ) {
+			alert('请填写完整！');
+			return false;
+		}
+
+		// alert(Object.keys(markObj).length + '|' + radioGroup.length);
+		if(Object.keys(markObj).length < formGroup.length - 3) {
+			alert('请填写完整！');
+			return false;
+		}
+
+		var tempInterval = setInterval(function () {
+
+			if(document.querySelector('iframe').contentWindow.document.body.innerHTML != "") {
+				showData();
+			}
+
+			clearInterval(tempInterval);
+			tempInterval = null;
+		}, 500)
+
+		document.querySelector("#hidden").value = mark;
+	}
+
+	function showData() {
+		var ifr = document.querySelector('iframe').contentWindow;
+		var tempData = ifr.document.body.querySelector('pre').innerHTML;
+		var data = JSON.parse(JSON.parse(tempData))
+
+		if(data.status != 1) {
+			alert('提交失败！');
+			return;
+		}
+
+		alert('提交成功！');
+		document.querySelector('#result-page').style.display = 'block';
+		document.querySelector('#form-page').style.display = 'none';
+
+		var domStr = '';
+		for(var i = data.data.length - 1; i >= 0; i --) {
+			domStr += "<p class='result-item'><span>"+ data.data[i].option1 +"</span><span>: "+ data.data[i].option18 +"分</span></p>"
+		}
+		document.querySelector('#result-page').innerHTML += domStr;
+
+	}
+
+	function addMark(data) {
+		var tempMark = 0;
+		for(var item in data) {
+			if(item.match("/option/")) {
+				console.log('a');
+				tempMark += data[item];
+			}
+		}
+		return tempMark;
+	}
+
+
+</script>
+</html>

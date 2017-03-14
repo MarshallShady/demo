@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+    <meta content="telephone=no" name="format-detection" />
+
+    <title>确认订单</title>
+
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/luckyCenter.css">
+
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/submit_order.css">
+
+    <style>
+
+        .main-section{
+
+            width: 100%;
+
+        }
+
+    	.lucky-choice{
+
+    		width: 100%;
+
+    		background-color: #fff;
+
+    	}
+
+    	.lucky-choice h3{
+
+    		height: 50px;
+
+    		padding: 0 10px;
+
+    		font-weight: normal;
+
+    	}
+
+    	.lucky-choice h3 span:first-child{
+
+    		padding-right: 10px;
+
+    		font-size: 1em;
+
+    		line-height: 50px;
+
+    		color: #ff6550;
+
+    		float: left;
+
+    	}
+
+    	.min-info{
+
+    		display: inline-block;
+
+    		height: 50px;
+
+			font-size: .5em;
+
+			float: left;
+
+			line-height: 55px;
+
+			color: #b7b7b7;
+
+    	}
+
+    	.lucky-choice h3 i{
+
+    		display: inline-block;
+
+    		width: 10px;
+
+    		height: 10px;
+
+    		margin-top: 15px;
+
+    		float: right;
+
+    		line-height: 50px;
+
+    		border:3px solid #ff6550;
+
+    		border-radius: 50%;
+
+    	}
+
+    	.choice-main h5{
+
+    		margin:0;
+
+    		color: #ff6550;
+
+    		line-height: 30px;
+
+    		font-weight: normal;
+
+    		text-align: center;
+
+    	}
+
+    	.hr{
+
+    		width: 100%;
+
+    		height: 1px;
+
+    		background-color: #ff6550;
+
+    	}
+
+    	.lucky-code h3{
+
+    		width: 100%;
+
+    		height: 50px;
+
+    		padding-bottom: 10px;
+
+    		border-bottom: 1px solid #ffb7ad;
+
+    		font-size: 1.2em;
+
+    		font-weight: normal;
+
+    	}
+
+    	#code{
+
+    		margin-right: 0;
+
+    	}
+
+    	.lucky-code h3 span{
+
+    		display: inline-block;
+
+    		width: 28%;
+
+    		height: 30px;
+
+    	}
+
+    	.lucky-code h3 input{
+
+    		display: inline-block;
+
+    		width: 44%;
+
+    		height: 50px;
+
+    		font-size: .8em;
+
+    		padding:0 5px;
+
+    		box-sizing:border-box; 
+
+    		text-align: center;
+
+    	}
+
+    	.lucky-code h3 button{
+
+    		display: inline-block;
+
+    		width: 28%;
+
+    		height: 30px;
+
+    		margin-top: 10px;
+
+    		background-color: #ff6550;
+
+    		border-radius: 5px;
+
+    		color: #fff;
+
+    	}
+
+    	.arrows{
+
+    		background: url(__PUBLIC__/static/mobile/image/arrows.png);
+
+    		background-size: 100% 100%;
+
+    	}
+
+    	.click-choice{
+
+			width: 100%;
+
+			border-top:1px solid rgba(0,0,0,.1);
+
+			background-color: #fff;
+
+    	}
+
+    	.click-choice h3{
+
+    		font-weight: normal;
+
+    		font-size: 1em;
+
+    		height: 30px;
+
+    		line-height: 30px;
+
+    		padding: 5px 10px;
+
+    	}
+
+    	.click-choice h3 span:first-child{
+
+    		float: left;
+
+    	}
+
+    	.click-choice h3 span:last-child{
+
+    		float: right;
+
+    	}
+
+    	.click-choice h3 i{
+
+    		width: 10px;
+
+    		height: 10px;
+
+    		margin-top: 10px;
+
+    		margin-left: 10px;
+
+    		background: url(__PUBLIC__/static/mobile/image/arrows.png);
+
+    		background-size: 100% 100%;
+
+			float: right;
+
+    	}
+
+    	.window-alert{
+
+    		width: 100%;
+
+    		display: none;
+
+    		position: absolute;
+
+    		z-index: 99;
+
+    		top:50%;
+
+    		left:50%;
+
+    		margin-left: -50%;
+
+/*    		margin-top: -50%;*/
+
+    		background-color: rgba(0,0,0,.2);
+
+    	}
+
+    	.window-alert .alert-wrap{
+
+    		width: 90%;
+
+            padding:10px;
+
+            box-sizing:border-box;
+
+    		height: 400px;
+
+    		position: relative;
+
+    		top:50%;
+
+    		left:50%;
+
+    		margin-left: -45%;
+
+    		margin-top: -200px;
+
+    		overflow-x:hidden; 
+
+    		overflow-y: scroll;
+
+    		background-color: #fff;
+
+    	}
+
+		.lucky-lists label input{
+
+			display: none;
+
+		}
+
+        .main-footer{
+
+            margin-top:20px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+	<header class="main-header">
+
+		<div class="headline">
+
+			<div class="headline-body">
+
+				<p>确认订单</p>
+
+			</div>
+
+		</div>
+
+		<div class="go-back">
+
+			<a href="#"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+
+		</div>
+
+		<div class="main-memu">
+
+   			<div class="memu-icon">
+
+   				<span></span>
+
+   				<span></span>
+
+   				<span></span>
+
+   			</div>
+
+   			<div class="memu-pull-down">
+
+   				<ul>
+
+   					<li><a href="#">个人中心</a></li>
+
+   					<li><a href="#">订单中心</a></li>
+
+                    <li><a href="#">我的红包</a></li>
+
+   				</ul>
+
+   			</div>
+
+		</div>
+
+	</header>
+
+	<section class="main-section">
+
+		<article class="user-msg">
+
+			<header class="user-msg-title">
+
+				<ul>
+
+					<li><p>用户信息</p></li>
+
+				</ul>
+
+			</header>
+
+			<section class="user-msg-body">
+
+				<a href="">
+
+					<div class="user-msg-img">
+
+						<img src="__PUBLIC__/static/mobile/image/address.png" alt="">
+
+					</div>
+
+					<div class="user-msg-data">
+
+						<h3>张烁</h3>
+
+						<p>13777837239</p>
+
+						<p>杭州电子科技大学5号南楼219</p>
+
+					</div>
+
+					<div class="arrows"></div>
+
+				</a>
+
+			</section>
+
+		</article>
+
+		<article class="order-date">
+
+			<header class="order-date-title">
+
+				<ul>
+
+					<li><p></p></li>
+
+					<li>
+
+						<p>配送日期</p>
+
+					</li>
+
+					<li>
+
+						<p>配送时间</p>
+
+					</li>
+
+				</ul>
+
+			</header>
+
+			<section class="order-date-body">
+
+				<div>
+
+					<h3>午餐</h3>
+
+				</div>
+
+				<div>
+
+					<select id="date-value">
+
+						<option value="1460131200">2016-04-09</option>
+
+						<option value="1460217600">2016-04-10</option>
+
+						<option value="1460304000">2016-04-11</option>
+
+					</select>
+
+					<span>▼</span>
+
+				</div>
+
+				<div>
+
+					<p>12:20~13:30</p>
+
+				</div>
+
+			</section>
+
+		</article>
+
+		<article class="detail">
+
+			<header class="detail-title">
+
+				<div>
+
+					<p>已选菜品</p>
+
+				</div>
+
+				<span>金额</span>
+
+			</header>
+
+			<section class="detail-body">
+
+				<ul>
+
+					<li>
+
+						<div>
+
+							<p>金针菇牛柳捞饭*1</p>
+
+						</div>
+
+						<span>￥12</span>
+
+					</li>
+
+					<li>
+
+						<div>
+
+							<p>打包费*1</p>
+
+						</div>
+
+						<span>￥0.5</span>
+
+					</li>
+
+					<li>
+
+						<div>
+
+							<p> 配送费*1</p>
+
+						</div>
+
+						<span>￥1</span>
+
+					</li>
+
+				</ul>
+
+			</section>
+
+		</article>
+
+        <article class="click-choice">
+			<h3><span>抵用券</span><i></i><span>使用抵用券</span></h3>
+        </article>
+        <input type="hidden" id="cheaper" value="">
+        <div class="win-main">
+        	<div class="window-alert">
+        	    <div class="alert-wrap">
+        	    	<div class="lucky-code">
+        	    		<h3><span>红包兑换</span><input type="text" placeholder="输入兑换码"><button>兑换并使用</button></h3>
+        	    	</div>	
+        	    	<div class="lucky-lists">
+        	    	        <div class="list-container" id="biding1" data-val="5">
+
+        	    	        	<div class="list-header"></div>
+
+        	    	        	<div class="lucky-list">
+
+        	    	        		<div class="list-left">
+
+        	    	        			<h3>订餐红包</h3>
+
+        	    	        			<h5>有效期至2016-04-29(未使用)</h5>
+
+        	    	        		</div>
+
+        	    	        		<div class="list-right">
+
+        	    	        			<span>￥5</span><span>.00</span>
+
+        	    	        		</div>
+
+        	    	        		<h4><span>美好时刻，必点一下</span><span><i></i></span></h4>
+
+        	    	        	</div>
+
+        	    	        </div>
+
+        	    	        <div class="list-container" id="biding1" data-val="4">
+
+        	    	        	<div class="list-header"></div>
+
+        	    	        	<div class="lucky-list">
+
+        	    	        		<div class="list-left">
+
+        	    	        			<h3>订餐红包</h3>
+
+        	    	        			<h5>有效期至2016-04-29(未使用)</h5>
+
+        	    	        		</div>
+
+        	    	        		<div class="list-right">
+
+        	    	        			<span>￥4</span><span>.00</span>
+        	    	        		</div>
+        	    	        		<h4><span>美好时刻，必点一下</span><span><i></i></span></h4>
+        	    	        	</div>
+        	    	        </div>
+        	    	        <div class="list-container" id="biding2" data-val="3">
+        	    	        	<div class="list-header"></div>
+
+        	    	        	<div class="lucky-list">
+
+        	    	        		<div class="list-left">
+
+        	    	        			<h3>订餐红包</h3>
+
+        	    	        			<h5>有效期至2016-04-29(未使用)</h5>
+        	    	        		</div>
+        	    	        		<div class="list-right">
+        	    	        			<span>￥3</span><span>.00</span>
+        	    	        		</div>
+        	    	        		<h4><span>美好时刻，必点一下</span><span><i></i></span></h4>
+        	    	        	</div>
+        	    	        </div>
+        	    	</div>
+        	    </div>
+        	</div>
+        </div>
+		<article class="remark">
+
+			<header class="remark-title">
+
+				<p>留言备注</p>
+
+			</header>
+
+			<section class="remark-body">
+
+				<textarea id="remark-value" rows="2" class="in-text"></textarea>
+
+			</section>
+
+		</article>
+
+	</section>
+
+	<footer class="main-footer">
+
+		<p>版权归：必点所有</p>
+
+	</footer>
+
+	<div class="order-submit-box"></div>
+
+	<div id="order-submit" class="order-submit">
+
+		<div class="order-submit-num">
+
+			<p>共<span>1</span>份</p>
+
+		</div>
+
+		<div class="order-submit-money">
+
+			<p>总计<span>￥19.5</span></p>
+
+		</div>
+
+		<div class="order-submit-btn">
+
+			<form action="##">
+
+				<!-- type:为早午餐类型 1为早餐，2午餐，3晚餐 -->
+
+				<input type="hidden" id="type-result" name="type" value="2">
+
+				<!-- date:为送餐日期 -->
+
+				<input type="hidden" id="date-result" name="date">
+
+				<input type="hidden" id="remark-result" name="remark">
+
+				<button type="submit" id="submit" class="gw-btn">立即付款</button>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+
+<script>
+
+	$('#submit').click(function(){
+
+		var nowTime = new Date(),
+
+			date = parseInt( Date.parse( nowTime.toString().slice( 0, 15 ) )/1000 ),
+
+			ctDate =  parseInt( $("#date-value").val() );
+
+
+
+		if( date != ctDate ){
+
+			var r = confirm( "您购买的不是当天的" 
+
+							+ $(".order-date-body h3").html() 
+
+							+ "，是否确认购买？" );
+
+			if(!r)
+
+				return false;
+
+		}
+
+
+
+		$("#date-result").val( $("#date-value").val() );
+
+		$("#remark-result").val( $("#remark-value").val() );
+
+		return false;
+
+	});
+
+	/* 红包选择触发器 start */
+
+	$(document).ready(function (){
+
+		$(".click-choice").tap(function(){
+
+	          	console.log("success!");
+
+	          	$(".window-alert").css({
+
+	          		"display":"block",
+
+	          		"height":$(window).height(),
+
+	          		"margin-top":$(window).height()/-2
+
+	          	});
+
+		});
+
+		$(".list-container").tap(function(){
+
+			var la = $(this).attr("data-val");
+
+			console.log("选中数据为" + la);
+
+			$("#cheaper").attr("value",la);
+
+	          	$(".window-alert").css({
+
+	          		"display":"none"
+
+	          	});
+
+	          	var cheaper = $("#cheaper").attr("value");
+
+	          	console.log("最终传值为" + cheaper);
+
+	          	alert("恭喜您，本次订餐可优惠" + cheaper + "元！");
+
+		});
+
+	});
+
+	$(".click-more").tap(function(){
+
+		$(".special").css({
+
+			"display":"block"
+
+		});	
+
+		$(".click-more").css({
+
+			"display":"none"
+
+		});
+
+	});
+
+    /* 红包选择触发器 end */
+
+</script>
+
+</body>
+
+</html>

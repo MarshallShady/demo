@@ -1,0 +1,80 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+</script>
+<html >
+<head>
+    <title>档口管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/product/js/port.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body >
+<ol class="breadcrumb">
+  <li><a href="#">功能管理</a></li>
+  <li class="active">档口管理</li>
+</ol>
+    <div ng-app="myApp" ng-controller="myCtrl">
+    <div >
+        <table class="table table-striped" >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>食堂</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_canteen"ng-change="getInfo()"ng-options="x.name for x in canteen |filter:{school_ext:select_school_ext['id']}:true"></select></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>封面</th>
+                <th>餐厅</th>
+                <th>档口</th>
+                <th>描述</th>
+                <th>添加</th>
+            </tr>
+            <tr>
+                <td>暂时不用配图</td>
+                <td>{{select_canteen['name']}}</td>
+                <td><input ng-model="port_name" class="form-control"/></td>
+                <td><input ng-model="port_content" class="form-control"/></td>
+                <td><button ng-click="addPort()" class="form-control btn btn-info">添加档口</button></td>
+            </tr>
+        </table>
+    </div>
+    <div >
+        <table class="table table-striped">
+            <tr>
+                <th>序号</th>
+                <th>档口</th>
+                <th>描述</th>
+                <th>排列顺序<small>(越大越前)</small></th>
+                <th>出单顺序<small>(越大越前)</small></th>
+                <th>修改</th>
+                <th>状态</th>
+                <th>操作</th>
+                <th>删除</th>
+            </tr>
+            <tr ng-repeat="c in port|filter:{canteen:select_canteen['id']}:true" id="tr-{{c.id}}">
+                <td>{{c.id}}</td>
+                <td><input class="form-control" type="text" id="name-{{c.id}}"value="{{c.name}}"/></td>
+                <td><input class="form-control" type="text" id="content-{{c.id}}"value="{{c.content}}"/></td>
+                <td><input class="form-control" type="number" id="order-{{c.id}}"value="{{c.order}}"/></td>
+                <td><input class="form-control" type="number" id="order_pack-{{c.id}}"value="{{c.order_pack}}"/></td>
+                <td><button class="btn btn-warning" ng-click="edit(c.id)">修改</button></td>
+                <td id="t-{{c.id}}">{{c.status_2}}</td>
+                <td><button class="btn btn-default" id="b-{{c.id}}" ng-click="change(c.id,c.status)">{{c.status_3}}</button></td>
+                <td><button class="btn btn-default" id="d-{{c.id}}" ng-click="delete(c.id)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

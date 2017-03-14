@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+    <meta content="telephone=no" name="format-detection" />
+
+    <title>红包中心</title>
+
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/luckyCenter.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+	<header class="main-header">
+
+		<div class="headline">
+
+			<div class="headline-body">
+
+				<p>红包中心</p>
+
+			</div>
+
+		</div>
+
+		<div class="go-back">
+
+			<a href="#"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+
+		</div>
+
+		<div class="main-memu">
+
+   			<div class="memu-icon">
+
+   				<span></span>
+
+   				<span></span>
+
+   				<span></span>
+
+   			</div>
+
+   			<div class="memu-pull-down">
+
+   				<ul>
+
+   					<li><a href="#">个人中心</a></li>
+
+   					<li><a href="#">订单中心</a></li>
+
+   					<li><a href="#">我的红包</a></li>
+
+   				</ul>
+
+   			</div>
+
+		</div>
+
+	</header>
+
+	<section class="main-section">
+
+		<article class="personal-img">
+
+			<img src="__PUBLIC__/static/mobile/image/photo.png" alt="">
+
+		</article>
+
+		<div class="lucky-code">
+
+			<h3><span>红包兑换</span><input class="get_code" type="text" placeholder="输入兑换码" /><button class="use-code">兑&nbsp;&nbsp;&nbsp;换</button></h3>
+
+		</div>	
+
+		<div class="lucky-lists">
+		    <div id="lucky-wrap">
+		        <div id="append-data"></div>
+		    	<h3 class="click-more">点击加载更多</h3>
+		    </div>
+		</div>
+
+		<!-- <button class="invite">邀请得红包</button> -->
+
+	</section>
+
+	<div id="addText">
+
+	</div>
+
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+
+<!-- <script type="text/javascript" src="__PUBLIC__/static/mobile/js/luckyCenter2.js"></script> -->
+<script>
+	  $(".use-code").click(function(){
+	    var get_code = $(".get_code").attr("value");
+	    if (get_code == "") {
+	      alert("抱歉，您还未输入兑换码!");
+	    } else{
+	      $.ajax({
+	        type:'post',
+	        url:'http://bd.koudaigongshe.com/mobile/coupon/checkCode',
+	        data:{"code":$(".get_code").attr("value")},	        
+	        dataType:'json',
+	        success:function (msg){
+	          console.log(msg);
+	          // console.log('兑换请求');
+	          if (msg == 1) {
+	              alert("恭喜你，兑换成功！");
+	              // $("#lucky-wrap").remove();
+	              // var tpls = '<div id="lucky-wrap">' +
+	              //             '<div id="append-data"></div>' +
+	              //             '<h3 class="click-more">点击加载更多</h3>'+
+	              //            '</div>';
+	              // $(".lucky-lists").html(tpls);
+	              // get_data();
+	          } else if (msg == 2){
+	              alert("Sorry，优惠码已被使用。");
+	          } else {
+	              get_data();
+	              alert("好吧，查无此优惠码...");
+	          };
+	          // var html = "";
+	          // get_data();
+	          // console.log(get_code);
+	          // var right_code = "hgfdsdfghjjghjhgjf";
+
+	          // if (get_code == "") {
+
+	          //   alert("抱歉，您还未输入兑换码!");
+
+	          // } else if (get_code == right_code){
+	          //       x = "";
+	          //   alert("恭喜你，兑换成功~");
+	          //   var cheaper = val["money"]/100;
+	          //   var if_used = val['status'];
+	          //   var dead_line = val['end_time'];
+	            // html +='<div class="'+ y +'">'+
+
+	            //       '<div class="list-header"></div>'+
+
+	            //       '<div class="lucky-list">'+
+
+	            //         '<div class="list-left">'+
+
+	            //           '<h3>订餐红包</h3>'+
+
+	            //           '<h5>有效期至' + dead_line+ '(' + x + ')</h5>'+
+
+	            //         '</div>'+
+
+	            //         '<div class="list-right">'+
+
+	            //           '<span>￥' + cheaper+'</span><span>.00</span>'+
+
+	            //         '</div>'+
+
+	            //         '<h4><span>美好时刻，必点一下</span><span><i></i></span></h4>'+
+
+	            //       '</div>'+
+
+	            //     '</div>';
+	            // $('#append-data').append(html);
+	          // }else{
+
+	          //   alert("同学，请输入正确的兑换码...");
+
+	          // };
+	        },
+	        error:function(msg){
+	              alert("同学，请输入正确的兑换码...");
+	        }
+	      });
+	    };
+	  });
+	var get_data = function(){
+	    $.ajax({
+
+	          type: "GET",
+
+	          url: "http://bd.koudaigongshe.com/mobile/bonus/list",
+
+	          dataType: "json",
+
+	          success: function(data){
+
+	            console.log("获取json数据成功！");
+	            console.log(data);
+	            var html = ''; 
+	            var tpl_special="";
+	            var data_len = data.length;
+
+	              if (data_len == 0) {
+
+	                $(".click-more").tap(function(){
+
+	              alert("很遗憾，您还未获得红包！");
+
+	                  $(".click-more").css({
+
+	                    "display":"none"
+
+	                  });
+
+	                });
+
+	              }else{
+	                $(".click-more").tap(function(){
+	                  $(".special").css({
+	                    "display":"block"
+	                  }); 
+	                  $(".click-more").css({
+	                    "display":"none"
+	                  });
+	                });
+	              };
+	              console.log(data.length);
+	              $.each(data, function(i, val){
+	                  console.log(val);
+	                  var cheaper = val["money"]/100;
+	                  var if_used = val['status'];
+	                  var dead_line = val['end_time'];
+	                  console.log(dead_line);
+	                  // function   formatDate(now)   {     
+	                  //               var   year=now.getYear();     
+	                  //               var   month=now.getMonth()+1;     
+	                  //               var   date=now.getDate();     
+	                  //               var   hour=now.getHours();     
+	                  //               var   minute=now.getMinutes();     
+	                  //               var   second=now.getSeconds();     
+	                  //               return   year+"-"+month+"-"+date+"   "+hour+":"+minute+":"+second;     
+	                  //               }     
+	                  //                var cc =  dead_line;
+	                  //                alert(cc);
+	                  //               var d=new Date(4289999999);     
+	                  //               alert(formatDate(d));   
+	                  // var if_status = val['status'];
+	                  if (if_used == 1) {
+
+	                    x = "未使用";
+	                    y = "list-container";
+	                    z = "";
+	                  } else if(if_used == 2){
+
+	                    x = "已使用";
+	                    // y = "";
+	                    y = "list-container special"
+
+	                  } else{
+	                    x = '已过期';
+	                    // y = '';
+	                    y = "list-container special"
+	                  };
+	                  html +='<div class="'+ y +'">'+
+
+	                        '<div class="list-header"></div>'+
+
+	                        '<div class="lucky-list">'+
+
+	                          '<div class="list-left">'+
+
+	                            '<h3>订餐红包</h3>'+
+
+	                            '<h5>有效期至' + dead_line+ '(' + x + ')</h5>'+
+
+	                          '</div>'+
+
+	                          '<div class="list-right">'+
+
+	                            '<span>￥' + cheaper+'</span><span>.00</span>'+
+
+	                          '</div>'+
+
+	                          '<h4><span>美好时刻，必点一下</span><span><i></i></span></h4>'+
+
+	                        '</div>'+
+
+	                      '</div>'
+
+	              });
+
+	              $('#append-data').append(html);
+
+	           },
+
+	          error:function (data) {
+	              // console.log(data);
+	              alert(data);
+	              alert("哎呀，一定是旁边的朋友挡着信号啦。");
+
+	          }
+
+	      });
+	}
+	get_data();
+</script>
+</body>
+</html>

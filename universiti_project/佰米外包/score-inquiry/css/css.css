@@ -1,0 +1,94 @@
+
+body , ul , li{
+	margin:0;
+	padding:0;
+}
+ul , li {
+	list-style: none;
+}
+#page {
+
+	max-width: 780px;
+	margin: 0 auto;
+	background-image: url(../img/option.jpg);
+	background-size: 100% 100%;
+}
+
+#page header {
+	width: 100%;
+	margin-bottom: 60px;
+	padding-top: 50px;
+}
+
+#page header h2{
+	margin-top: 0px;
+	text-align: center;
+	font-family: "KaiTi";
+}
+
+#page header hr {
+	width: 80%;
+	margin: 0 auto;
+
+}
+
+#content ul {
+
+	width: 16px;
+	margin-left: 10%;
+	background-image: url(../img/line.gif);
+	background-size: 4px 100%;
+	background-repeat: no-repeat;
+	background-position: 6px 0;
+}
+
+
+#content li {
+
+	position: relative;
+	width: 16px;
+	height:16px;
+	background-color: #e14c24;
+	border-radius: 100px;
+	margin-bottom: 40px;
+}
+
+#content li div {
+	position: absolute;
+	width: 200px;
+	left: 40px;
+	top: -2px;
+}
+
+#content li:nth-child(1) div{
+	border: solid 1px #535353;
+}
+#content li:nth-child(1) div:nth-child(2) {
+
+	top : 8px;
+	left:16px;
+	width: 24px !important;
+	border: 0;
+	border-top: 1px solid #c4c4c4;
+}
+
+#content li span {
+
+	display: block;
+	float: left;
+	padding: 0 6px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #535353;
+}
+
+#content li span:nth-child(1)  {
+	
+	width: 70%;
+
+}
+#content li span:nth-child(2) {
+
+	width: 30%;
+
+}

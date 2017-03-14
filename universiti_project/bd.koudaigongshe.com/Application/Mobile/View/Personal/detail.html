@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>订单详细</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/submit_order.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/order_details.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>订单详细</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/personal/ordered');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+            <include file="Public/menu" />
+		</div>
+	</header>
+	<section class="main-section">
+        <?php
+        if($list['order']['status'] == 1 || $list['order']['status'] == 4 || $list['order']['status'] == 5 || $list['order']['status'] == 6 || $list['order']['status'] == 7){
+            echo '<article class="status-now"><div class="plan"><div class="plan-val" data-value="';
+            if($list['order']['status'] == 1) echo '0';
+            if($list['order']['status'] == 4) echo '1';
+            if($list['order']['status'] == 5) echo '2';
+            if($list['order']['status'] == 6) echo '3';
+            if($list['order']['status'] == 7) echo '3';
+            echo '"><div><span></span></div></div><span></span><span></span></div><div class="plan-font"><ul><li><p>已下单</p></li><li><p>付款成功</p></li><li><p>已派送</p></li><li><p>送达寝室</p></li></ul></div></article>';
+        }
+        ?>
+		<article class="user-msg">
+			<header class="user-msg-title">
+				<ul>
+					<li><p>用户信息</p></li>
+				</ul>
+			</header>
+			<section class="user-msg-body">
+				<a href="#">
+					<div class="user-msg-img">
+						<img src="__PUBLIC__/static/mobile/image/address.png" alt="">
+					</div>
+					<div class="user-msg-data">
+						<h3><?php echo $list['order']['name'];?></h3>
+						<p><?php echo $list['order']['mobile'];?></p>
+						<p><?php echo $list['school_ext']['name'] . ' ' . $list['building']['name'] . ' ' . $list['order']['dormitory'];?></p>
+					</div>
+				</a>
+			</section>
+		</article>
+		<article class="order-date">
+			<header class="order-date-title">
+				<ul>
+					<li><p></p></li>
+					<li>
+						<p>配送日期</p>
+					</li>
+					<li>
+						<p>配送时间</p>
+					</li>
+				</ul>
+			</header>
+			<section class="order-date-body">
+				<div>
+					<h3><?php echo $list['order']['when'];?></h3>
+				</div>
+				<div>
+					<select disabled>
+						<option value=""><?php echo date('Y-m-d', $list['order']['order_date']);?></option>
+					</select>
+				</div>
+				<div>
+					<p><?php echo $list['order']['when_time'];?></p>
+				</div>
+			</section>
+		</article>
+		<article class="detail">
+			<header class="detail-title">
+				<div>
+					<p>已选菜品</p>
+				</div>
+				<span>金额</span>
+			</header>
+			<section class="detail-body">
+				<ul>
+					<li>
+						<div>
+                            <?php
+                            foreach($list['order']['dish'] as $key => $value){
+                                echo '<p>' . $value['name'] . '</p>';
+                            }
+                            ?>
+						</div>
+						<?php foreach($list['order']['dish'] as $key => $value){ echo '<span>￥' . $value['money'] / 100 . '</span>';}?>
+					</li>
+					<li>
+						<div>
+							<p>打包费 * <?php echo count($list['order']['dish']);?></p>
+						</div>
+						<span>￥<?php echo count($list['order']['dish']) / 2;?></span>
+					</li>
+					<li>
+						<div>
+							<p> 配送费 * 1</p>
+						</div>
+						<span>￥<?php echo $list['order']['money_delivery'] / 100;?></span>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="remark">
+			<header class="remark-title">
+				<p>留言备注</p>
+			</header>
+			<section class="remark-body">
+				<p class="in-text"><?php echo $list['order']['word'];?></p>
+			</section>
+		</article>
+		<article class="order-number">
+			<p>订单号：<span><?php echo $list['order']['id'];?></span></p>
+		</article>
+		<article>
+            <?php
+            if($list['order']['status'] == 1){
+                echo '<a href="' . 'http://www.koudaigongshe.com/wxpay/index.php?id=' . $list['order']['id'] . '&token=' . md5($list['order']['unionid'] . $list['order']['id']) . '" class="gw-btn orider-btn">支&nbsp;&nbsp;付</a>';
+                echo '<a href="' . U('mobile/order/cancelHandle/id/' . $list['order']['id']) . '" class="gw-btn orider-btn disabled">取消订单</a>';
+            } elseif($list['order']['status'] == 4){
+                echo '<a href="' . U('mobile/index/feedback') . '" class="gw-btn orider-btn disabled">申请退款</a>';
+            } elseif ($list['order']['status'] == 11){
+                if($list['order']['pack_time'] != 0 && $list['order']['pack_time'] + 1200 < time()){
+                    echo '<a href="' . U('mobile/index/feedback') . '" class="gw-btn orider-btn disabled">催&nbsp;&nbsp;单</a>';
+                }
+            }
+            ?>
+
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script>
+
+	$(document).ready(function(){
+		var planValWidth = ( parseInt( $('.plan-val').attr('data-value') )/0.03 );
+		$('.plan-val').css( 'width', planValWidth + '%' );
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+[ 2016-11-18T12:17:36+08:00 ] ::1 /koudai/kdxs/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011793s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.012717s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012887s ]
+SQL: SHOW COLUMNS FROM `tari` [ RunTime:0.0231s ]
+SQL: SELECT * FROM `tari` WHERE ( data_type=1 )  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000829s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001051s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.135795s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.135955s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009767s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009922s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007366s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007511s ]
+

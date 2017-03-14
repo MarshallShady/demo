@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Sure" email="Sure@tuiyilin.com">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>口袋高校蛋糕房</title>
+	<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"> -->
+	<style>
+		*,h1,h2,h3,h4,h5,p,ul,li,.container{
+			margin:0;
+			padding:0;
+		}
+
+		body {
+			background: #FFFCAC;
+
+		}
+		ul,li {
+			list-style: none;
+		}
+
+		.main-head {
+			-color: #fff;
+			position: relative;
+			padding-left: 20px;
+			padding-top: 20px;
+			font-family: "微软雅黑";
+		}
+		.main-head h1 {
+			margin-top: 10px;
+			margin-bottom: 6px;
+			font-weight: normal;
+
+			overflow:hidden; 
+			text-overflow:ellipsis; 
+			white-space:nowrap; 
+			word-break:keep-all; 
+		}
+		.main-head h2 {
+			margin-bottom: 10px;
+			font-weight: normal;
+
+			overflow:hidden; 
+			text-overflow:ellipsis; 
+			white-space:nowrap; 
+			word-break:keep-all; 
+		}
+		.main-head span {
+			max-width: 70%; 
+			display: inline-block;
+			margin-right: 6px;
+			border: 1px solid #000;
+			padding:2px 6px;
+			text-align: center;
+			overflow:hidden; 
+			text-overflow:ellipsis; 
+			white-space:nowrap; 
+			word-break:keep-all; 
+		}
+		.order-price {
+			position: absolute;
+			top: 84px;
+			right: 20px;
+		}
+
+		.main-section {
+			font-family: "黑体";
+			padding-top: 10px;
+		}
+		
+		.form-group {
+			overflow: auto;
+			padding-top: 10px;
+			padding-bottom: 6px;
+		}
+		.form-group label {
+			width: 36%;
+			height: 1.8em;
+			line-height: 1.8em;
+			font-size: 24px;
+			text-align: center;
+			float: left;
+			display: block;
+		}
+		.form-group .form-control {
+			width: 64%;
+			float: left;
+		}
+		.form-group .form-control input,.form-group .form-control select {
+			width: 80%;
+			height: 1.6em;
+			line-height: 1.6em;
+			background: rgba(0,0,0,0);
+			border:none;
+			border-radius: 0;
+			border-bottom: solid 1px;
+			border-color: #000;
+			font-size: 20px;
+			padding: 0 10px;
+			outline:none;
+			tap-highlight-color:rgba(0,0,0,0);
+			-webkit-tap-highlight-color:rgba(0,0,0,0);
+			display: block;
+			float: left;
+		}
+		.form-group .form-control select{
+			width: 90%;
+			appearance:none;
+			-moz-appearance:none;
+			-webkit-appearance:none;
+		}
+
+		.form-group .form-control span {
+			display: block;
+			float: left;
+			margin-left: -20px;
+			margin-top: 6px;
+		}
+
+		.form-group .btn {
+		    width: 60%;
+		    height: 2.2em;
+		    font-size: 22px;
+		    background: #000000;
+		    border: none;
+		    color: #fff;
+		    font-family: "微软雅黑";
+		    display: block;
+		    margin: 0 auto;
+		    margin-top: 10px;
+		    text-decoration:none;
+		}
+
+		.form-group .Prompt {
+			font-size: 12px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header class="main-head">
+			<h1>Mango Jerry</h1>
+			<h2>芒果慕斯</h2>
+			<span>6寸</span>
+			<span>红心火龙果+红心火龙果什么说说你放假啊收到了饭卡上离开对方</span>
+
+			<div class="order-price">
+				<h2>￥148</<h2>
+			</div>
+		</header>
+		<section class="main-section">
+			<form action="">
+				<div class="form-group">
+					<label>收货人</label>
+					<div class="form-control">
+						<input type="text" value="冯三秋" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>收货寝室</label>
+					<div class="form-control">
+						<input type="text" value="5南320" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>联系方式</label>
+					<div class="form-control">
+						<input type="text" value="15658033953">
+					</div>
+				</div>
+				<div class="form-group">
+					<label>送达时间</label>
+					<div class="form-control">
+						<select name="" id="">
+							<option value="">11月26日14点前</option>
+						</select>
+						<span>▼</span>
+					</div>
+				</div>
+				<div class="form-group">
+					
+				</div>
+				<div class="form-group">
+					<p class="Prompt">支付后，小口袋会尽快联系你的对接定制需求</p>
+					<button class="btn" type="submit">确 认 购 买</button>
+				</div>
+				<div class="form-group">
+					<button class="btn" type="submit">确 认 购 买</button>
+				</div>
+			</form>
+		</section>
+		<footer class="main-footer"></footer>
+	</div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</body>
+</html>

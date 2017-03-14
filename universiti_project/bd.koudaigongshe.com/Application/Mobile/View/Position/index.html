@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>个人中心</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/personal.css">
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>个人中心</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+            <include file="Public/menu" />
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="personal-img">
+			<img src="__PUBLIC__/static/data/image/me.png" alt="">
+		</article>
+		<form action="<?php echo U('mobile/position/changePosition');?>" method="post">
+			<article class="peisonal-data">
+				<div class="peisonal-data-ele">
+					<label>收货人</label>
+					<input type="text" name="name" value="<?php echo $list['user']['name'];?>" placeholder="姓名" />
+				</div>
+				<div class="peisonal-data-ele" id="tel">
+					<label>手机号</label>
+					<input type="text" name="mobile" value="<?php echo $list['user']['mobile'];?>" placeholder="手机号" />
+				</div>
+				<!-- <div class="peisonal-data-ele hidden" id="verify">
+					<label>验证码</label>
+					<input type="text" name="verify" value="" placeholder="验证码" />
+					<button class="gw-btn verify-btn">获取验证码</button>
+				</div> -->
+				<div class="peisonal-data-ele" >
+					<label>城市</label>
+					<select id="city" name="province" >
+						<!-- <option >浙江</option> -->
+						<!-- <option >南京</option> -->
+					</select>
+				</div>
+				<div class="peisonal-data-ele">
+					<label>学校名称</label>
+					<select id="school_name" name="school" >
+						<!-- <option >杭州电子科技大学</option> -->
+					</select>
+				</div>
+				<div class="peisonal-data-ele">
+					<label>校区</label>
+					<select id="school_area" name="school_ext" >
+						<!-- <option >下沙校区</option> -->
+					</select>
+				</div>
+                <div class="peisonal-data-ele">
+					<label>楼号</label>
+					<select id="dormitory" name="building" >
+						<!-- <option>5南320</option> -->
+					</select>
+				</div>
+				<div class="peisonal-data-ele">
+					<label>寝室</label>
+					<input type="text" name="dormitory" value="<?php echo $list['user']['dormitory'];?>" placeholder="寝室号" />
+				</div>
+			</article>
+			<button type="submit" id="submit" class="gw-btn peisonal-submit">保存</button>
+		</form>
+
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/module/message.js"></script>
+<script>
+var address = [<?php
+foreach($list['province'] as $key => $value){
+    echo '{id:' . $value['id'] . ',name:\'' . $value['name'] . '\',dataAdd:[';
+    foreach($list['school'] as $key2 => $value2){
+        if ($value2['province'] == $value['id']) {
+            echo '{id:' . $value2['id'] . ',name:\'' . $value2['name'] . '\',dataAdd:[';
+            $i = 1;
+            foreach($list['school_ext'] as $key3 => $value3){
+                if ($value3['school'] == $value2['id']) {
+                    echo '{id:' . $value3['id'] . ',name:\'';
+                    if ($list['count'][$value2['id']] == 1 && $i == 1) {
+                        echo 'hidden';
+                        $i = 0;
+                    } else {
+                        echo $value3['name'];
+                    }
+                    echo '\',dataAdd:[';
+                    foreach($list['school_building'] as $key4 => $value4){
+                        if ($value4['school_ext'] == $value3['id']) {
+                            echo '{id:' . $value4['id'] . ',name:\'' . $value4['name'] . '\'},';
+                            unset($list['school_building'][$key4]);
+                        }
+                    }
+                    echo ']},';
+                }
+            }
+            unset($list['school'][$key3]);
+            echo ']},';
+        }
+    }
+    echo ']},';
+}
+    ?>];
+
+	selectAddr.init();
+
+	// $("#tel").change(function(){
+	// 	$('#verify').removeClass('hidden');
+	// });
+</script>
+</body>
+</html>

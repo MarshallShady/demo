@@ -1,0 +1,80 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+    window.date=eval(<?php echo json_encode($date);?>);
+</script>
+<html >
+<head>
+    <title>学校评级</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/statistic/js/investigate.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">数据统计</a></li>
+  <li class="active">学校评级</li>
+</ol>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="panel panel-default">
+        <table class="table table-default" >
+            <tr><th>开始时间</th><th>结束时间</th><th></th></tr>
+            <tr>
+                <td><input type='date' value="2016-04-05" ng-model='date_start' id="date_s"class="form-control"/></td>
+                <td><input type='date'value="0" ng-model='date_end' id="date_e" ng-change="search()"class="form-control"/></td>
+                <td><button class="btn btn-info form-control" id="search"ng-click="search()">查询</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-warning">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>提交时间</th>
+                <th>提交人</th>
+                <th>学校</th>
+                <th>打包份数</th>
+                <th>就餐人数</th>
+                <th>外卖的态度</th>
+                <th>食堂和寝室的距离</th>
+                <th>菜品是否丰富</th>
+                <th>支持程度</th>
+                <th>是否有公众号</th>
+                <th>是否有竞争对手</th>
+                <th>兼职工资</th>
+                <th>特殊说明</th>
+            </tr>
+        </thead>
+        <body>
+            <tr ng-repeat="x in data">
+                <td>{{x.date}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.option1}}</td>
+                <td>{{x.option2}}</td>
+                <td>{{x.option3}}</td>
+                <td>{{x.option4}}</td>
+
+                <td>{{x.option6}}</td>
+                <!-- 菜品是否丰富 -->
+                <td>{{x.option8}}</td>
+                <!-- 外卖的态度 -->
+                <td>{{x.option10}}</td>
+
+                <td>{{x.option12}}</td>
+                <td>{{x.option14}}</td>
+                <td>{{x.option16}}</td>
+                <td>{{x.option17}}</td>
+            </tr>
+        </body>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

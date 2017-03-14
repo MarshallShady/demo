@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>订单中心</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/order_whole.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>订单中心</p>
+			</div>
+		</div>
+    <div class="go-back">
+      <a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+    </div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+            <include file="Public/menu" />
+		</div>
+	</header>
+	<section class="main-section">
+		<header class="order-whole-title">
+			<p>订单中心</p>
+		</header>
+        <?php
+        foreach($list['order'] as $key => $value){
+            echo '<a href="' . U('mobile/personal/detail/id/' . $value['id']) . '"><article class="order-ele"><div class="order-ele-img"><div class="order-ele-padding"><img src="' . $value['order_img'] . '" alt=""></div></div><div class="order-ele-article"><div class="order-ele-padding"><p class="order-ele-price">￥' . $value['money'] / 100 . '<span>' . getOrderStatus($value['status']) . '</span></p><div class="order-ele-data"><p class="order-ele-name">' . $value['order_name'] . '</p>';
+            if($value['status'] == 1 || $value['status'] == 4 || $value['status'] == 11 || $value['status'] == 5) {
+                if ($value['when'] == 2) echo '<p class="order-ele-date">' . date('H:i', $list['school_ext']['lunch_send_start']) . ' ~ ' . date('H:i', $list['school_ext']['lunch_send_end']) . '安排配送</p>';
+                if ($value['when'] == 3) echo '<p class="order-ele-date">' . date('H:i', $list['school_ext']['dinner_send_start']) . ' ~ ' . date('H:i', $list['school_ext']['dinner_send_end']) . '安排配送</p>';
+            }
+            echo '</div><div class="order-ele-action">';
+            if($value['status'] == 1){
+                echo '<a href="http://www.koudaigongshe.com/wxpay/index.php?id=' . $value['id'] . '&token=' . md5($value['unionid'] . $value['id']) . '" class="gw-btn order-ele-btn">立即支付</a>';
+            }
+            if ($value['status'] == 1){
+                echo '<a href="' . U('mobile/order/cancelHandle/id/' . $value['id']) . '" class="gw-btn order-ele-btn order-btn-bg">取消订单</a>';
+            }
+            if (($value['status'] == 5 || $value['status'] == 11) && $value['pack_time'] != 0 && $value['pack_time'] + 1200 < time()){
+                echo '<a href="' . U('mobile/index/feedback') . '" class="gw-btn order-ele-btn order-btn-bg">催单</a>';
+            }
+            echo '</div>';
+            echo '</div></div></article></a>';
+        }
+        ?>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+</body>
+</html>

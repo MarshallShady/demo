@@ -1,0 +1,21 @@
+<div class="memu-pull-down">
+    <ul>
+        <li><a href="<?php echo U('mobile/index/index');?>">首页</a></li>
+        <li><a href="<?php echo U('mobile/position/index');?>">个人中心</a></li>
+        <li><a href="<?php echo U('mobile/personal/index');?>">订单中心</a></li>
+        <li><a href="<?php echo U('mobile/bonus/index');?>">红包中心</a></li>
+        <?php
+        if ($list['has_role_right']){
+            foreach ($list['role'] as $key => $value){
+                if ($value['role'] == 1) echo '<li><a href="' . U('mobile/houser/index') . '">楼长中心</a></li>';
+                if ($value['role'] == 7) echo '<li><a href="' . U('mobile/deliver/index') . '">分拨员中心</a></li>';
+                if ($value['role'] == 5) echo '<li><a href="' . U('mobile/manager/index') . '">校园经理中心</a></li>';
+                if ($value['role'] == 6) echo '<li><a href="' . U('mobile/port/index') . '">档口管理员</a></li>';
+                if ($value['role'] == 8) echo '<li><a href="' . U('mobile/pack/index') . '">出单员中心</a></li>';
+                if ($value['role'] == 11) echo '<li><a href="' . U('mobile/competitor/index') . '">必点送中心</a></li>';
+                if ($value['role'] == 13) echo '<li><a href="' . U('mobile/media/index') . '">媒体监控</a></li>';
+            }
+        }
+        ?>
+    </ul>
+</div>

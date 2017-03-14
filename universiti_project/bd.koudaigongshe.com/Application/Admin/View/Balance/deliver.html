@@ -1,0 +1,107 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+</script>
+<html >
+<head>
+    <title>分拨员结算</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/balance/js/deliver.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <table class="table table-striped" >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th></th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school |filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-change="search()"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><button class="btn btn-info form-control" id="search"ng-click="search()">查询</button></td>
+                <!-- <td><select class="form-control" ng-model="select_port"ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}"></select></td> -->
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr><th colspan="12" class="text-center">楼长结算</th></tr>
+            <tr>
+                <th>id</th>
+                <th>分拨员</th>
+                <th>业务</th>
+                <th>手机</th>                <th>支付宝</th>
+                <th>订单总数</th>
+                <th>未结算份数</th>
+                <th>饭菜总数</th>
+                <th>未结算份数</th>
+                <!-- <th>总金额</th>
+                <th>未结算金额</th> -->
+                <th>历史记录</th>
+                <th>结算</th>
+            </tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.role_name}}</td>
+                <td>{{x.mobile}}</td>                <td>{{x.alipay}}</td>
+                <td>{{x.num_order_total}}</td>
+                <td class="bg-info">{{x.num_order_rest}}</td>
+                <td>{{x.num_dish_total}}</td>
+                <td class="bg-info">{{x.num_dish_rest}}</td>
+                <!-- <td>{{x.money_total/100}}元</td>
+                <td class="bg-info">{{x.money_rest/100}}元</td> -->
+                <td><button class="btn btn-default form-control" data-toggle="modal" data-target="#myModal" ng-click="history(x.id,x.name)">查询历史</button></td>
+                <td><button class="form-control"id="c-{{x.id}}" ng-click="clear(x.id)">结算</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal fade" style=""id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" id="detail" style="width:95%;"role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{name}} 的结算历史</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>结算日期</th>
+                    <th>管理员id</th>
+                    <th>管理员</th>
+                    <th>业务员id</th>
+                    <th>姓名</th>                    <th>支付宝</th>
+                    <th>历史总订单数</th>
+                    <th>结算订单数</th>
+                    <th>历史总饭菜份数</th>
+                    <th>结算饭菜数</th>
+                    <!-- <th>历史总金额</th>
+                    <th>结算金额</th> -->
+                </tr>
+                <tr ng-repeat="c in history_data">
+                    <td>{{c.date}}</td>
+                    <td>{{c.admin_id}}</td>
+                    <td>{{c.admin_name}}</td>
+                    <td>{{c.user_id}}</td>
+                    <td>{{c.user_name}}</td>                    <td>{{c.alipay}}</td>
+                    <td>{{c.num_order_total}}</td>
+                    <td class="bg-info">{{c.num_order_rest}}</td>
+                    <td>{{c.num_dish_total}}</td>
+                    <td class="bg-info">{{c.num_dish_rest}}</td>
+                    <!-- <td>{{c.money_total/100}}元</td>
+                    <td class="bg-info">{{c.money_rest/100}}元</td> -->
+                </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

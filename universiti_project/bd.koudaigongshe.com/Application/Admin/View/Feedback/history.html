@@ -1,0 +1,146 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+    window.date=eval(<?php echo json_encode($date);?>);
+</script>
+<html >
+<head>
+    <title>退款历史</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/feedback/js/history.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">投诉处理</a></li>
+  <li class="active">退款历史</li>
+</ol>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <table class="table table-striped" >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>食堂</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school |filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_canteen" ng-change="search()"ng-options="x.name for x in canteen |filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                <!-- <td><select class="form-control" ng-model="select_port"ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}"></select></td> -->
+            </tr>
+        </table>
+        <table class="table table-striped" >
+            <tr><th>开始时间</th><th>结束时间</th><th colspan="2"></th><td rowspan="2">此查询以订单时间为准，非下单时间。</td></tr>
+            <tr>
+                <td><input type='date' value="2016-04-05" ng-model='date_start' id="date_s"class="form-control"/></td>
+                <td><input type='date'value="0" ng-model='date_end' id="date_e" ng-change="search()"class="form-control"/></td>
+                <td colspan="2"><button class="btn btn-info form-control" id="search"ng-click="search()">查询</button></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>操作时间</th>
+                <th>管理员id</th>
+                <th>管理员</th>
+                <th>订单时间</th>
+                <th>订单号</th>
+                <th>流水号</th>
+                <th>餐厅</th>
+                <th>退款金额</th>
+                <th>退款原因</th>
+                <th>退款类型</th>
+                <th>订单详情</th>
+            </tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.date}}</td>
+                <td>{{x.admin_id}}</td>
+                <td>{{x.admin_name}}</td>
+                <td>{{x.date_order}}</td>
+                <td>{{x.order}}</td>
+                <td>{{x.dish}}</td>
+                <td>{{x.canteen_name}}</td>
+                <td>{{x.money/100}}</td>
+                <td>{{x.content}}</td>
+                <td>{{x.status_name}}</td>
+                <td><button class="btn btn-info form-control" ng-click="getOrder(x.order)"data-toggle="modal" data-target="#myModal">查询订单</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" style="width:95%;"role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">订单详细</h4>
+          </div>
+          <div class="modal-body">
+              <table class="table table-striped">
+                  <tr>
+                      <th>下单日期</th>
+                      <th>订单日期</th>
+                      <th>时段</th>
+                      <th>姓名</th>
+                      <th>手机</th>
+                      <th>楼栋</th>
+                      <th>寝室</th>
+                      <th>订单号</th>
+                      <th>订单名称</th>
+                      <th>订单金额</th>
+                      <th>分拨员</th>
+                      <th>手机</th>
+                      <th>楼长</th>
+                      <th>手机</th>
+                      <th>状态</th>
+                  </tr>
+                  <tr  id="tr-{{x.id}}">
+                      <td>{{order['date']}}</td>
+                      <td>{{order['date_order']}}</td>
+                      <td>{{order.when_name}}</td>
+                      <td>{{order.name}}</td>
+                      <td>{{order.mobile}}</td>
+                      <td>{{order.build_name}}</td>
+                      <td>{{order.dormitory}}</td>
+                      <td>{{order.id}}</td>
+                      <td>{{order.order_name}}</td>
+                      <td>{{order.money/100}}</td>
+                      <td>{{order.deliver_name}}</td>
+                      <td>{{order.deliver_mobile}}</td>
+                      <td>{{order.housemaster_name}}</td>
+                      <td>{{order.housemaster_mobile}}</td>
+                      <td>{{order.status_name}}</td>
+                  </tr>
+              </table>
+              <table class="table " style="{margin-left:20%;}">
+                  <tr ng-show="true" class="bg-info">
+                      <td>流水号(小票号)</td>
+                      <td>餐厅</td>
+                      <td>档口</td>
+                      <td>菜品</td>
+                      <td>价格</td>
+                      <td>状态</td>
+                  </tr>
+                  <tr ng-repeat="x in order['dish']" ng-show="true">
+                      <td>{{x.id}}</td>
+                      <td>{{x.canteen_name}}</td>
+                      <td>{{x.port_name}}</td>
+                      <td>{{x.name}}</td>
+                      <td>{{x.money/100}}</td>
+                      <td>{{x.status_name}}</td>
+                  </tr>
+              </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

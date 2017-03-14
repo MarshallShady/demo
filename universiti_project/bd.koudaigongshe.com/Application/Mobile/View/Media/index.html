@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>必点合作平台监测中心</title>
+	<link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+	<style>
+		
+		.page {
+			background: #E6E6E6;
+			overflow: hidden;
+		}
+
+		#main-section {
+			background: rgb(249,249,249);
+			margin-top: 50px;
+		}
+		.tips {
+			height: auto;
+			color: rgb(255,105,116);
+			font-size: 14px;
+			text-align: center;
+			padding: 3px 0;
+			background: #E6E6E6;
+		}
+		.title{
+			overflow: hidden;
+			border-bottom: 1px solid #E6E6E6;
+			padding: 5px 13px;
+		}
+		#title-text-two {
+			font-size: 13px;
+			color: #ADABAB;
+			height: 100%;
+			line-height: 21px;
+			padding-right: 17px;
+			margin-right: -5px;
+			background: url('http://bd.koudaigongshe.com/Public/static/mobile/image/arrows.png') right center/8px no-repeat;
+		}
+		
+		.box{
+			width: 50%;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		#data-part{
+			overflow: hidden;
+			padding: 10px 0;
+		}
+		#order-num-box{
+			border-right: 2px solid rgb(249,91,95);
+		}
+		.data-text{
+			font-size: 34px;
+			color: rgb(249,91,95);
+			font-weight: 300;
+			text-align: center;
+		}
+
+		.box-name{
+			font-size: 15px;
+			color: #ADABAB;
+			margin-top: 10px;
+			text-align: center;
+		}
+		/*#order-num-box .data-text, #order-num-box .box-name{
+			padding-right: 20px;
+		}
+		#money-box .data-text{
+			padding-left: 20px;
+		}
+		#money-box .box-name {
+			padding-left: 25px;
+		}*/
+
+		.before-load-ok {
+			font-size: 12px;
+		}
+
+		#footer-section {
+			text-align: right;
+			font-size: 15px;
+			background: rgb(249,249,249);
+			border-top: 2px solid #E6E6E6;
+		}
+		#footer-section p {
+			color: #ADABAB;
+			padding: 5px 10px;
+		}
+
+		/*start*/
+		#income-list{
+			overflow: hidden;
+		}
+		#income-list ul {
+			overflow: hidden;
+			background: rgb(249,249,249);
+		}
+		.list-item{
+			list-style: none;
+			overflow: hidden;
+			border-top: 1px solid #E6E6E6;
+			padding: 5px 0;
+		}
+		.list-header{
+			background: #E6E6E6;
+		}
+		.list-details{
+			width: 50%;
+			float: left;
+			text-align: center;
+			font-size: 14px;
+			padding: 5px 0;
+		}
+		.list-details:nth-child(2) {
+			color: rgb(255,105,116);
+		}
+		.list-header .list-details{
+			color: black;
+		}
+
+		#load-more{
+			width: 100%;
+			font-size: 13px;
+			text-align: center;
+			color: #888686;
+			background: #E6E6E6;
+			padding: 10px 0 10px 0;
+		}
+		/*end*/
+
+		/*common UI*/
+		.float-l {
+			float: left;
+		}
+		.float-r {
+			float: right;
+		}
+		.t-align-r{
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+		<header class="main-header">
+			<div class="headline">
+				<div class="headline-body" style="font-weight:300">
+					<p>必点合作平台监测中心</p>
+				</div>
+			</div>
+			<div class="go-back">
+				<a href="http://bd.koudaigongshe.com/mobile/index/index.html"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+			</div>
+		</header>	
+		<section id="main-section">
+			<p class="tips"><!-- 欢迎你，xxx平台运营者 --></p>
+			<article class="title">
+				<p class="float-l">信息中心</p>
+				<p id="title-text-two" class="float-r"><!-- 查看收益记录 --></p>
+			</article>
+			<article id="data-part">
+				<div id="order-num-box" class="box float-l">
+					<p id="order-num-text" class="data-text"><!-- 0单 --> <span class="before-load-ok">数据载入中...</span></p>
+					<p class="box-name">本日实时单量</p>
+				</div>
+				<div id="money-box" class="box float-l">
+					<p id="money-text" class="data-text"><!-- ￥0.0 --> <span class="before-load-ok">数据载入中...</span></p>
+					<p class="box-name ">本日实时金额</p>
+				</div>
+			</article>
+		</section>
+		<section id="footer-section">
+			<p id="total-money">累计流水金额：<span style="color:rgb(255,105,116)">数据载入中...</span></p>
+		</section>
+		<section>
+			<article id="income-list">
+				<ul>
+					<li class="list-item list-header">
+						<p class="list-details">日期</p>
+						<p class="list-details">营业额</p>
+					</li>
+				</ul>
+			</article>
+			<button id="load-more" style="margin-bottom:20px;">点击加载更多</button>
+		</section>	
+	</div>
+</body>
+<script>
+	(function () {
+
+		// 用于流程控制的变量
+		var ifFinish = false, 
+			ifFirst = true,
+			queryStr = '';
+
+		// 获取数据
+		getData();
+
+		document.querySelector('#load-more').addEventListener('click', function () {
+			if(ifFinish) {
+				return;
+			}
+			getData();
+		})
+
+		// 获取数据
+		function getData() {
+			var xhr = new XMLHttpRequest(),
+				orderNumText = document.querySelector('#order-num-text'),
+				moneyText = document.querySelector('#money-text'),
+				totalMoneyText = document.querySelector('#total-money span'),
+				loadMoreBtn = document.querySelector('#load-more');
+
+			queryStr = queryStr ? queryStr : 'http://bd.koudaigongshe.com/mobile/media/apishowindex';
+
+			xhr.onreadystatechange = function () {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+
+					var data = JSON.parse(xhr.responseText);
+					loadMoreBtn.innerText = '点击加载更多';
+
+					if(data.data.length == 0) {
+						loadMoreBtn.innerText = '已无更多数据';
+						ifFinish = true;
+					}
+
+					if(ifFirst) {
+						// 填入数据
+						orderNumText.innerHTML = data.order + '单';
+						moneyText.innerHTML = '￥' + data.money / 100;
+						totalMoneyText.innerHTML = '￥' + data.money_total / 100;
+
+						ifFirst = false;						
+					}
+
+					queryStr = 'http://bd.koudaigongshe.com/mobile/media/apishowindex/len/' + data.len;
+					
+					// 由数据生成list
+					createList(data.data);
+				}
+			}
+			console.log(queryStr)
+			xhr.open('GET', queryStr);
+			xhr.send();	
+			loadMoreBtn.innerText = '加载中...';	
+		}
+
+		function createList(data) {
+			var listBox = document.querySelector('#income-list ul');
+
+			reverseData = data.reverse();
+			for(var i = data.length - 1; i >= 0; i--) {
+
+				// 格式化时间
+				var resetfulTime = resetTime(data[i].order_date);
+
+				var domString = "<li class='list-item'><p class='list-details'>" + resetfulTime + "</p><p class='list-details'>￥" + data[i].money/100 + "</p></li>";
+
+				listBox.innerHTML += domString;
+			}
+
+			
+		}
+
+		function resetTime(time) {
+
+			var d = new Date();
+
+			d.setTime(time*1000);
+
+			var year = d.getFullYear();
+			var month = d.getMonth().toString().length == 1 ? '0' + (d.getMonth() + 1): d.getMonth() + 1;
+			var day = d.getDate().toString().length == 1 ? '0' + d.getDate() : d.getDate();
+			var timeStr = year + '-' + month + '-' + day;
+
+			return timeStr;
+		}
+
+	})()
+</script>
+</html>

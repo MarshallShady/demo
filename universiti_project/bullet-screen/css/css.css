@@ -1,0 +1,149 @@
+
+body {
+	padding:0;
+	margin:0;
+	overflow: hidden;
+}
+
+#content {
+	position: absolute;
+	z-index: 9;
+	left: 0;
+	top :0;
+}
+
+#page {
+	position: relative;
+}
+
+
+#hduhelptd , #award ,#vote,#organization-logo {
+	width : 80%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 30;
+	top: 100px;
+	display: none;
+	border-radius: 4px;
+}
+
+#hduhelptd {
+
+	background-color: rgba( 0 , 0 , 0 , 0.5 );
+}
+#hduhelptd img {
+	width: 40%;
+	max-width: 400px;
+	display: block;
+	margin: 10px auto;
+	margin-bottom: 30px;
+}
+#hduhelptd p {
+	text-align: center;
+	color: #fff;
+	font-size: 40px;
+	font-weight: bold;
+}
+#hduhelptd span {
+	font-size: 1.5em;
+}
+
+#award {
+
+	background-color: rgba( 255 , 255 , 255 , 0.95 );
+	padding: 10px;
+	border-radius: 6px;
+}
+
+#vote {
+	height: 500px;
+	-display: block;
+	background-color: #fff;
+	font-family: "微软雅黑";
+	padding: 2px 20px;
+}
+
+#vote-result {
+
+	width: 100%;
+	margin: 0 auto;
+}
+#vote-result .paging {
+
+	width: 50%;
+	height: 100%;
+	float: left;
+	padding: 0 20px;
+	padding-top: 20px;
+}
+
+#organization-logo img {
+	display: block;
+	width: 94%;
+	margin: 0 auto;
+}
+
+
+
+#list-name {
+
+	width: 80%;
+	height: 86%;
+	margin:0 auto;
+}
+#list-name p {
+
+	font-family: "微软雅黑";
+	font-size: 90px;
+	text-align: center;
+}
+#list-name h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+#award .gbutton {
+	width: 90%;
+	height: 10%;
+	padding-left: 40%;
+}
+.gbutton button {
+
+	width: 40%;
+	height: 100%;
+	font-size: 20px;
+}
+
+
+
+
+#logo {
+	width :100%;
+	height: 100%;
+}
+#logo img {
+	width:100%;
+	height:100%;
+}
+
+#navbar {
+	width: 100%;
+	height: 40px;
+	-background-color: #fff;
+}
+#navbar ul,#navbar li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#navbar li {
+	border: solid 1px #fff;
+	font-size: 16px;
+	color :#fff;
+	width: 30px;
+	padding: 0 6px;
+	padding-top: 4px;
+	cursor:pointer;
+	float: left;
+	margin-right: 10px;
+}

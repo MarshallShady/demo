@@ -1,0 +1,114 @@
+[ 2016-10-22T11:24:32+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000638s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:24:41+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=indata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:24:53+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000703s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:25:06+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000946s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:25:38+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:25:39+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000084s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000968s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:27:01+08:00 ] ::1 /koudai/kdxs/index.php?m=index&c=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000485s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:27:11+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=inData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:30:16+08:00 ] ::1 /koudai/kdxs/index.php?m=indata&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000731s ]
+ERR: 无法加载模块:Indata
+
+[ 2016-10-22T11:30:22+08:00 ] ::1 /koudai/kdxs/index.php?m=inData&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000498s ]
+ERR: 无法加载模块:InData
+
+[ 2016-10-22T11:30:27+08:00 ] ::1 /koudai/kdxs/index.php?m=InData&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000563s ]
+ERR: 无法加载模块:InData
+
+[ 2016-10-22T11:30:33+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:30:39+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000501s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:30:40+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000481s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:30:55+08:00 ] ::1 /koudai/kdxs/index.php?m=index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:37:58+08:00 ] ::1 /koudai/kdxs/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000861s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-22T11:41:10+08:00 ] ::1 /koudai/kdxs/index.php/koudai/kdxs/index.php/Home/Index/index/id/1.html%20html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+ERR: 无法加载模块:Koudai
+
+[ 2016-10-22T11:41:53+08:00 ] ::1 /koudai/kdxs/index.php/koudai/kdxs/index.php/Home/Index/index/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000874s ]
+ERR: 无法加载模块:Koudai
+
+[ 2016-10-22T11:42:37+08:00 ] ::1 /koudai/kdxs/index.php/koudai/kdxs/index.php/Home/Index/index/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+ERR: 无法加载模块:Koudai
+

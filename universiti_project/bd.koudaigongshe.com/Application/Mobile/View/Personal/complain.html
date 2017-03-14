@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>投诉信息</title>
+    <link rel="stylesheet" href="/Public/static/mobile/css/module/page_init.css">
+
+    <style>
+		.title h3{
+			font-weight: normal;
+			/*padding:5px 5%;*/
+		}
+		.title h3:nth-child(1){
+			width: 90%;
+			margin:0 auto;
+			padding:5px 0;
+			color: rgba(0,0,0,.8);
+			font-size: .8em;
+			/*border-top: 1px solid rgba(0,0,0,.1);*/
+		}
+		.title h3:nth-child(2){
+			height: 20px;
+			padding: 8px 5%;
+			color: #fff;
+			font-size: 1em;
+			background-color: rgba(0,0,0,.1);
+		}
+		.lucky_btn{
+			display: block;
+			width: 120px;
+			height: 40px;
+			margin:20px auto;
+			margin-top: 50px;
+			font-size: 1.2em;
+			color: #fff;
+			border-radius: 5px;
+			background-color: #FF6550;
+		}
+		.main-footer{
+			margin-top:0;
+			margin-bottom:20px;
+		}
+		.food_list{
+			width: 100%;
+			border-bottom: 1px solid rgba(0,0,0,.2);
+		}
+		.label{
+			width: 100%;
+			height:auto;
+			padding:10px 5%;
+			box-sizing:border-box;
+		}
+		label{
+			display: inline-block;
+			width:100%;
+		}
+		input{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			float: right;
+		}
+		.toggle_hide{
+			width: 100%;
+			height:120px;
+			display:none;
+			padding:5px 0;
+			box-shadow: 0px 1px 3px 2px rgba(0,0,0,.2) inset;
+		}
+		.active{
+			display: block;
+		}
+		.toggle_hide h3{
+			width: 100%;
+			padding:5px 5%;
+			box-sizing:border-box;
+			font-weight: normal;
+		}
+		.toggle_hide h3:nth-child(1){
+			margin-top: 5px;
+			font-size:1em;
+			color: rgba(255,101,80,.6);
+		}
+		.toggle_hide h3:nth-child(2){
+			margin-bottom: 5px;
+		}
+		.toggle_hide h3:nth-child(2) label{
+			width: 70px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			padding:3px;
+			margin-right: 5px;
+			font-size: .8em;
+			/*color:rgba(0,0,0,.5);*/
+			border:1px solid rgba(0,0,0,.2);
+			border-radius: 5px;
+		}
+		.toggle_hide h3:nth-child(3) span{
+			width: 80px;
+			height:26px;
+			line-height: 26px;
+			float: left;
+			color: rgba(255,101,80,.6);
+			font-size:.8em;
+		}
+		.toggle_hide h3:nth-child(2) input{
+			display: none;
+		}
+		.toggle_hide h3:nth-child(3) input{
+			width: 60%;
+			height:20px;
+			padding:3px 10px;
+			font-size: .8em;
+			line-height: 20px;
+			float: left;
+			color:rgba(0,0,0,.6);
+			border:1px solid rgba(0,0,0,.2);
+		}
+		.colored{
+			border:1px solid rgba(255,101,80,.6);
+			background-color: rgba(255,101,80,.6);
+			color: #fff;
+		}
+    </style>  
+</head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>投诉信息</p>
+			</div>
+		</div>
+		<div class="go-back"></div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+	 	<div class="title">
+	 		<h3>订单号：<span id="order_number"></span></h3>
+	 		<h3>选择您要投诉的商品</h3>
+	 	</div>
+		<form action="#" method="#" id="complain_form">
+			<div class="append_data"></div>
+        	<button type="button" class="lucky_btn">提交投诉</button>
+        </form>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="/Public/static/mobile/js/module/init.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	$(".more").click(function(){
+		$(".pay-mode-ele").show();
+	});
+	$(".pay-mode-ele").click(function(){
+		$(".pay-mode-ele span").removeClass('gou-true');
+		$(this).children('span').addClass('gou-true');
+		$("mode").val( $(this).attr('data-mode') );
+	});
+
+	/** -- 获取url参数id start -- */
+	// console.log(window.location.href);
+	var name = (window.location.href).toString();
+	function GetUrlId(name)
+	{
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+	var urlId = GetUrlId("id");
+	var order_number = urlId;
+	$("#order_number").html(order_number);
+	$(".go-back").html('<a href="score.html?id=' + urlId + '"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>');
+	// console.log(urlId);
+	/** -- 获取url参数id start -- */
+
+	/* --- 数据请求 start--- */
+	$.ajax({
+		type:"get",
+		url:"http://bd.koudaigongshe.com/mobile/personal/apiShowDetail/id/"+urlId,
+		dataType:"json",
+		success:function (data){
+			console.log("success!");
+			console.log(data);
+			var tpl = "";
+			$.each(data.dish,function (i,v){
+				var ID = v.id;
+				tpl = '<div class="food_list" id="' + v.id + '">'+
+			            	'<div class="label">'+
+			            		'<label for="list' + v.id + '" id="list_' + v.id + '" onclick="toggle(id)">' + v.name + '<input value="'+ID+'" name="id' + v.id + '" type="checkbox" id="list' + v.id + '">'+'</label>'+
+			            		// '<input value="'+ID+'" name="id' + v.id + '" type="checkbox" id="list' + v.id + '">'+
+			            	'</div>'+
+			            	'<section class="toggle_hide">'+
+			            		'<h3>投诉原因:</h3>'+
+			            		'<h3><span><label onclick="re_color(id)" id="aa_' + v.id + '" for="a_' + v.id + '">菜未送达</label>'+
+			            		'<input type="radio" value="2" id="a_' + v.id + '"/></span>'+
+			            		'<span><label onclick="re_color(id)" id="bb_' + v.id + '" for="b_' + v.id + '">菜品打错</label>'+
+			            		'<input type="radio" value="3" id="b_' + v.id + '"/></span>'+
+			            		'<span><label onclick="re_color(id)" id="cc_' + v.id + '" for="c_' + v.id + '">菜品打翻</label>'+
+			            		'<input type="radio" value="4" id="c_' + v.id + '"/></span></h3>'+
+			            		'<h3><span>其他原因：</span><input name="word" maxlength="12" type="text" placeholder="选填" ></h3>'+
+			            	'</section>'+
+			            '<div>'
+				$(".append_data").append(tpl);
+			});
+
+			/* --- 获取表单数据并提交 start --- */
+			var postThis = function (){
+				$(".lucky_btn").one("click",function (){
+					var postData = new Array();
+					var dish = [];
+					for(i=0; i<data.dish.length; i++){
+						var ifReason = "";
+						var ifWords = "";
+						if ($('.toggle_hide').eq(i).find('input[type="radio"]:checked').val() == undefined) {
+							ifReason = "1";
+						} else{
+							ifReason = $('.toggle_hide').eq(i).find('input[type="radio"]:checked').val();
+						};
+						if ($('input[name="word"]').eq(i).val() == "") {
+							ifWords = "";
+						} else{
+							ifWords = $('input[name="word"]').eq(i).val();
+						};
+						var list = {
+							"id":$(".food_list").eq(i).attr("id"),
+							"reason":ifReason,
+							"word":ifWords
+						};
+						dish.push(list); 
+				    }
+					postData[0] = {
+						"dish":dish
+					};
+					var s = JSON.stringify(postData);
+					// console.log(s);
+					s1 = s.substring(2,s.length-1);
+					// console.log(s1);
+					s2= '{'+'"id":'+'"' + urlId + '",' + s1 ;
+					// console.log(s2);
+					$.ajax({
+						type:"post",
+						url:"http://bd.koudaigongshe.com/mobile/personal/complain/id/" + urlId,
+						data:s2,
+						dataType:"json",
+						success:function (msg){
+							console.log("success!");
+							alert(msg.message);
+							setTimeout('javascript:location.href="http://bd.koudaigongshe.com' + msg.url + '"', 500);
+						},
+						error:function (msg){
+							console.log("error!");
+							console.log(msg);
+						}
+					});
+					console.log("已经执行");
+					// console.log(jsonS);
+				});
+			};
+			postThis();
+			/* --- 获取表单数据并提交 end --- */
+		},
+		error:function (data){
+			console.log("error!");
+		}
+	});
+	/* --- 数据请求 end--- */
+
+    /* --- 投诉信息模块实现 start--- */
+    var toggle = function(id){
+    		console.log("323");
+    		$("section").removeClass("active");
+    		$("#"+id).parent().next().addClass("active");
+    };
+    var re_color = function (id){
+    		$('label').removeClass('colored');
+    		$("#"+id).addClass("colored");
+    };
+	/* --- 投诉信息模块实现 end --- */
+
+</script>
+</body>
+</html>

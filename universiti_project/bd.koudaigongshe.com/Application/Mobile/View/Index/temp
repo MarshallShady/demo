@@ -1,0 +1,242 @@
+var initFood = [
+    [{name : '早餐',img : '__PUBLIC__/static/data/image/1.png',sellNum : 1024,cost : 12.5},
+    {name : '早餐',img : '__PUBLIC__/static/data/image/1.png',sellNum : 1024,cost : 12.5}],
+    [{name : '午餐',img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '午餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+        ],
+        [//晚上
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+            {
+                name : '晚餐',
+                img : '__PUBLIC__/static/data/image/1.png',
+                sellNum : 1024,
+                cost : 12.5
+            },
+        ]
+    ];
+
+    var initFood = [<?php
+        foreach($list['dish'] as $dish_key => $dish_value){
+            echo '[';
+            foreach($dish_value['dish'] as $dish_value_key => $dish_value_value){
+                echo '{name : \'早餐\',img : \'__PUBLIC__/static/data/image/1.png\',sellNum : 1024,cost : 12.5},';
+            }
+            echo '],';
+        }
+        echo '];';
+        ?>];
+
+        var initFood = [
+                [
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '早餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                ],
+                [//中午
+
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '午餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                ],
+                [//晚上
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                    {
+                        name : '晚餐',
+                        img : '__PUBLIC__/static/data/image/1.png',
+                        sellNum : 1024,
+                        cost : 12.5
+                    },
+                ],
+            ];

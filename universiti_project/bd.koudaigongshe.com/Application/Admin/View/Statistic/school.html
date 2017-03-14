@@ -1,0 +1,45 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+
+</script>
+<html >
+<head>
+    <title>校园统计</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/statistic/js/school.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <table calss="talbe talbe-striped" >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>食堂</th><th>档口</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school |filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_canteen"ng-options="x.name for x in canteen |filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_port"ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}:true"></select></td>
+            </tr>
+            <tr><th>开始时间</th><th>结束时间</th></tr>
+            <tr>
+                <td><input type='date'ng-model='date_start' class="form-control"/></td>
+                <td><input type='date'ng-model='date_start' class="form-control"/></td>
+                <td><button class="btn btn-defalut" id="search">查询</button></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+
+        </table>
+    </div>
+</div>
+</body>
+</html>

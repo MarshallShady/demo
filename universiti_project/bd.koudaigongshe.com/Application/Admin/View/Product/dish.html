@@ -1,0 +1,279 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+    window.dish=eval(<?php echo $dish;?>);
+</script>
+<html >
+<head>
+    <title>菜品管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/product/js/dish.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+    <style>
+    		body {
+    			margin: 0;
+    			text-align: center;
+    		}
+    		#clipArea {
+    			margin: 20px;
+    			width: 500px;
+    			height: 500px;
+    			float: left;
+    		}
+    		#file,
+    		#clipBtn {
+    			display: block;
+    	        margin: 20px;
+    			font-family: "微软雅黑";
+    		}
+    		#clipBtn{
+    			width: 70px;
+    	        height: 25px;
+    	        margin:0 auto;
+    	        margin-top:60px;
+    			padding:0;
+    		}
+    		#maxBtn,
+    		#minBtn{
+    			width:25px;
+    			height:25px;
+    			margin-top: 20px;
+    			box-shadow: 0 1px 2px rgba(0,0,0,.5);
+    			border-radius: 5px;
+    			outline-style: none;
+    			display: none;
+    		}
+    		#minBtn{
+    			margin-left:10px;
+    		}
+    		#rotateBtn{
+    			width: 70px;
+    			height: 25px;
+    			margin:0 auto;
+    			margin-top:80px;
+    			padding:0;
+    			font-family: "微软雅黑";
+    		}
+    		#saveBtn{
+    			width: 70px;
+    	        height: 25px;
+    	        margin:0 auto;
+    	        margin-top:60px;
+    	        margin-bottom: 40px;
+    			padding:0;
+    			font-family: "微软雅黑";
+    		}
+    		#file{
+    			display: block;
+    			width: 180px;
+    			height: auto;
+    			font-family: "微软雅黑";
+    		}
+    		#view {
+    			margin:20px;
+    			width: 236px;
+    			height: 160px;
+    			float: left;
+    		}
+    		.mask{
+    			width: 100%;
+    			display: none;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			z-index: 999;
+    			background-color: rgba(0,0,0,.3);
+    		}
+    		.mask-body{
+    			width: 1200px;
+    			height: 700px;
+    			padding-top: 30px;
+    			box-sizing:border-box;
+    			position: relative;
+    			top:50%;
+    			left: 50%;
+    			margin-top: -350px;
+    			margin-left: -600px;
+    			box-shadow: 0 0 5px rgba(255,255,255,.5);
+    			background-color: rgba(255,255,255,1);
+    		}
+    		.mask .tools-nav{
+    			width: 250px;
+    			height: 500px;
+    			margin:20px 50px;
+    			float: left;
+    			box-shadow: 0 0 2px rgba(0,0,0,.5);
+    		}
+    		.tools-nav h5{
+    			font-family: "微软雅黑";
+     			font-size: 12px;
+     			font-weight: normal;
+     			color: #e4726e;
+    		}
+    </style>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">功能管理</a></li>
+  <li class="active">菜品管理</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl'>
+    <div class="panel panel-default">
+        <table class="table table-striped ">
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>食堂</th><th>档口</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-init="select_school_ext=school_ext[0]" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-init="select_canteen=canteen[0]" ng-model="select_canteen" ng-options="x.name for x in canteen|filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                <td><select class="form-control" ng-init="select_port=port[0]" ng-model="select_port" ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}:true" ng-change="getInfo()"></select></td>
+            </tr>
+        </table>
+    </div>
+    <!-- 添加档口 -->
+    <div class="panel panel-warning">
+            <table class="table table-default">
+                <tr>
+                    <th class="text-center">封面</th>
+                    <th>菜名</th>
+                    <th>货价(元)</th>
+                    <th>销售价格(元)</th>
+                    <th>打包费(元)</th>
+                    <td>是否限量</td>
+                    <th>库存</th>
+                    <th>预设库存</th>
+                    <th>描述</th>
+                    <th>早餐</th>
+                    <th>午餐</th>
+                    <th>晚餐</th>
+                    <th>添加</th>
+                </tr>
+                <tr>
+                    <td><input class="form-control btn btn-default" style="margin:0px;"type="file" id="file"/></td>
+                    <!-- <th><input class="form-control" ng-show="false"type="file" name="image"id="image"/></th> -->
+                    <td><input class="form-control" type="text" id="name" value=''/></td>
+                    <td><input class="form-control" type="number" ng-model="money_cost" id="money_cost" value=''/></td>
+                    <td><input class="form-control" type="number" id="money"value=''/></td>
+                    <td><input class="form-control" type="number" ng-model="money_pack"value=''/></td>
+                    <td><input class="form-control" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="limit_tag" /></td>
+                    <td><input class="form-control" type="number" id="rest"value='10000'/></td>
+                    <td><input class="form-control" type="number" id="restdefault"value='100'/></td>
+                    <td><input class="form-control" type="text" id="content"value=' '/></td>
+                    <td><input class="form-control" type="checkbox" id="breakfast" /></td>
+                    <td><input class="form-control" type="checkbox" id="lunch" /></td>
+                    <td><input class="form-control" type="checkbox" id="dinner" /></td>
+                    <td><button class="btn btn-default" id="submit"ng-click="image()">添加</button></td>
+                    <th><input type="hidden" id="pic-data" value=""/></th>
+                </tr>
+            </table>
+    </div>
+    <!-- 菜品列表 -->
+    <div class="panel panel-warning">
+        <div class="panel-heading text-center">{{select_port['name']}} 菜品列表</div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>封面</th>
+                    <th>菜品</th>
+                    <th>货价（元）<small>与餐厅的结算价格</small></th>
+                    <th>销售价格（元）<small>出售给用户的价格</small></th>
+                    <th>打包费（元）</th>
+                    <th>排序<small>(数字越大，排序越前)</small></th>
+                    <th>是否限量</th>
+                    <th>现有库存</th>
+                    <th>描述</th>
+                    <th>早餐</th>
+                    <th>午餐</th>
+                    <th>晚餐</th>
+                    <th>修改资料</th>
+                    <!-- <th>提交修改</th> 这个可以删掉了在按钮上可以看的出来-->
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="c in dish" id="tr-{{c.id}}">
+                <td>{{c.id}}</td>
+                <td><img src="{{c.image}}" width="80" height="65" /></td>
+                <td><input value="{{c.name}}" id="name-{{c.id}}" class="form-control" type="text"/></td>
+                <td><input value="{{c.money_cost/100}}" id="money_cost-{{c.id}}" class="form-control" type="number"/></td>
+                <td><input value="{{c.money/100}}" id="money-{{c.id}}" class="form-control" type="number"/></td>
+                <td><input value="{{c.money_pack/100}}" id="money_pack-{{c.id}}" class="form-control" type="number"/></td>
+                <td><input value="{{c.order}}" id="order-{{c.id}}" class="form-control" type="number"/></td>
+                <td><input class="form-control"  type="checkbox" id="limit_tag-{{c.id}}" ng-status="{{c.limit_tag}}"/></td>
+                <td><input value="{{c.rest}}" id="rest-{{c.id}}" class="form-control" type="number"/></td>
+                <td><input value="{{c.content}}" id="content-{{c.id}}" class="form-control" type="text"/></td>
+                <td><input class="form-control"  type="checkbox" id="breakfast-{{c.id}}" ng-status="{{c.breakfast}}"/></td>
+                <td><input class="form-control" type="checkbox" id="lunch-{{c.id}}" ng-status="{{c.lunch}}" /></td>
+                <td><input class="form-control" type="checkbox" id="dinner-{{c.id}}" ng-status="{{c.dinner}}" /></td>
+                <td><button class="btn btn-default" id="b-rest-{{c.id}}" ng-click="Rest(c.id)">修改</button></td>
+                <!-- <td id="t-{{c.id}}">{{c.status_2}}</td> 这个可以删掉了在按钮上可以看的出来-->
+                <td><button class="btn btn-default" id="b-{{c.id}}" ng-click="change(c.id,c.status)">{{c.status_3}}</button></td>
+                <td><button class="btn btn-default" id="d-{{c.id}}" ng-click="delete(c.id)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="mask">
+    <div class="mask-body">
+    	<div class="tools-nav">
+    	    <div class="minmax">
+    	    	<button id="maxBtn">+</button>
+    	    	<button id="minBtn">-</button>
+    	    </div>
+    	    <button id="rotateBtn">顺时旋转</button>
+    		<button id="clipBtn">确认截取</button>
+    		<button id="saveBtn">保存选区</button>
+    		<h5>-- 使用小技巧 --</h5>
+    		<h5>缩放：滚动鼠标滚轮可缩放图片</h5>
+            <h5>旋转：鼠标双击选区可旋转图片</h5>
+            <h5>移动：鼠标左键拖拽可移动图片</h5>
+    	</div>
+    	<div id="clipArea"></div>
+        <div id="view">
+
+        </div>
+    </div>
+</div>
+<script src="__PUBLIC__/library/js/iscroll-zoom.js"></script>
+<script src="__PUBLIC__/library/js/hammer.js"></script>
+<script src="__PUBLIC__/library/js/lrz.all.bundle.js"></script>
+<script src="__PUBLIC__/library/js/jquery.photoClip.js"></script>
+<script>
+    $(document).ready(function (argument) {
+    	$("#clipArea").photoClip({
+    		size: [236, 160],
+    		outputSize: [236, 160],
+    		file: "#file",
+    		view: "#view",
+    		ok: "#clipBtn",
+    		loadStart: function() {
+    			console.log("照片读取中");
+    		},
+    		loadComplete: function() {
+    			// alert("上传完毕");
+    			$(".mask").css({
+    				"display":"block",
+    				"height":$(window).height(),
+    			});
+    			console.log("照片读取完成");
+    		},
+    		clipFinish: function(dataURL) {
+    			$("#saveBtn").click(function  (argument) {
+    				$("#pic-data").attr("value",dataURL);
+    				console.log("获取成功");
+    				$(".mask").css({
+    					"display":"none"
+    				});
+    			});
+    		}
+    	});
+    });
+</script>
+</body>
+</html>

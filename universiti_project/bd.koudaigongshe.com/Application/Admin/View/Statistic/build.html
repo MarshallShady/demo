@@ -1,0 +1,61 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.build=eval(<?php echo json_encode($build);?>);
+    window.date=eval(<?php echo json_encode($date);?>);
+</script>
+<html >
+<head>
+    <title>楼层数据</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/statistic/js/build.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">数据统计</a></li>
+  <li class="active">楼层数据</li>
+</ol>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div >
+        <table class="table table-striped" >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>楼栋</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school |filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_build"ng-change="search()"ng-options="x.name for x in build |filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                <!-- <td><select class="form-control" ng-model="select_port"ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}"></select></td> -->
+            </tr>
+            <tr><th>开始时间</th><th>结束时间</th><th></th><td rowspan="2">此查询已出单时间为准，已支付未出单的订单未统计。</td></tr>
+            <tr>
+                <td><input type='date'ng-model='date_start' id="date_s"class="form-control"/></td>
+                <td><input type='date'ng-model='date_end' id="date_e" class="form-control"/></td>
+                <td ><button class="btn btn-info form-control" id="search"ng-click="search()">查询</button></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr><th colspan="4">楼栋数据统计</th></tr>
+            <tr class="info">
+                <th>该日期内总金额</th>
+                <th>{{total/100}}元</th>
+                <th>该日期内订单总份数</th>
+                <th>{{num}}</th>
+            </tr>
+            <tr><th>日期</th><th>订单数</th><th>交易额</th><th></th></tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.date}}</td>
+                <td>{{x.num}}</td>
+                <td>{{x.total/100}}元</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    // window.data=eval(<?php echo $data;?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+</script>
+<html >
+<head>
+    <title>楼长管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/Employee/js/buildleader.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">人员管理</a></li>
+  <li class="active">楼长管理</li>
+</ol>
+
+<div  ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>省份</th>
+                <th>学校</th>
+                <th>校区</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <!-- <td><select class="form-control" ng-model="select_building"ng-options="x.name for x in building|filter:{school_ext:select_school_ext['id']}"></select></td> -->
+                <td colspan="5"><button class='btn form-control btn-info' ng-click="getInfo()">查询</button></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>学校校区</th>
+                <th>居住楼栋</th>
+                <th>手机号码</th>
+                <th>支付宝账号</th>
+                <th>备注</th>
+                <th>状态</th>
+                <th>修改</th>
+                <th>状态</th>
+                <th>删除</th>
+            </tr>
+            <tr ng-repeat="x in data" id="tr-{{x.id}}">
+                <td>{{x.id}}</td>
+                <td><input class="form-control"id="name-{{x.id}}" value="{{x.name}}"readonly="true"/></td>
+                <td>{{x.school_name+x.school_ext_name}}</td>
+                <td>{{x.building_name}}</td>
+                <!-- <td><input class="form-control"id="building-{{x.id}}" value="{{x.building}}"/></td> -->
+                <td><input class="form-control"id="mobile-{{x.id}} "type="tel" value="{{x.mobile}}"/></td>
+                <td><input class="form-control"id="alipay-{{x.id}}" value="{{x.alipay}}"/></td>
+                <td><input class="form-control"id="comment-{{x.id}}" value="{{x.comment}}"/></td>
+                <td id="st-{{x.id}}">{{x.status_2}}</td>
+                <td><button class="btn btn-default" id="e-{{x.id}}" ng-click="edit(x.id)">修改</button></td>
+                <td><button class="btn btn-default" id="s-{{x.id}}" ng-click="status(x.id,x.status)">{{x.status_3}}</button></td>
+                <td><button class="btn btn-default" id="d-{{x.id}}" ng-click="delete(x.id)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

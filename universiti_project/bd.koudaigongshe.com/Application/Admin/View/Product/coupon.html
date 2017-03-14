@@ -1,0 +1,95 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    // window.province=eval(<?php echo json_encode($province);?>);
+    // window.school=eval(<?php echo json_encode($school);?>);
+    // window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    // window.canteen=eval(<?php echo json_encode($canteen);?>);
+    // window.port=eval(<?php echo json_encode($port);?>);
+    window.type=eval(<?php echo json_encode($type);?>);
+    window.date=eval(<?php echo json_encode($date);?>);
+    // window.admin=eval(<?php echo json_encode($admin);?>);
+</script>
+<html >
+<head>
+    <title>优惠券管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.js"></script>
+    <script src="__PUBLIC__/admin/product/js/coupon.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">功能管理</a></li>
+  <li class="active">优惠券</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl'>
+    <div>
+        <table class="table">
+            <tr>
+                <td>添加优惠券的个数<input type="number"ng-model="number"class="form-control"/></td>
+                <td>类型<select ng-options="x.name for x in type" ng-model="select_type_add"class="form-control"></select></td>
+                <td>到期时间<input type="date" ng-model="date"class="form-control"/></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button class="btn btn-info form-control" data-toggle="modal" data-target="#myModal"ng-click="check()" >添加优惠券</button></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th>类型</th>
+                <th>状态</th>
+                <th>创建时间开始</th>
+                <th>创建时间结束</th>
+                <th>个数</th>
+                <th>查询</th>
+                <th>下载</th>
+            <tr>
+                <td><select class="form-control" ng-options="x.name for x in type" ng-model="select_type"></select></td>
+                <td><select class="form-control" ng-options="x.name for x in status" ng-change="getInfo()"ng-model="select_status"></select></td>
+                <td><input type='date'ng-model='date_start' id="date_s"class="form-control"/></td>
+                <td><input type='date'ng-model='date_end'  ng-change="getInfo()"id="date_e"class="form-control"/></td>
+                <td class="bg-info">{{num}}个</td>
+                <td ><button  class="btn btn-info" id="search"ng-click="getInfo()">查询</button></td>
+                <td ><button  class="btn btn-info" id=""ng-click="download()">下载当前优惠券</button></td>
+            </tr>
+        </table>
+        <table class="table table-striped">
+            <tr>
+                <th>创建时间</th>
+                <th>优惠券码</th>
+                <th>类型</th>
+                <th>到期时间</th>
+                <th>状态</th>
+            </tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.date_create}}</td>
+                <td>{{x.code}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.date_end}}</td>
+                <td>{{x.status_name}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">请输入口令</h4>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" ng-model="password"type="text"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"ng-click="addCoupon()">提交口令并添加优惠券</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

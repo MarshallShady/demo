@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>出单员端</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/residence_advisor.css">
+
+    <style>
+		.detail-body a {
+			width: auto;
+			height: auto;
+			line-height: 1.3;
+			margin: 0;
+		}
+		.detail-body li span,.detail-title li{
+			width: 25%;
+		}
+		.detail-body li span:first-child, .detail-title li:first-child{
+			width: 50%;
+		}
+    </style>
+</head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>出单员端</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+            <include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="order-manage">
+			<header class="message-title out-title">
+				<a href="#"><p>出单管理</p>
+                    <!-- <span>本时段各档口菜品订单</span> -->
+                </a>
+			</header>
+			<section class="order-body">
+				<header class="out-body-title">
+                    <p>本时段共有<?php echo $list['order_num'];?>单</p>
+				</header>
+				<section>
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>全部菜品<?php echo $list['total_num'];?></p>
+						</div>
+						<div class="out-data-right">
+							<a href="<?php echo U('mobile/pack/packHandle');?>"><button class="gw-btn">出订单</button></a>
+						</div>
+					</article>
+					<article class="out-data">
+						<div class="out-data-left">
+							<p>未出单菜品<?php echo $list['dish_num_unpack'];?></p>
+						</div>
+						<div class="out-data-right">
+							<a href="<?php echo U('mobile/pack/cungen');?>"><button class="gw-btn">出底单</button></a>
+						</div>
+					</article>
+                    <article class="out-data">
+						<div class="out-data-left">
+                            <p>已出订单菜品：<?php echo $list['dish_num_packed'];?></p>
+                            <p>已出底单菜品：<?php echo $list['dish_num_end'];?></p>
+						</div>
+					</article>
+					<hr>
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>漏单补打</p> </li>
+								<li><p> </p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>档口</li>
+										<li>订单</li>
+										<li>底单</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+									<!-- <ul>
+										<li>
+											<span>番茄炒鸡蛋盖饭</span>
+											<span><a href="##">出订单</a></span>
+											<span><a href="##">出底单</a></span>
+										</li>
+									</ul> -->
+									<ul>
+									<?php
+	                                    foreach ($list['aim'] as $key => $value){
+	                                        echo '<li><span>' . $value['name'] . '</span><span><a href="' . U('mobile/pack/packOrder/id/' . $value['id']) . '" style="color:#F00;">订单</a></span><span><a href="' . U('mobile/pack/packBackup/id/' . $value['id']) . '" style="color:#00F;">底单</a></span></li>';
+	                                    }
+	                                ?>
+	                                </ul>
+								</section>
+							</div>
+						</div>
+					</article>
+                   <!--  <article class="order-manage">
+                        <header class="message-title">
+                            <a href="#"><p>漏印补打（非漏印勿使用）</p>
+                            </a>
+                        </header>
+                        <section class="order-body">
+                            <header class="order-title">
+                                <ul>
+                                    <li></li>
+                                </ul>
+                            </header>
+                            <section>
+                                <?php
+                                    echo '<article class="order-data"><header class="order-data-title"><ul><li>';
+                                    echo '<button class="gw-btn mini-btn btn-bg-white">查看</button><a href="' . U('mobile/order/sendHandle/id/' . $key) . '"></a></li></ul></header><div class="detail" ><div><header class="detail-title"><ul><li>档口</li><li>打印订单</li><li>打印底单</li></ul></header><section class="detail-body"><ul>';
+                                    foreach ($list['aim'] as $key => $value){
+                                        echo '<li><span>' . $value['name'] . '</span><span><a href="' . U('mobile/pack/packOrder/id/' . $value['id']) . '" style="color:#F00;">订单</a></span><span><a href="' . U('mobile/pack/packBackup/id/' . $value['id']) . '" style="color:#00F;">底单</a></span></li>';
+                                    }
+                                    echo '</ul></section></div></div></article>';
+                                ?>
+                            </section>
+                        </section>
+                    </article> -->
+				</section>
+			</section>
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script>
+	$('.btn-bg-white').tap(function(){
+		var target = $(this).closest('.order-data-title').next('.detail');
+		var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+		target.height(height);
+	});
+
+</script>
+</body>
+</html>

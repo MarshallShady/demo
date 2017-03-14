@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>报修</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+
+<div id="page" class="form-page">
+	<div class="content">
+		<h1>校园报修</h1>
+		<hr>
+		<form onsubmit="return false;">
+			<div class="form-group">
+				<label >· 姓名</label>
+				<input type="text" id="user"  class="form-control" placeholder="姓名">
+			</div>
+			<div class="form-group">
+				<label >· 手机</label>
+				<input type="tel"  id="num1"  class="form-control" placeholder="输入您的手机号">
+			</div>
+			<div class="form-group" >
+				 <label>· 楼宇类别</label>
+
+			      <select  id="mold" class="form-control" >
+
+			        <option value = "1">行政、图书、综合</option>
+
+			        <option value = "2">教室</option>
+
+			        <option value = "3">实验室等场所</option>
+
+			        <option value = "4">体育馆等配套</option>
+
+			        <option value = "5">校园周转房</option>
+
+			        <option value = "6">公共区域</option>
+
+			      </select>
+			</div>
+			<div class="form-group" id="qes-cont">
+				<label >· 具体楼号</label>
+		     	 <select  class="form-control" >
+
+			        <option value="行政楼" >行政楼</option>
+
+			        <option value="科技馆">科技馆</option>
+
+			        <option value="图书馆">图书馆</option>
+
+
+			      </select>
+
+
+
+			       <select class="form-control" style="display:none;">
+
+			        <option value="第6教学科研楼北">第6教学科研楼北</option>
+
+			        <option value="第6教学科研楼中">第6教学科研楼中</option>
+
+			        <option value="第7教学科研楼北">第7教学科研楼北</option>
+
+			        <option value="第7教学科研楼南">第7教学科研楼南</option>
+
+			        <option value="第11教学科研楼">第11教学科研楼</option>
+
+			        <option value="第12教学科研楼">第12教学科研楼</option>
+
+
+			      </select>
+
+
+
+			      <select class="form-control"  style="display:none;">
+
+			        <option value="第1教学科研楼北">第1教学科研楼北</option>
+
+			        <option value="第1教学科研楼南">第1教学科研楼南</option>
+
+			        <option value="第2教学科研楼北">第2教学科研楼北</option>
+
+			        <option value="第2教学科研楼中">第2教学科研楼中</option>
+
+			        <option value="第2教学科研楼南">第2教学科研楼南</option>
+
+			        <option value="第3教学科研楼北">第3教学科研楼北</option>
+
+			        <option value="第3教学科研楼南">第3教学科研楼南</option>
+
+			        <option value="第6教学科研楼南">第6教学科研楼南</option>
+
+			        <option value="第8教学科研楼">第8教学科研楼</option>
+
+			        <option value="第9教学科研楼">第9教学科研楼</option>
+
+			        <option value="第10教学科研楼">第10教学科研楼</option>
+
+			      </select>
+
+
+
+			       <select class="form-control" style="display:none;" >
+
+			        <option value="体育馆">体育馆</option>
+
+			        <option value="体育场区域">体育场区域</option>
+
+			        <option value="文化活动中心">文化活动中心</option>
+
+			        <option value="综合楼">综合楼</option>
+
+			        <option value="各保安岗亭等附属房间">各保安岗亭等附属房间</option>
+
+
+			      </select>
+
+
+
+
+
+			      <select class="form-control" style="display:none;" >
+
+			        <option value="北银4\6幢">北银4\6幢</option>
+
+			        <option value="高沙1-3单元">高沙1-3单元</option>
+
+			        <option value="高沙4-6单元">高沙4-6单元</option>
+
+			      </select>
+
+
+
+
+
+			      <select class="form-control" style="display:none;" >
+
+			        <option value="南大门、生活区室外">南大门、生活区室外</option>
+
+			        <option value="大u道路外">大u道路外</option>
+
+			        <option value="q5-3">大u道路内</option>
+
+			      </select>
+			</div>
+			<div class="form-group" >
+				<label>· 楼宇类别</label>
+				<select id="worktype" class="form-control">
+
+			        <option value="水工类">水工类</option>
+
+			        <option value="电工类">电工类</option>
+
+			        <option value="泥工类">泥工类</option>
+
+			        <option value="木工类">木工类</option>
+
+			        <option value="门窗类">门窗类</option>
+
+			        <option value="漏水类">漏水类</option>
+
+			        <option value="其他类">其他类</option>
+
+			    </select>		
+			</div>	      
+			<div class="form-group">
+				<label >· 详细描述（请在30字内详细描述情况）</label>
+				<textarea id="description" class="form-control" placeholder="详细描述您出现的问题，以便更好的维修" rows="5"></textarea>
+			</div>
+
+			<div class="form-group">
+				<button id="submit" type="button" class="btn btn-primary">提交</button>
+			</div>
+		</form>
+	</div>
+	<footer>
+		<p>@版权归杭电助手所有</p>
+	</footer>
+</div>
+
+
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="js/js.js"></script>
+
+<script>
+	$("#submit").click(function(event) {
+
+		var username =  $("#user").val();
+		
+		var tel = $("#num1").val();
+
+		var workType = $("#worktype").val();
+
+		var concrete = $('#qes-cont select:visible').val();
+
+		var description = $('#description').val();
+
+		// alert( username + '-' + tel + '-' + workType + '-' + concrete + '-' + description );
+
+		if(username == ""  &&  tel == "" && description == "")
+		{
+			alert("为确保维修及时，请填写完整信息");
+
+			return false;
+		}
+
+		if(!/^1[0-9]{10}$/.test(tel)){
+
+	        alert("请填写正确手机号码！");
+
+	        return false;
+
+     	}
+
+     	if(description.length>30){
+
+	        alert("请将描述内容控制在30字内！");
+
+	        return false;
+
+      	}
+
+
+      	$.post("mobile.php?act=module&name=campusfix&do=deal&weid=1",  
+      		{
+      			"username":username, 
+      			"phoneNumber":tel, 
+      			"workType": workType, 
+      			"concrete": concrete, 
+      			"description": description
+      		}, function(data){
+
+            if( data == '0' ){
+
+                alert('报修单已提交成功过');
+
+            }else{
+              alert( '报修单提交成功，请耐心等待维修人员的到来' );
+
+            }  
+
+        });
+
+
+	});
+</script>
+
+</body>
+</html>

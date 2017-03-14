@@ -1,0 +1,93 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Sure" email="Sure@tuiyilin.com">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>下沙新发现</title>
+	<link rel="stylesheet" href="http://localhost/koudai/kdxs/static/css/lib/weui.css">
+	<style>
+	.weui-media-box{
+		border-bottom: solid 1px #68F2A2;
+	}
+	.weui-navbar{
+		color: #EFEFEF;
+	}
+	.weui-navbar__item{
+		background: #2ECC71;
+	}
+	.weui-navbar__item:hover{
+		background: #2ECC71;
+	}
+	.weui-navbar__item.weui-bar__item_on {
+	    background-color: #27AE60;
+	    font-size: 1.1em;
+	}
+	.weui-navbar + .weui-tab__panel{
+		padding-top: 54px;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="weui-tab">
+            <div class="weui-navbar">
+                <div href="?data_type=1" class="weui-navbar__item <?php echo ($navOn1); ?>">
+                    优质内容
+                </div>
+                <div href="?data_type=2" class="weui-navbar__item <?php echo ($navOn2); ?>">
+                    下沙福利
+                </div>
+            </div>
+            <div class="weui-tab__panel">
+
+
+            <?php if(is_array($result)): foreach($result as $key=>$vo): ?><div class="weui-panel__bd" uid="<?php echo ($vo["id"]); ?>" href="<?php echo ($vo["link"]); ?>">
+	                <div class="weui-media-box weui-media-box_text">
+	                    <h4 class="weui-media-box__title"><?php echo ($vo["title"]); ?></h4>
+	                    <p class="weui-media-box__desc"><?php echo ($vo["synopsis"]); ?></p>
+	                    <ul class="weui-media-box__info">
+	                        <li class="weui-media-box__info__meta"><?php echo ($vo["from_author"]); ?></li>
+	                        <li class="weui-media-box__info__meta"><?php echo (date('Y-m-d',$vo["creattime"])); ?></li>
+	                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra ">点击数：<span class="click_rate"><?php echo ($vo["click_rate"]); ?></span></li>
+	                    </ul>
+	                </div>
+	            </div><?php endforeach; endif; ?>
+            </div>
+            <div class="weui-footer">
+	            <p class="weui-footer__text">Copyright © 2016-2020 口袋高校</p>
+	        </div>
+        </div>
+	</div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+
+    <script>
+    	//导航切换
+    	$(".weui-navbar__item").click(function(){
+
+
+    		$(".weui-navbar__item").removeClass("weui-bar__item_on");
+    		$(this).addClass("weui-bar__item_on");
+
+    		location = $(this).attr("href");
+    	});
+
+    	//跳转
+    	$(".weui-panel__bd").click(function(){
+
+    		var obj = $(this).find('.click_rate');
+    			val = parseInt( obj.html() ) + 1;
+    		obj.html( val );
+
+    		$.get("http://localhost/koudai/kdxs/index.php/Home/InData/clickRate",{
+    			id : $(this).attr("uid")
+    		});
+
+    		location = $(this).attr("href");
+    	});
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>楼长配送端</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/residence_advisor.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>楼长配送端</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="message">
+			<header class="message-title">
+				<a href="#"><p>信息中心</p>
+                    <!-- <span>查看收益记录</span> -->
+                </a>
+			</header>
+			<section class="message-body">
+				<ul>
+					<li>
+						<p><?php echo count($list['order']['ready']);?>单</p>
+						<span>本时段待送</span>
+					</li>
+					<li>
+						<p><?php echo $list['num_order_rest'];?>单</p>
+						<span>已配送</span>
+					</li>
+					<li>
+						<p><?php echo $list['num_dish_rest'];?>份</p>
+						<span>未结算</span>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="order-manage">
+			<header class="message-title">
+				<a href="#"><p>订单管理</p></a>
+			</header>
+			<section class="order-body">
+				<header class="order-title">
+					<ul>
+						<li>寝室号</li>
+						<li>份数</li>
+						<li>操作</li>
+					</ul>
+				</header>
+				<section>
+                    <?php
+                    foreach ($list['order']['ready'] as $key => $value){
+                        echo '<article class="order-data"><header class="order-data-title"><ul><li><p>';
+                        echo $list['building'][$value['building']]['name'] . $value['dormitory'];
+                        echo '</p> </li><li><p>' . $value['dish_num'] . '</p></li><li>';
+                        echo '<button class="gw-btn mini-btn btn-bg-white">查看</button><a href="' . U('mobile/houser/sendedHandle/id/' . $value['id']) . '"><button class="gw-btn mini-btn">';
+                        echo '送达';
+                        echo '</button></a></li></ul></header><div class="detail" ><div><header class="detail-title"><ul><li>菜品</li><li>档口</li><li>小票号</li></ul></header><section class="detail-body"><ul>';
+                        foreach($value['dish'] as $key2 => $value2){
+                            echo '<li><span>' . $value2['name'] . '</span><span>' . $list['port'][$value2['port']]['name'] . '</span><span>' . $value2['id'] . '</span></li>';
+                        }
+
+						echo '<li><p>' . $value['name'] . '</p><a href="tel:' . $value['mobile'] . '">' . $value['mobile'] . '</a></li></ul></section></div></div></article>';
+                    }
+                    ?>
+                    <?php
+                    foreach ($list['order']['prepare'] as $key => $value){
+                        echo '<article class="order-data"><header class="order-data-title"><ul><li><p>';
+                        echo $list['building'][$value['building']]['name'] . $value['dormitory'];
+                        echo '</p> </li><li><p>' . $value['dish_num'] . '</p></li><li>';
+                        echo '<button class="gw-btn mini-btn btn-bg-white">查看</button><button class="gw-btn mini-btn btn-disable">';
+                        echo '准备中';
+                        echo '</button></li></ul></header><div class="detail" ><div><header class="detail-title"><ul><li>菜品</li><li>档口</li><li>小票号</li></ul></header><section class="detail-body"><ul>';
+                        foreach($value['dish'] as $key2 => $value2){
+                            echo '<li><span>' . $value2['name'] . '</span><span>' . $list['port'][$value2['port']]['name'] . '</span><span>' . $value2['id'] . '</span></li>';
+                        }
+
+						echo '<li><p>' . $value['name'] . '</p><a href="tel:' . $value['mobile'] . '">' . $value['mobile'] . '</a></li></ul></section></div></div></article>';
+                    }
+                    ?>
+                    <?php
+                    foreach ($list['order']['finished'] as $key => $value){
+                        echo '<article class="order-data"><header class="order-data-title"><ul><li><p>';
+                        echo $list['building'][$value['building']]['name'] . $value['dormitory'];
+                        echo '</p> </li><li><p>' . $value['dish_num'] . '</p></li><li>';
+                        echo '<button class="gw-btn mini-btn btn-bg-white">查看</button><button class="gw-btn mini-btn btn-disable">';
+                        echo '已完成';
+                        echo '</button></li></ul></header><div class="detail" ><div><header class="detail-title"><ul><li>菜品</li><li>档口</li><li>小票号</li></ul></header><section class="detail-body"><ul>';
+                        foreach($value['dish'] as $key2 => $value2){
+                            echo '<li><span>' . $value2['name'] . '</span><span>' . $list['port'][$value2['port']]['name'] . '</span><span>' . $value2['id'] . '</span></li>';
+                        }
+
+                        echo '<li><p>' . $value['name'] . '</p><a href="tel:' . $value['mobile'] . '">' . $value['mobile'] . '</a></li></ul></section></div></div></article>';
+                    }
+                    ?>
+				</section>
+			</section>
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script>
+	$('.btn-bg-white').tap(function(){
+		var target = $(this).closest('.order-data-title').next('.detail');
+		var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+		target.height(height);
+	});
+
+</script>
+</body>
+</html>

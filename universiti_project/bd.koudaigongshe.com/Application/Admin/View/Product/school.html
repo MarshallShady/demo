@@ -1,0 +1,29 @@
+<script>
+    window.url="<?php echo $url;?>";
+</script>
+<html>
+<head>
+    <title>学校管理</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="__PUBLIC__/admin/product/js/school.js"></script>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">餐厅，菜品管理</a></li>
+  <li class="active">学校管理</li>
+</ol>
+<div>
+    <table class="table table-striped">
+        <tr><th>序号</th><th>学校</th><th>状态</th><th>操作</th></tr>
+        <?php foreach($school as $value){
+            if($value['status']==1){
+                echo "<tr><td>".$value['id']."</td><td>".$value['name']."</td><td id='t-".$value['id']."'>正运作</td><td><button  id='b-".$value['id']."'class='btn btn-default' onclick='schoolChange(".$value['id'].",2)'>下线</button><td></tr>";
+            }elseif($value['status']==2){
+                echo "<tr><td>".$value['id']."</td><td>".$value['name']."</td><td id='t-".$value['id']."'>已下线</td><td><button id='b-".$value['id']."' class='btn btn-default' onclick='schoolChange(".$value['id'].",1)'>上线</button><td></tr>";
+            }
+        }?>
+    </table>
+</div>
+</body>
+<html>

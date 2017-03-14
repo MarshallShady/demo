@@ -1,0 +1,125 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.build=eval(<?php echo json_encode($build);?>);
+</script>
+<html >
+<head>
+    <title>楼栋管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/Employee/js/build.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">人员管理</a></li>
+  <li class="active">楼栋管理</li>
+</ol>
+<div  ng-app="myApp" ng-controller="myCtrl">
+    <div class="panel panel-default">
+        <table class="table " >
+            <tr><th>省份</th><th>学校</th><th>校区</th><th>楼栋</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school |filter:{province:select_province['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                <td><select class="form-control" ng-model="select_build"ng-change=""ng-options="x.name for x in build |filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                <td><button class="btn btn-info" ng-click="change()">查询</button></td>
+                <td><button class="btn btn-warning" data-toggle="modal" data-target="#myModal"  >添加楼栋</button></td>
+            </tr>
+            <!-- <tr>
+                <td colspan="4"><button class="form-control btn btn-info" ng-click="getstatus()">查询楼栋状态信息</button></td>
+            </tr> -->
+        </table>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading text-center">{{select_build['name']}}楼栋管理</div>
+        <div class="text-center">
+            <table class="table " >
+                <tr>
+                    <th>状态</th>
+                    <th>关闭提示</th>
+                    <th>模式</th>
+                    <th>修改模式</th>
+                    <td>批量订单到寝</td>
+                    <td>必点送到寝</td>
+                    <th>修改</th>
+                    <th>修改状态</th>
+                    <th>删除</th>
+                </tr>
+                <tr>
+                    <td><h4><span class="label label-default">{{build_status['status_name']}}</span></h4></td>
+                    <td><input class="form-control"ng-model="content"/></td>
+                    <td>{{build_status['mode_name']}}</td>
+                    <td>
+                        <select class="form-control " ng-model="select_mode" ng-options="x.name for x in mode "></select>
+                    </td>
+                    <td><input class="form-control" type="checkbox" ng-model="ist_tohome" ng-true-value="'1'" ng-false-value="'2'"/></td>
+                    <td><input class="form-control" type="checkbox" ng-model="nd_tohome" ng-true-value="'1'" ng-false-value="'2'"/></td>
+                    <td><button class="form-control btn-warning" id="editcontent" ng-click="editcontent(select_build['id'])">修改楼栋信息</button></td>
+                    <td><button class="form-control btn-info" id="editstatus" ng-click="editstatus(select_build['id'])">修改状态</button></td>
+                    <td><button class="form-control btn-default" id="" ng-click="delete(select_build['id'])">删除此楼栋</button></td>
+                </tr>
+            </table>
+            <table class="table  table-condensed" >
+                <tr class="" >
+                    <th class="col-sm-6">
+                        <label class="control-label col-sm-4" for="buildleader">请选择添加的楼长:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control " id="buildleader"ng-model="select_buildleader"ng-options="x.name for x in buildleader |filter:{school_ext:select_school_ext['id']}"></select>
+                        </div>
+                    </th>
+                    <th class="col-sm-7 ">
+                        <button class="btn btn-info" ng-click="addbuildleader()">添加楼长</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-info ">
+        <div class="panel-heading text-center">负责 {{select_build['name']}} 的楼长列表</div>
+        <table class="table table-striped">
+            <tr>
+                <th>楼栋</th>
+                <th>楼长</th>
+                <th>手机</th>
+                <th>状态</th>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+            <tr ng-repeat="x in data">
+                <td>{{x.aim_name}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.mobile}}</td>
+                <td>{{x.status_name}}</td>
+                <td><button class="btn btn-info" ng-click="editbuildleader(x.id)">修改状态</button></td>
+                <td><button class="btn btn-default" ng-click="deleteBuildleader(x.id)">删除楼长</button></td>
+            </tr>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">在 {{select_school['name']+select_school_ext['name']}} 下添加楼栋</h4>
+          </div>
+          <div class="modal-body">
+            <label class="control-label ">楼栋名称</label>
+            <input class="form-control"ng-model="build_name"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="addBuild()">添加楼栋</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

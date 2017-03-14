@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>确认订单</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/submit_order.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/luckyCenter.css">
+    <style>
+        .nothing{
+        	margin:0;
+        	font-weight:normal;
+        	font-size:.8em;
+        	color:#ff6550;
+        	text-align:center;
+        	line-height:80px;
+        	opacity: .8;
+        }
+        #new_info{
+        	padding: 5px 0;
+        	font-weight: normal;
+        	color: rgba(0,0,0,.6);
+        	background-color:#fff;
+        	text-align: center;
+        	font-size: 1em; 
+        	letter-spacing: 2px;
+        }
+        #new_info span:first-child{
+        	color: #FF9898;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="win-main">
+    	<div class="window-alert">
+    	    <div class="alert-wrap">
+    	    	<div class="lucky-code">
+    	    		<h3><span style="width:32%;">红包兑换</span><input class="get_code" style="width:40%;" type="text" placeholder="输入兑换码"><button style="font-size:.7em" class="use-code">兑换并使用</button></h3>
+    	    		<div class="lucky-lists">
+    	    			<div id="lucky-wrap">
+    	    				<div class="worn-info"></div>
+    	    			    <div id="append-data"></div>
+    	    			</div>
+    	    		</div>
+    	    	</div>	
+    	    </div>
+    	</div>
+    </div>
+    <form method="post" action="<?php echo U('mobile/order/pay');?>">
+		<header class="main-header">
+			<div class="headline">
+				<div class="headline-body">
+					<p>确认订单</p>
+				</div>
+			</div>
+			<div class="go-back">
+				<a href="<?php U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+			</div>
+			<div class="main-memu">
+   				<div class="memu-icon">
+   					<span></span>
+   					<span></span>
+   					<span></span>
+   				</div>
+    	        <include file="Public/menu" />
+			</div>
+		</header>
+		<section class="main-section">
+			<h3 id="new_info">现在支付预计<span>12:00</span>送达<span>寝室</span></h3>
+			<article class="user-msg">
+				<header class="user-msg-title">
+					<ul>
+						<li><p>用户信息</p></li>
+					</ul>
+				</header>
+				<section class="user-msg-body">
+					<a href="<?php echo U('mobile/position/index');?>">
+						<div class="user-msg-img">
+							<img src="__PUBLIC__/static/mobile/image/address.png" alt="">
+						</div>
+						<div class="user-msg-data">
+							<h3><?php echo $list['user']['name'];?></h3>
+							<p><?php echo $list['user']['mobile'];?></p>
+							<p><?php echo $list['user']['school_ext'] . ' ' . $list['user']['school_building'] . ' ' . $list['user']['dormitory'];?></p>
+						</div>
+						<div class="arrows"></div>
+					</a>
+				</section>
+			</article>
+			<article class="order-date">
+				<header class="order-date-title">
+					<ul>
+						<li><p></p></li>
+						<li>
+							<p>配送日期</p>
+						</li>
+						<li>
+							<p>配送时间</p>
+						</li>
+					</ul>
+				</header>
+				<section class="order-date-body">
+					<div>
+						<h3 name="type" value="<?php echo $list['type'];?>"><?php if($list['type'] == 1) echo '早餐';if($list['type'] == 2) echo '午餐';if($list['type'] 	== 3) echo '晚餐';?></h3>
+					</div>
+					<div>
+						<select name="order_date" id="date-value">
+				            <?php
+				                if ($list['type'] == 2 && $list['lunch_order_end'] + strtotime(date('Y-m-d')) < time()) {
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+1 day"))) . '">' . date("Y-m-d", strtotime("+1 day")) . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+2 day"))) . '">' . date("Y-m-d", strtotime("+2 day")) . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+3 day"))) . '">' . date("Y-m-d", strtotime("+3 day")) . '</option>';
+				                } elseif ($list['type'] == 3 && $list['dinner_order_end'] + strtotime(date('Y-m-d')) < time()) {
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+1 day"))) . '">' . date("Y-m-d", strtotime("+1 day")) . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+2 day"))) . '">' . date("Y-m-d", strtotime("+2 day")) . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+3 day"))) . '">' . date("Y-m-d", strtotime("+3 day")) . '</option>';
+				                } else {
+				                    echo '<option value="' . strtotime(date('Y-m-d')) . '">' . date("Y-m-d") . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+1 day"))) . '">' . date("Y-m-d", strtotime("+1 day")) . '</option>';
+				                    echo '<option value="' . strtotime(date("Y-m-d", strtotime("+2 day"))) . '">' . date("Y-m-d", strtotime("+2 day")) . '</option>';
+				                        }
+				            ?>
+						</select>
+						<span>▼</span>
+					</div>
+					<div>
+				        <p><?php echo $list['show_deliver_time'];?></p>
+					</div>
+				</section>
+			</article>
+			<article class="detail">
+				<header class="detail-title">
+					<div>
+						<p>已选菜品</p>
+					</div>
+					<span>金额</span>
+				</header>
+				<section class="detail-body">
+					<ul>
+				        <?php
+				        foreach ($list['dish'] as $dish_key => $dish_value){
+				            echo '<li>';
+				            echo '<div><p>' . $dish_value['name'] . ' * ' . $dish_value['num'] . '</p></div>';
+				            echo '<span>￥' . ($dish_value['money'] * $dish_value['num'] / 100) . '</span>';
+				            echo '</li>';
+				        }
+				        ?>
+				        <li><div><p>打包费 * <?php echo $list['order']['total_num'];?></p></div><span>￥<?php echo $list['order']['total_num'] / 2;?></span></li>
+				        <li><div><p>配送费 * 1</p></div><span>￥1</span></li>
+					</ul>
+				</section>
+			</article>
+			<article class="click-choice">
+				<h3><span>抵用券</span><i></i><span>使用抵用券</span></h3>
+			</article>
+			<article class="remark">
+				<header class="remark-title">
+					<p>留言备注</p>
+				</header>
+				<section class="remark-body">
+					<textarea name="word" rows="2" class="in-text"></textarea>
+				</section>
+			</article>
+		</section>
+		<footer class="main-footer">
+			<p>版权归：必点所有</p>
+		</footer>
+		<div class="order-submit-box"></div>
+		<div id="order-submit" class="order-submit">
+			<div class="order-submit-num">
+				<p>共<span>1</span>份</p>
+			</div>
+			<div class="order-submit-money">
+				<p>总计<span>￥</span><span id="total_price" data-price="<?php echo $list['order']['total'] + 100 + $list['order']['total_num'] * 50;?>"><?php echo $list['order']['total'] / 100 + 1 + $list['order']['total_num'] / 2;?></span></p>
+			</div>
+			<div class="order-submit-btn">
+				<input id="vae" type="hidden" value="" name="bonus" />
+		        <input name="data" type="hidden" value="<?php echo $list['data'];?>" />
+		    	<button type="submit" id="submit" class="gw-btn">立即付款</button>
+			</div>
+		</div>
+	</form>
+	<input type="hidden" value="" id="data-price">
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/luckyCenter.js"></script>
+<script>
+	$('#submit').click(function(){
+		var nowTime = new Date(),
+			date = parseInt( Date.parse( nowTime.toString().slice( 0, 15 ) )/1000 ),
+			ctDate =  parseInt( $("#date-value").val() );
+		if( date != ctDate ){
+			var r = confirm( "您购买的不是今天的"
+							+ $(".order-date-body h3").html()
+							+ "，是否确认购买？" );
+			if(!r)
+				return false;
+		}
+		return true;
+	});
+/* 红包选择触发器 start */
+	$(document).ready(function (){
+		$(".click-choice").tap(function(){
+	        $(".window-alert").css({
+	        	"display":"block",
+	        	// "visibility":"visible",
+	        	"height":$(window).height(),
+	        	"margin-top":$(window).height()/-2
+	        });
+		});
+	});
+/* 红包选择触发器 end */
+</script>
+</body>
+</html>

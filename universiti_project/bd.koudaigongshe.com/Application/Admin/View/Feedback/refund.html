@@ -1,0 +1,150 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+</script>
+<html >
+<head>
+    <title>查询所有订单</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/admin/feedback/js/refund.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">人员管理</a></li>
+  <li class="active">楼栋管理</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl'>
+    <div>
+        <table class="table table-striped ">
+            <tr><th colspan="2">省份</th><th colspan="2">学校</th><th colspan="2">校区</th></tr>
+            <tr>
+                <td colspan="2"><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                <td colspan="2"><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                <td colspan="2"><select class="form-control" ng-init="select_school_ext=school_ext[0]" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+            </tr>
+            <tr>
+                <td>订单号</td>
+                <td><input class="form-control" type="number" ng-model="orderid"/></td>
+                <td><button class="btn btn-default" ng-click="search('order')">查询</button></td>
+                <td>流水号</td>
+                <td><input class="form-control" type="number" ng-model="packid" /></td>
+                <td><button class="btn btn-default" ng-click="search('pack')">查询</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>下单日期</th>
+                <th>订单日期</th>
+                <th>时段</th>
+                <th>姓名</th>
+                <th>手机</th>
+                <th>楼栋</th>
+                <th>寝室</th>
+                <th>订单号</th>
+                <th>订单名称</th>
+                <th>订单金额</th>
+                <th>分拨员</th>
+                <th>手机</th>
+                <th>楼长</th>
+                <th>手机</th>
+                <th>状态</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="x in data" id="tr-{{x.id}}">
+                <td>{{x.date}}</td>
+                <td>{{x.date_order}}</td>
+                <td>{{x.when_name}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.mobile}}</td>
+                <td>{{x.build_name}}</td>
+                <td>{{x.dormitory}}</td>
+                <td>{{x.id}}</td>
+                <td>{{x.order_name}}</td>
+                <td>{{x.money/100}}</td>
+                <td>{{x.deliver_name}}</td>
+                <td>{{x.deliver_mobile}}</td>
+                <td>{{x.housemaster_name}}</td>
+                <td>{{x.housemaster_mobile}}</td>
+                <td>{{x.status_name}}</td>
+                <td><button class="form-control" ng-click="show(x.id)">详细</button></td>
+                <td><button class="form-control" data-toggle="modal" data-target="#myModal" ng-click="toRefund(x.id)">退款</button></td>
+            </tr>
+        </table>
+        <table class="table table-striped " style="{padding-left:20%;}">
+            <tr ng-show="detail" class="bg-info">
+                <td>流水号(小票号)</td>
+                <td>餐厅</td>
+                <td>档口</td>
+                <td>菜品</td>
+                <td>价格</td>
+                <td>状态</td>
+                <td>分菜品退款</td>
+            </tr>
+            <tr ng-repeat="x in dish" ng-show="detail">
+                <td>{{x.id}}</td>
+                <td>{{x.canteen_name}}</td>
+                <td>{{x.port_name}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.money/100}}</td>
+                <td>{{x.status_name}}</td>
+                <td><button class="btn btn-info" data-toggle="modal" data-target="#myModal2" ng-click="toRefundDish(x.id)">对菜品退款</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal fade" style=""id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" id="detail" style="width:95%;"role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">您确定对{{spec}} 号订单退款么？</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped">
+                <tr>退款原因</tr>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="content"/></td>
+                </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" ng-click="refund(spec)">确定退款</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 分菜品退款原因 -->
+    <div class="modal fade" style=""id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" id="detail" style="width:95%;"role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">您确定对{{spec2}} 号订单：{{spec_dish}}号菜品退款么？</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped">
+                <tr>分菜品退款原因</tr>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="content_dish"/></td>
+                </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" ng-click="refundDish(spec_dish)">确定退款</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

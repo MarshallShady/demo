@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数时编程学习</title>
+</head>
+<body >
+<script>
+function fnFunction(val){
+	this.val = val
+}
+fnFunction.of = function (val){
+	return new fnFunction(val)
+}
+
+//应用 application
+fnFunction.prototype.ap = function(F){
+	return fnFunction.of(this.val(F.val))
+}
+
+//接受 f（是一个函数） 为参数然后返回一个新的函子（一般约定，函子的标志就是容器具有 map 方法，该方法将容器里面的每一个值，映射到另一个容器。）
+fnFunction.prototype.map = function(f){
+	return new fnFunction(f(this.val))
+}
+
+//获取函子的值
+fnFunction.prototype.join = function(){
+	return this.val
+}
+
+// 如果 f 生产了 fnFunction 函子（则会形成嵌套）故使用 flatMap 用于铺平，join 用于铺平
+fnFunction.prototype.flatMap = function(f){
+	return this.map(f).join()
+}
+
+var obj = fnFunction.of(1)
+var temp = obj.flatMap(function(val){
+	return new fnFunction(2)
+})
+console.log(temp)
+</script>
+</body>
+</html>

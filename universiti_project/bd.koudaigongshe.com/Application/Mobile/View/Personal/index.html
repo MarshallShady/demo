@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>订单中心</title>
+    <link rel="stylesheet" href="/Public/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/order_whole.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/submit_order.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/luckyCenter.css">
+    <link rel="stylesheet" href="/Public/static/mobile/css/order_details.css">
+</head>
+    <style>
+      .window_page{
+        display: none;
+        background-color: #E6E6E6;
+        max-width: 600px;
+        min-height: 100%;
+        margin: 0 auto;
+      }
+      .click-choice {
+        border-top: 2px solid rgba(0, 0, 0, .1);
+      }
+      .click-choice-text {
+        font-size: 14px;
+        color: #ADABAB;
+      }
+      .detail-title div,.detail-body div {
+        width: 50%;
+        float: left;
+      }
+          .detail-body p {
+            padding-left: 20px!important;
+        max-width: 65%;
+        float: left;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      #total-price {
+        border-top: 2px solid #E6E6E6;
+        background: white;
+        text-align: right;
+        padding: 2px 20px;
+      }
+      #total-price span:nth-child(1) {
+        font-size: 14px;
+      }
+      #total-price span:nth-child(2) {
+        color: #FF9898;
+        font-size: 12px;
+      }
+      .user-msg-img{
+        margin-top: 15px;
+      }
+/*      #esp span,
+      #esp2 span{
+        display: block;
+        float: left;
+        margin-right: 5px;
+      }
+      #esp span:nth-child(1),
+      #esp2 span:nth-child(2){
+        width:10em;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      #esp span:nth-child(2),
+      #esp2 span:nth-child(1){
+        width:5em;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      } */
+    </style>
+<body>
+    <div class="page">
+      <header class="main-header">
+        <div class="headline">
+          <div class="headline-body">
+            <p>订单中心</p>
+          </div>
+        </div>
+        <div class="go-back">
+          <a href="/mobile/index/index.html"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+        </div>
+        <div class="main-memu">
+            <div class="memu-icon">
+                 <span></span>
+                 <span></span>
+                 <span></span>
+            </div>
+            <include file="Public/menu"/>
+        </div>
+  </header>
+  <section class="main-section">
+    <header class="order-whole-title">
+      <p>订单中心</p>
+    </header>
+    <div class="order_lists"></div>
+  <footer class="main-footer">
+    <p>版权归：必点所有</p>
+  </footer>
+</div>
+<div class="window_page"></div>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="/Public/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="/Public/static/mobile/js/module/init.js"></script>
+<script src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="/Public/static/mobile/js/lib/md5.js"></script>
+<script class="page-main" type="text/x-handlebars-template">
+  <header class="main-header">
+    <div class="headline">
+      <div class="headline-body">
+        <p>订单详细</p>
+      </div>
+    </div>
+    <div class="go-back">
+      <a href="http://bd.koudaigongshe.com/mobile/personal/index.html?"><img src="/Public/static/mobile/image/go_back.png" alt=""></a>
+    </div>
+  </header>
+  <section class="main-section">
+    {{#if num_test.this_status}}
+    <article class="status-now">
+      <div class="plan">
+        <div class="plan-val" data-value="{{data.order.status}}"><div>
+          <span></span>
+        </div>
+      </div>
+      <span></span><span></span></div>
+      <div class="plan-font">
+        <ul>
+          <li><p>已下单</p></li>
+          <li><p>付款成功</p>
+          </li><li><p>已派送</p></li>
+          <li><p>送达寝室</p></li>
+        </ul>
+      </div>
+    </article>
+    {{/if}}
+    <article class="user-msg">
+      <header class="user-msg-title">
+        <ul>
+          <li><p>用户信息</p></li>
+        </ul>
+      </header>
+      <section class="user-msg-body">
+        <a href="#">
+          <div class="user-msg-img">
+            <img src="/Public/static/mobile/image/address.png" alt="">
+          </div>
+          <div class="user-msg-data">
+            <h3>{{data.order.name}}</h3>
+            <p>{{data.order.mobile}}</p>
+            <p id="esp"><span>{{data.order.school_name}}</span></span></p>
+            <p id="esp2"><span><span>{{data.order.ext_name}} {{data.order.building_name}} {{data.order.dormitory}}</span></p>
+          </div>
+        </a>
+      </section>
+    </article>
+    <article class="order-date">
+      <header class="order-date-title">
+        <ul>
+          <li><p></p></li>
+          <li>
+            <p>配送日期</p>
+          </li>
+          <li>
+            <p>配送时间</p>
+          </li>
+        </ul>
+      </header>
+      <section class="order-date-body">
+        <div>
+          <h3>{{num_test.eat_time}}</h3>
+        </div>
+        <div>
+          <select disabled>
+            <option value="">{{data.order.order_date}}</option>
+          </select>
+        </div>
+        <div>
+          <p>{{num_test.hh_mm}}</p>
+        </div>
+      </section>
+    </article>
+    <article class="click-choice">
+        <h3><span style="text-indent:10px">红包</span><span class="click-choice-text">已优惠 ￥{{data.bonus}}</span></h3>
+    </article>
+    <article class="detail">
+      <header class="detail-title">
+        <div>
+          <p>已选菜品</p>
+        </div>
+        <span>打包费</span>
+        <span style="width:30%;">金额(打包费)</span>
+      </header>
+      <section class="detail-body">
+        <ul>
+          {{#each data.dish}}
+          <li>
+            <div>
+              <p>{{name}}</p>
+            </div>
+            <span>￥{{money_pack}}</span>
+            <span>￥{{money}}({{money_pack}})</span>
+          </li>
+          {{/each}}
+          <li style="border-top:1px solid #E6E6E6">
+            <div style="width:70%;">
+              <p> 配送费 * 1</p>
+            </div>
+            <span>￥{{data.order.money_delivery}}</span>
+          </li>
+        </ul>
+      </section>
+      <section id="total-price">
+        <span>合计：</span>
+        <span>￥{{data.order.money}}</span>
+      </section>
+    </article>
+    <article class="remark">
+      <header class="remark-title">
+        <p>留言备注</p>
+      </header>
+      <section class="remark-body">
+        <p class="in-text">{{data.order.word}}</p>
+      </section>
+    </article>
+    <article class="order-number">
+      <p>订单号：<span>{{data.order.id}}</span></p>
+    </article>
+    <article>
+      {{#if num_test.status_two}}
+       <a href="http://www.koudaigongshe.com/wxpay/index.php?id={{num_test.pay_id}}" class="gw-btn orider-btn">支&nbsp;&nbsp;付</a><a href="http://bd.koudaigongshe.com/mobile/order/cancelHandle/id/{{data.order.id}}.html" class="gw-btn orider-btn disabled">取消订单</a>
+      {{/if}}
+      {{#if num_test.status_three}}
+          <a href="http://bd.koudaigongshe.com/mobile/index/feedback" class="gw-btn orider-btn disabled">申请退款</a>
+      {{/if}}
+      {{#if num_test.status_four}}
+          <a href="http://bd.koudaigongshe.com/mobile/index/feedback" class="gw-btn orider-btn disabled">催&nbsp;&nbsp;单</a>
+      {{/if}}
+      {{#if num_test.status_five}}
+          <a href="http://bd.koudaigongshe.com/mobile/personal/score.html?id={{data.order.id}}" class="gw-btn orider-btn orider-btn">评价</a>
+          <a href="http://bd.koudaigongshe.com/mobile/personal/complain.html?id={{data.order.id}}" class="gw-btn orider-btn disabled">退款</a>
+      {{/if}}
+    </article>
+  </section>
+  <footer class="main-footer">
+    <p>版权归：必点所有</p>
+  </footer>
+</script>
+<script>
+
+    /* -- 订单列表展示 start -- */
+    var getData = function (){
+      $.ajax({
+        type:"GET",
+        url:"http://bd.koudaigongshe.com/mobile/personal/apiShowIndex",
+        dataType:"json",
+        success:function (data){
+          var tpl = "";
+          var btn = "";
+          var on_pay = "";
+          var un_pay = "";
+          var hurry = "";
+          var judge = "";
+          var complain = "";
+          var u_id = data.unionid;
+          $.each(data.data,function (i,v){
+            var hash = hex_md5(u_id+v.id);
+
+            /* -- 时间戳格式化 start -- */
+            var start_num = 0;
+            var end_num = 0;
+            if (v.when == 2) {
+                start_num = parseInt(v.lunch_send_start);
+                end_num = parseInt(v.lunch_send_end);
+            } else if (v.when == 3) {
+                start_num = parseInt(v.dinner_send_start);
+                end_num = parseInt(v.dinner_send_end);
+            } else{
+              start_num = parseInt(v.breakfast_send_start);
+              end_num = parseInt(v.breakfast_send_end);
+            };
+            var start_time = start_num + 28800;
+            var end_time = end_num + 28800;
+            var start = (start_time%3600/60).toString();
+            var end = (end_time%3600/60).toString();
+            if (start.length==1) {
+              start = "0" +start;
+            } else{
+              start = start;
+            };
+            if (end.length==1) {
+              end = "0" +end;
+            } else{
+              end = end;
+            };
+            /* -- 时间戳格式化 end -- */
+
+            var hh_mm = parseInt(start_time/3600) + ':' + start + '~' + parseInt(end_time/3600) + ':' + end;
+            if (v.status == 1||v.status == 4||v.status == 5||v.status == 11) {
+              btn = '<p class="order-ele-date">' + hh_mm + ' 安排配送</p>';
+            } else{
+              btn = "";
+            };
+            if (v.status == 1) {
+              on_pay = '<a href="http://www.koudaigongshe.com/wxpay/index.php?id=' + v.id + '&token=' + hash + '" class="gw-btn order-ele-btn">立即支付</a>';
+              un_pay = '<a href="http://bd.koudaigongshe.com/mobile/order/cancelHandle/id/' + v.id + '" class="gw-btn order-ele-btn order-btn-bg">取消订单</a>';
+            } else{
+              on_pay = '';
+              un_pay = '';
+            };
+            if (v.status == 5||v.status == 11){
+              hurry = '<a href="http://bd.koudaigongshe.com/mobile/index/feedback" class="gw-btn order-ele-btn order-btn-bg">催单</a>';
+              console.log(hurry);
+            } else{
+              hurry = '';  
+            }; 
+            if (v.status == 4||v.status == 5||v.status == 6||v.status == 7||v.status == 11||v.status == 12||v.status == 13){
+              complain = '<a href="http://bd.koudaigongshe.com/mobile/personal/complain.html?id=' + v.id + '" class="gw-btn order-ele-btn order-btn-bg">退款</a>';
+            } else{
+              complain = ''; 
+            }; 
+            if (v.status == 6||v.status == 7||v.status == 13){
+              judge = '<a href="http://bd.koudaigongshe.com/mobile/personal/score.html?id=' + v.id + '" class="gw-btn order-ele-btn order-btn-bg">评价</a>';
+            } else{
+              judge = '';
+            };
+            tpl += '<article id="' + v.id + '" onclick="postData(id)" class="order-ele">'+
+                      '<div class="order-ele-img">'+
+                        '<div class="order-ele-padding">'+
+                            '<img src="' + v.order_img + '" alt="">'+
+                        '</div>'+
+                      '</div>'+
+                      '<div class="order-ele-article">'+
+                        '<div class="order-ele-padding">'+
+                          '<p class="order-ele-price">￥' + v.money/100 + '<span>' + v.status_name + '</span></p>'+
+                          '<div class="order-ele-data">'+
+                             '<p class="order-ele-name">' + v.order_name + '</p>'+ btn +
+                          '</div>'+
+                          '<div class="order-ele-action">' + on_pay + un_pay + hurry + judge + complain +
+                          '</div>'+
+                        '</div>'+
+                      '</div>'+
+                    '</article>'
+            $(".order_lists").html(tpl);
+          });
+        },
+        error:function () {
+          console.log("error!");
+        }
+      });
+    };
+    getData();
+    /* -- 订单列表展示 end -- */
+
+    $(document).ready(function(){
+      var planValWidth = ( parseInt( $('.plan-val').attr('data-value') )/0.03 );
+      $('.plan-val').css( 'width', planValWidth + '%' );
+    });
+
+    /* -- 订单详情页 start -- */
+    var postData = function (id){
+      console.log(id);
+      $.ajax({
+        type:"post",
+        url:"http://bd.koudaigongshe.com/mobile/personal/apiShowDetail/id/" + id,
+        dataType:"json",
+        success:function (data){
+          console.log("success!");
+          $(".page").css({
+            "display":"none"
+          });
+          $(".window_page").css({
+            "display":"block"
+          });
+          /* -- 时间戳格式化 start -- */
+          var start_num = 0;
+          var end_num = 0;
+          if (data.order.when == 2) {
+              start_num = parseInt(data.order.lunch_send_start);
+              end_num = parseInt(data.order.lunch_send_end);
+          } else if (data.order.when == 3) {
+              start_num = parseInt(data.order.dinner_send_start);
+              end_num = parseInt(data.order.dinner_send_end);
+          } else{
+            start_num = parseInt(data.order.breakfast_send_start);
+            end_num = parseInt(data.order.breakfast_send_end);
+          };
+          var start_time = start_num + 28800;
+          var end_time = end_num + 28800;
+          var start = (start_time%3600/60).toString();
+          var end = (end_time%3600/60).toString();
+          if (start.length==1) {
+            start = "0" +start;
+          } else{
+            start = start;
+          };
+          if (end.length==1) {
+            end = "0" +end;
+          } else{
+            end = end;
+          };
+          /* -- 时间戳格式化 end -- */
+
+          /* -- 自定义handlebars data start -- */
+          var hh_mm = parseInt(start_time/3600) + ':' + start + '~' + parseInt(end_time/3600) + ':' + end;
+          console.log(data.order.status);
+          var this_status = "";
+          var status_two =  "";
+          var status_three = "";
+          var status_four = "";
+          var status_five = "";
+          var money_pack = 0;
+          // $.each(data.dish,function (k,v){
+          //   for (var i = data.dish.length; i >0; i--){
+          //     money_pack += v.money_pack;
+          //   };
+          //   console.log(money_pack);
+          // });
+          var total_pay = 0;
+          var hash = hex_md5(data.unionid + data.order.id);
+          var pay_id = data.order.id + '&token=' + hash;
+          var nowTime = new Date();
+          var eat_time = "";
+          if (data.order.when == 2) {
+             eat_time = "午餐";
+          } else if(data.order.when == 3){
+             eat_time = "晚餐";
+          } else{
+            eat_time = "早餐";
+          };
+          if (data.order.status == 1) {
+            status_two = true;
+          } else{
+            status_two = false;
+          };
+          if (data.order.status == 4) {
+            status_three = true;
+          } else{
+            status_three = false;
+          };
+          if (data.order.status == 11||(data.order.pack_time != 0 && data.order.pack_time + 1200 < nowTime.getTime())) {
+            status_four = true;
+          } else{
+            status_four = false;
+          };
+
+          if (data.order.status == 6||data.order.status == 13) {
+            status_five = true;
+          } else{
+            status_five = false;
+          };
+          console.log(status_five);
+          if (data.order.status == 1||data.order.status == 4||data.order.status == 5||data.order.status == 6||data.order.status == 7) {
+            this_status = true;
+          } else{
+            this_status = false;
+          };
+          var handle_data = {
+            data:data,
+            num_test:{
+              "this_status":this_status,
+              "status_two" :status_two,
+              "status_three":status_three,
+              "status_four":status_four,
+              "status_five":status_five,
+              "hh_mm":hh_mm,
+              "eat_time":eat_time,
+              "pay_id":pay_id
+            }
+          };
+          /* -- 自定义handlebars data end -- */
+          console.log(handle_data);
+          var myTemplate = Handlebars.compile($(".page-main").html());
+          $('.window_page').html(myTemplate(handle_data));
+          console.log(data);
+        },
+        error:function (){
+          console.log("error!");
+        }
+      });
+    };
+    /* -- 订单详情页 end -- */
+
+    /** -- 获取url参数id并判断跳转 start -- */
+    console.log(window.location.href);
+    var name = (window.location.href).toString();
+    function GetUrlId(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var urlId = GetUrlId("id");
+    console.log(urlId);
+    if(urlId != null||urlId != undefined){
+      // alert("合法");
+      postData(urlId);
+    } else{
+      console.log("不满足直接开启订单详情页条件");
+    };
+    /** -- 获取url参数id start -- */
+</script>
+</body>
+</html>

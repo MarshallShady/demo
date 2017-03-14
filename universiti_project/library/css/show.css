@@ -1,0 +1,295 @@
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	body {
+		background: #F2F2F2;
+	}
+	ul,li {
+		list-style: none;
+	}
+	#box {
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+	}
+	#loading {
+		width:100%;
+		position: fixed;
+		z-index: 200;
+		padding-top: 46%;
+	}
+	#loading img{
+		width: 30%;
+		display: block;
+		margin: 0 auto;
+		padding: 10px;
+		background: rgba(0, 0, 0, 0.79);
+		border-radius:10px;
+	}
+	#loading p {
+		text-align: center;
+		margin-top: 30px;
+		color: #000;
+	}
+	.page {
+		width: 100%;
+		background: #F2F2F2;
+		position: absolute;
+		left: 100%;
+	}
+	.move {
+		transition:left 0.3s;
+		-moz-transition:left 0.3s; 
+		-webkit-transition:left 0.3s;
+		-o-transition:left 0.3s;
+	}
+
+	#head1 {
+		width:100%;
+		height: 190px;
+		position: relative;
+		background: url(../img/school.png) no-repeat;
+		background-size: 100% auto;
+	}
+	#head1 input {
+		width:80%;
+		height: 30px;
+		top: 150px;
+		padding:6px 12px;
+		padding-left: 36px;
+		font-size:14px;
+		line-height:1.42857143;
+		color:#555;
+		background:#fff url(../img/search.png) no-repeat 8px 4px;
+		background-size: auto 70%;
+		border:1px solid #ccc;
+		border-radius:4px;
+		position: absolute;
+		transition:left 0.2s,top 0.2s;
+		-moz-transition:left 0.2s,top 0.2s; 
+		-webkit-transition:left 0.2s,top 0.2s;
+		-o-transition:left 0.2s,top 0.2s;
+	}
+
+	#head1 button {
+		position: absolute;
+		height: 30px;
+		width:15%;
+		padding: 0;	
+		left:84%;
+		top:10px;
+		display: none;
+	}
+	#search-text {
+		width: 100%;
+		position: absolute;
+		top:900px;
+		left: -200%;
+		background: rgba(242, 242, 242, 0.9);
+		border-top: solid 1px #D5CDCD;
+		overflow: auto;
+		transition:top 0.3s;
+		-moz-transition:top 0.3s; 
+		-webkit-transition:top 0.3s;
+		-o-transition:top 0.3s;
+		z-index: 30;
+	}
+	.search-text li {
+		width: 100%;
+		padding: 4px 14%;
+		border-bottom: solid #D5CDCD 1px;
+	}
+
+	.sub1 {
+		width: 100%;
+		height: 100%;
+	}
+	.centent-menu {
+		width: 100%;
+		font-size: 18px;
+		padding: 6px 10px;
+		border-bottom: solid 1px rgb(207, 187, 187);
+		background: #F2F2F2;
+	}
+	.sub1 li {
+		width: 100%;
+		min-height: 120px;
+		padding: 10px 10px;
+		background: #fff;
+		border-bottom: solid 1px rgb(207, 187, 187);
+	}
+	.sub1 .spanStayle {
+		display: block;
+		width: 100%;
+		line-height: 50px;
+		background: #fff;
+		text-align: center;
+	}
+	.sub1 ul div  {
+		float: left;
+		min-height: 100px;
+	}
+	.sub1 ul p {
+		font-size: 14px;
+		width:100%;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		overflow:hidden;
+	}
+	.sub1 ul span {
+		font-size: 12px;
+	}
+	.book-name {
+		width: 60%;
+	}
+	.book-img{
+		width: 90px;
+		height:100px;
+		margin-right: 16px;
+	}
+	.book-img img {
+		width: 100%;
+		height: 100%;
+	}
+
+	#person {
+		width: 100%;
+		height: 220px;
+		-background: #F2F2F2;
+		background: -ms-linear-gradient(top, #C7CDE4,  #F2F2F2);        /* IE 10 */
+
+		background:-moz-linear-gradient(top,#C7CDE4,#F2F2F2);/*火狐*/ 
+
+		background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#C7CDE4), to(#F2F2F2));
+		padding-top: 60px;
+		-border-bottom: 1px solid #D5CDCD;
+	}
+	#person div {
+		width: 24%;
+		margin: 0 auto;	
+	}
+	#person img {
+		width: 100%;
+		border-radius: 1000px;
+	}
+	#person p {
+		text-align: center;
+		margin: 0;
+		margin-top: 10px;
+	}
+
+	.no-data,.more {
+		display: block;
+		width:100%;
+		line-height: 40px;
+		text-align: center;
+		background: #fff;
+		font-size: 14px;
+		margin-top: 10px;
+	}
+
+	#returns {
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		border-bottom: solid 1px #DDDDDD;
+		background: #fff;
+		padding-left: 2%;
+	}
+	#introduction {
+		width: 96%;
+		height: 180px;
+		margin:2%;
+		padding: 12px 10px;
+		overflow: hidden;
+		background: #fff;
+		border: solid 1px #DDDDDD;
+	}
+	#introduction p {
+		font-size: 14px;
+		margin-bottom: 6px;
+		border-bottom: 1px solid #DDDDDD;
+		font-weight: bold;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		overflow:hidden;
+	}
+	#introduction div p {
+		font-size: 12px!important;
+		-border-bottom: none;
+		font-weight: normal;
+		color: #000;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		overflow:hidden;
+	}
+	#introduction .book-img {
+		height:78%;
+	}
+	#introduction div {
+		float: left;
+	}
+	#introduction div p {
+		margin-top: 2px;
+		font-size: 14px;
+	}
+
+	#library {
+		width: 96%;
+		height: 80%;
+		margin:2%;
+		padding: 12px 10px;
+		overflow: auto;
+	}
+	#library ol ,#library ul{
+		width: 100%;
+		height: 30px;
+		margin:0;
+		padding: 0;
+		background: #686AF2;
+	}
+	#library ol li,#library ul li span{
+		width: 33.33%;
+		text-align: center;
+		font-size: 12px;
+		line-height: 30px;
+		padding: 0 10px;
+		float: left;
+	}
+	#library ul {
+		height: auto;
+		background: none;
+	}
+	#library ul li{
+		width: 100%;
+		padding:10px 0;
+		border-bottom: 1px solid #DDDDDD;
+		float: left;
+	}	
+	#library button {
+		width: 100%;
+	}
+
+	.copyright {
+		text-align: center;
+	}
+
+	/*菜单区*/
+	#menu {
+		width: 100%;
+		height: 48px;
+		background: #fff;
+	}
+	#menu div {
+		width: 33%;
+		height: 48px;
+		float: left;
+		padding-top: 4px;
+	}
+	#menu img {
+		height: 40px;
+		display: block;
+		margin: 0 auto;
+	}
+	/* 菜单区结束 */

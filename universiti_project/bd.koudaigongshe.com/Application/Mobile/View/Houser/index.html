@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>楼长配送端</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css"></head>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/residence_advisor.css"></head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>楼长配送端</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+   			<include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="message">
+			<header class="message-title">
+				<a href="#"><p>信息中心</p>
+                </a>
+			</header>
+			<section class="message-body">
+				<ul>
+					<li>
+						<p id="order_undo"></p>
+						<span>本时段待送</span>
+					</li>
+					<li>
+						<p id="order_total"></p>
+						<span>已配送</span>
+					</li>
+					<li>
+						<p id="num_dish_rest"></p>
+						<span>未结算</span>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<article class="order-manage">
+			<header class="message-title">
+				<a href="#"><p>订单管理</p></a>
+			</header>
+			<section class="order-body">
+				<header class="order-title">
+					<ul>
+						<li>寝室号</li>
+						<li>份数</li>
+						<li>操作</li>
+					</ul>
+				</header>
+				<section>
+		<div id="order_ready"></div>
+		<div id="order_prepare"></div>
+		<div id="order_finished"></div>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+<script>
+    $.ajax({
+        type:"get",
+        url:"http://bd.koudaigongshe.com/mobile/houser/apiShow",
+        dataType:"json",
+        success:function(data){
+            console.log(1);
+
+            /* ---- 信息展示 start ---- */
+            if ( data['count']['did'] == 0) {
+                $("#order_total").html('<p>0份</p>');
+            } else{
+                $("#order_total").html('<p>' + data['count']['did'] + '份</p>');
+            }
+            if (data['count']['undo'] == 0) {
+                $("#order_undo").html('<p>0份</p>');
+            } else{
+                $("#order_undo").html('<p>' + data['count']['undo'] + '份</p>');
+            }
+            if (data['role']['num_dish_rest'] ==0||undefined||null) {
+            	$("#num_dish_rest").html('<p>' + data['role']['num_dish_rest'] + '份</p>');
+            } else{
+                $("#num_dish_rest").html('<p>' + data['role']['num_dish_rest'] + '份</p>');
+            };
+            /* ---- 信息展示 end ---- */
+
+            var tpls_a = "";
+            var tpls_b = "";
+            var tpls_c = "";
+
+            /* ---- 已完成订单多重遍历 start ---- */
+            $.each(data.finished,function (i,v){
+            	console.log(v);
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                	var sp = '';
+                    $.each(v,function(k,val){
+                        sp = '<li><p>' + val['name'] + '</p><a href="tel:' + val['mobile'] + '">' + val['mobile'] + '</a></li>'             
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                	console.log(7);
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span>' + s['building_name'] + ' </span><span>' + s['dormitory'] + '</span></span></li>';
+                    });
+                    return ps;
+                };
+                tpls_a += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    // '<li><p>' + v['building_name']+ '</p></li>'+
+                                    sure(v['dish'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看'+
+                                    '</button><a href="">'+
+                                    '<button class="gw-btn mini-btn btn-disable">已完成</button></a></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['dish'])+
+                            bbbb(v['dish'])+
+                    '</ul>'+
+                        '</article>';
+                // $.each(v['dish'],function(i,val){
+                //     var tpls_b = "";
+                //     tpls_b += '<li id="'+bid+'"><span>' + val.order_dish_name + '</span><span>' + val.port_name + '</span>'+
+                //                     '<span>' + val.order_dish_id + '</span></li>';;
+                // });
+            });
+            /* ---- 派送订单多重遍历 end ---- */
+            
+            $.each(data.ready,function (i,v){
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                    $.each(v,function(k,val){
+                        sp = '<li><p>' + val['name'] + '</p><a href="tel:' + val['mobile'] + '">' + val['mobile'] + '</a></li>'             
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                	// console.log(7);
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span>' + s['building_name'] + ' </span><span>' + s['dormitory'] + '</span></span></li>';
+                    });
+                    return ps;
+                };
+                var surer = function(v){
+                	// console.log(7);
+                    var pst = '';
+                    $.each(v, function(pt,st){
+                        pst = '</button><a href="/mobile/houser/sendedHandle/id/' + st['order_basic_id']+'">';
+                    });
+                    return pst;
+                };
+                tpls_b += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    sure(v['dish'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看'+
+                                    surer(v['dish'])+
+                                    '<button class="gw-btn mini-btn">送达</button></a></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['dish'])+
+                            bbbb(v['dish'])+
+                    '</ul>'+
+                        '</article>';
+                $.each(v['dish'],function(i,val){
+                    var tpls_b = "";
+                    tpls_b += '<li id="'+bid+'"><span>' + val.order_dish_name + '</span><span>' + val.port_name + '</span>'+
+                                    '<span>' + val.order_dish_id + '</span></li>';;
+                });
+            });
+            $.each(data.prepare,function (i,v){
+                var bid = v.building_id;
+                var aaaa = function(v){
+                    var t = '';
+                    $.each(v, function(ii,vv){
+                        t += '<li><span>' + vv['order_dish_name'] + '</span><span>' + vv['port_name'] + '</span><span>' + vv['order_dish_id']+'</span></li>';
+                    });
+                    return t;
+                };
+                var bbbb = function(v){
+                    $.each(v,function(k,val){
+                        sp = '<li><p>' + val['name'] + '</p><a href="tel:' + val['mobile'] + '">' + val['mobile'] + '</a></li>'             
+                    });
+                    return sp;
+                };
+                var sure = function(v){
+                	console.log(7);
+                    var ps = '';
+                    $.each(v, function(p,s){
+                        ps = '<li><span>' + s['building_name'] + ' </span><span>' + s['dormitory'] + '</span></span></li>';
+                    });
+                    return ps;
+                };
+                tpls_c += '<article class="order-data">'+
+                            '<header class="order-data-title">'+
+                                '<ul>'+
+                                    sure(v['dish'])+
+                                    '<li><p>' + v['count'] + '</p></li><li>'+
+                                    '<button class="gw-btn mini-btn btn-bg-white">查看'+
+                                    '</button><a href="">'+
+                                    '<button class="gw-btn mini-btn btn-disable">准备中</button></a></li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<div class="detail"><div>'+
+                            '<header class="detail-title">'+
+                                '<ul>'+
+                                    '<li>菜品</li>'+
+                                    '<li>档口</li>'+
+                                    '<li>小票号</li>'+
+                                '</ul>'+
+                            '</header>'+
+                            '<section class="detail-body">'+
+                   '<ul>'+
+                            aaaa(v['dish'])+
+                            bbbb(v['dish'])+
+                    '</ul>'+
+                        '</article>';
+                $.each(v['dish'],function(i,val){
+                    var tpls_b = "";
+                    tpls_b += '<li id="'+bid+'"><span>' + val.order_dish_name + '</span><span>' + val.port_name + '</span>'+
+                                    '<span>' + val.order_dish_id + '</span></li>';;
+                });
+            });
+            console.log(0);
+            $("#order_finished").html(tpls_a);
+            $("#order_ready").html(tpls_b);
+            $("#order_prepare").html(tpls_c);
+            $('.btn-bg-white').tap(function(){
+                var target = $(this).closest('.order-data-title').next('.detail');
+                var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+                target.height(height);
+            });
+        },
+        error:function(data){
+            console.log("error");
+        }
+    });
+</script>
+</body>
+</html>

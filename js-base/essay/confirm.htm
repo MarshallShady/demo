@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />  
+	<title>自己实现 confirm</title>
+	<style>
+        div,body{
+            padding: 0;
+            margin: 0;
+        }
+        html,body {
+        	height: 100%;
+        }
+        h1,h2,h3,h4{
+        	margin:0;
+        	padding: 0;
+        }
+        .m-alert {
+        	width: 100%;
+        	height: 100%;
+        	background-color: rgba(0,0,0,0.3);
+        	position: fixed;
+        	left: 0px;
+        	right: 0px;
+        	/*display: ;*/
+        	visibility:hidden;
+        }
+        .m-alert-page{
+			width: 300px;
+			background-color: #fff;
+			position: absolute;
+        }
+        .m-alert-page-header  {
+        	height: 50px;
+        	background-color: #2599F2;
+        	color: #fff;
+        }
+        .m-alert-page-header .title {
+        	width: 100%;
+        	float: left;
+        	line-height: 50px;
+        }
+        .m-alert-page-header .title h2 {
+        	padding-right: 60px;
+        }
+        .m-alert-page-header span {
+        	width: 60px;
+        	line-height: 50px;
+        	display: block;
+        	float: left;
+        	margin-left: -60px;
+        	text-align: center;
+        }
+		.m-alert-page-content {
+			min-height: 50px;
+			padding: 20px;
+		}
+		.m-alert-config  {
+			height: 50px;
+		}
+		.m-alert-config div {
+			width: 50%;
+			line-height: 50px;
+			float: left;
+			text-align: center;
+		}
+    </style>
+	
+</head>
+<body>
+	<div id="m-alert" class="m-alert">
+   		<div class="m-alert-page">
+   			<header class="m-alert-page-header">
+   				<div class="title">
+   					<h2>123</h2>
+   				</div>
+   				<span class="m-alert-close">关闭</span>
+   			</header>
+   			<section class="m-alert-page-content">
+   				这是内容区
+   			</section>
+   			<div class="m-alert-config" >
+   				<div class="m-alert-sure"><h2>确定</h2></div>
+   				<div class="m-alert-close"><h2>关闭</h2></div>
+   			</div>
+   		</div>
+	</div>
+	
+
+	<script>
+
+
+
+		var AlertMe = function (){
+			var WINDOW_WIDTH = window.innerWidth
+			,   WINDOW_HEIGHT = window.innerHeight
+
+	 		var mAlert = document.querySelector('#m-alert')
+	 		,   page = mAlert.querySelector('.m-alert-page')
+	 		,   content = mAlert.querySelector('.m-alert-page-content')
+	 		,   sure = mAlert.querySelector('.m-alert-sure')
+	 		,   close1 = mAlert.querySelector('.m-alert-config .m-alert-close')
+	 		,   close2 = mAlert.querySelector('.m-alert-page-header .m-alert-close')
+	 		,   pageWidth = page.offsetWidth
+	 		,   pageHeight = page.offsetHeight
+
+	 		var thisCallBackSuccess = null
+	 		,   thisCallBackError = null
+
+	 		page.style.left = (WINDOW_WIDTH - pageWidth)/2 + 'px'
+	 		mAlert.style.display = 'none'
+	 		mAlert.style.visibility = 'visible'
+
+	 		sure.addEventListener('click', clickSure, false)
+	 		close1.addEventListener('click', clickClose, false)
+	 		close2.addEventListener('click', clickClose, false)
+
+	 		function clickSure(event){
+
+	 			mAlert.style.display = 'none'
+	 			if(thisCallBackSuccess){
+	 				thisCallBackSuccess()
+	 				thisCallBackSuccess = null
+	 			}
+	 			event.stopPropagation()
+	 			return false
+	 		}
+	 		function clickClose(event){
+
+	 			mAlert.style.display = 'none'
+	 			if(thisCallBackError){
+	 				thisCallBackError()
+	 				thisCallBackError = null
+	 			}
+	 			event.stopPropagation()
+	 			return false
+	 		}
+
+	 		return function ( data, callBackSuccess, callBackError ){
+	 			mAlert.style.display = 'block'
+
+	 			content.innerHTML = data || ''
+
+	 			pageHeight = page.offsetHeight
+	 			page.style.top = (WINDOW_HEIGHT - pageHeight)/2 + 'px'
+
+	 			thisCallBackSuccess = callBackSuccess
+	 			thisCallBackError = callBackError
+
+	 			return true
+	 		}
+		}()
+		
+
+		document.onclick = function(){
+			AlertMe("测试", function(){
+				alert('成功')
+			},function(){
+				alert('失败')
+			})
+		}
+	</script>
+</body>
+</html>

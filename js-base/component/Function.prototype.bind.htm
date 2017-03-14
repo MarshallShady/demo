@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数时编程学习</title>
+	<style>
+		html,body {
+			height: 100%;
+			margin:0;
+			padding: 0;
+		}
+		body{
+			
+		}
+		
+	</style>
+</head>
+<body >
+	<canvas id="my-canvas" width="500" height="500"></canvas>
+	
+	<script>
+	//1.0 bind
+	Function.prototype.bind = Function.prototype.bind || function(othThis) {
+		var thatArgs = Array.prototype.slice.call( arguments, 1 ),
+			that = this
+		function f() {
+			var thisArgs = Array.prototype.slice.call( arguments )
+			thatArgs = thatArgs.concat( thisArgs )
+			this === window ? 
+			that.apply( othThis, thatArgs ) : that.apply( this, thatArgs )
+		}
+		f.prototype = that.prototype
+		return f
+	}
+
+
+	function temp() {
+		console.log('-----')
+		console.dir(this)
+		console.log('++++++')
+	}
+	var obj = {
+		name : "bind"
+	}
+	var Year = temp.bind(obj,1)
+	var aaa = new Year(2,3,4)
+
+	console.dir( aaa instanceof Year )
+	
+	</script>
+</body>
+</html>

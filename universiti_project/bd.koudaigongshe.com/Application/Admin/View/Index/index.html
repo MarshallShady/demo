@@ -1,0 +1,97 @@
+<script>
+    window.url=eval(<?php echo json_encode($url);?>);
+    window.admin=eval(<?php echo json_encode($admin);?>);
+</script>
+<html>
+<head>
+    <title>必点外卖后台系统</title>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/admin/index/css/index.css"/>
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- <div class='header' > -->
+
+        <nav class="navbar navbar-inverse nav">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand brand" href="#"><img  alt="Brand" src="http://bd.koudaigongshe.com/Public/static/mobile/image/LOGO.png"> <span>服务人员后台</span></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav" id="navber">
+
+                <li  id='header-stats'><a href="#">数据统计</a></li>
+                <li  id='header-product'><a href="#">功能管理</a></li>
+                <li id='header-employee'><a href="#">人员管理</a></li>
+                <li id='header-balance'><a href="#">结算中心</a></li>
+                <li id='header-feedback'><a href="#">投诉中心</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><?php echo $admin['name'];?><small>(<?php echo $admin['role'];?>)</small></a></li>
+                <li><a href="#" id='logout'>退出</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+    <!-- </div> -->
+    <div>
+        <div class="right">
+            <div class="main"></div>
+        </div>
+
+        <div class='left'>
+            <!-- <a href="javascript:void(0)" style="display:none" class="button left-employee">学校经理管理</a>
+            <a href="javascript:void(0)" style="display:none" class="button left-employee">档口经理管理</a> -->
+            <a href="#" style="display:none" class="button left-employee" id='e_build'>楼栋管理</a>
+            <a href="#" style="display:none" class="button left-employee" id='e_buildleader'>楼长管理</a>
+            <a href="#" style="display:none" class="button left-employee" id='e_pack'>出单员管理</a>
+            <a href="#" style="display:none" class="button left-employee" id='e_deliver'>分拨员管理</a>
+            <a href="#" style="display:none" class="button left-employee" id='e_bddeliver'>“必点送”管理</a>
+            <a href="#" style="display:none" class="button left-employee" id='e_verify'>人员审核</a>
+            <a href="#" style="display:none" class="button left-employee" id='admin_verify'>后台账号审核</a>
+
+            <!-- 产品管理 -->
+            <!-- <a href="#" style="display:none" class="button left-product" id='product_school'>学校管理</a> -->
+            <a href="#" style="display:none" class="button left-product" id='product_coupon'>优惠卷管理</a>
+            <a href="#" style="display:none" class="button left-product" id='product_school_ext'>校区管理</a>
+            <a href="#" style="display:none" class="button left-product" id='product_canteen'>餐厅管理</a>
+            <a href="#" style="display:none" class="button left-product" id='product_port'>档口管理</a>
+            <a href="#" style="display:none" class="button left-product" id='product_dish'>菜品管理</a>
+
+
+            <a  href="#" style="display:none" class="button left-stats" id="statistic_all">所有订单</a>
+            <!-- <a href="#" style="display:none" class="button left-stats">学校数据</a> -->
+            <!-- <a href="#" style="display:none" class="button left-stats" id="statistic_build">楼层数据</a> -->
+            <a href="#" style="display:none" class="button left-stats" id="statistic_order">订单数据</a>
+            <a href="#" style="display:none" class="button left-stats" id="statistic_user">用户数据</a>
+            <a href="#" style="display:none" class="button left-stats" id="statistic_port">档口数据</a>
+            <a href="#" style="display:none" class="button left-stats" id="statistic_canteen">餐厅数据</a>
+            <a href="#" style="display:none" class="button left-stats" id="statistic_investigate">学校评级</a>
+
+            <a href="#" style="display:none" class="button left-balance" id="balance_deliver">分拨员结算</a>
+            <a href="#" style="display:none" class="button left-balance" id="balance_bddeliver">必点送结算</a>
+            <a href="#" style="display:none" class="button left-balance" id="balance_buildleader">楼长结算</a>
+            <a href="#" style="display:none" class="button left-balance" id="balance_canteen">餐厅结算</a>
+            <a href="#" style="display:none" class="button left-balance" id="balance_school">校园拨款</a>
+            <!-- <a href="#" style="display:none" class="button left-balance">小票员结算</a> -->
+
+            <a href="#" style="display:none" class="button left-feedback" id="feedback_refund">退款管理</a>
+            <a href="#" style="display:none" class="button left-feedback" id="feedback_history">退款历史</a>
+            <a href="#" style="display:none" class="button left-feedback" id="feedback_complain">投诉汇总</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
+<script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/index/js/index.js"></script>

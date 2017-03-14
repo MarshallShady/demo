@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>必点·食堂外卖</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/index.css?8">
+
+</head>
+<body>
+<div class="page">
+
+	<div id="header" class="header">
+	    <div class="header-title">
+	   		<p>切换餐厅 ▼</p>
+	   		<div id="memu">
+	   			<div class="memu-icon">
+	   				<span></span>
+	   				<span></span>
+	   				<span></span>
+	   			</div>
+	   			<include file="Public/menu"/>
+	   		</div>
+	    </div>
+		<div id="canteen" class="canteen">
+			<div id="restaurant">
+				<p>请选择您的餐厅</p>
+				<ul>
+					<!-- <li><a href="javascript:;">第1餐厅</a></li>
+					<li><a href="javascript:;">第2餐厅</a></li> -->
+				</ul>
+				<div class="clear-float"></div>
+			</div>
+			<div id="booth">
+				<p>请选择您的档口</p>
+				<!-- <div class="booth-ele">
+					<ul>
+						<li><a href="javascript:;">第1餐厅第1档口</a></li>
+						<li><a href="javascript:;">第1餐厅第2档口</a></li>
+						<li><a href="javascript:;">第1餐厅第3档口</a></li>
+						<li><a href="javascript:;">第1餐厅第4档口</a></li>
+						<li><a href="javascript:;">第1餐厅第5档口</a></li>
+						<li><a href="javascript:;">第1餐厅第6档口</a></li>
+						<li><a href="javascript:;">第1餐厅第7档口</a></li>
+					</ul>
+					<div class="clear-float"></div>
+				</div>
+				<div class="booth-ele">
+					<ul>
+						<li><a href="javascript:;">第2餐厅第1档口</a></li>
+						<li><a href="javascript:;">第2餐厅第2档口</a></li>
+						<li><a href="javascript:;">第2餐厅第3档口</a></li>
+						<li><a href="javascript:;">第2餐厅第4档口</a></li>
+						<li><a href="javascript:;">第2餐厅第5档口</a></li>
+						<li><a href="javascript:;">第2餐厅第6档口</a></li>
+						<li><a href="javascript:;">第2餐厅第7档口</a></li>
+						<li><a href="javascript:;">第2餐厅第8档口</a></li>
+						<li><a href="javascript:;">第2餐厅第9档口</a></li>
+						<li><a href="javascript:;">第2餐厅第10档口</a></li>
+						<li><a href="javascript:;">第2餐厅第11档口</a></li>
+						<li><a href="javascript:;">第2餐厅第12档口</a></li>
+						<li><a href="javascript:;">第2餐厅第13档口</a></li>
+						<li><a href="javascript:;">第2餐厅第14档口</a></li>
+					</ul>
+					<div class="clear-float"></div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<div id="tab" class="tab">
+		<ul>
+			<li data-flag="0"><a href="javascript:;">
+				<span>早餐</span>
+				<p></p>
+			</a></li>
+			<li data-flag="1"><a href="javascript:;">
+				<span>午餐</span>
+				<p></p>
+			</a></li>
+			<li data-flag="2"><a href="javascript:;">
+				<span>晚餐</span>
+				<p></p>
+			</a></li>
+		</ul>
+		<div id="up_to">
+		</div>
+	</div>
+	<div id="container" class="container">
+		<!-- <div class="card food row"  data-number="1">
+			<img class="card-object	food-image col-7" src="__PUBLIC__/static/data/image/1.png" alt="">
+			<div class="card-text col-5">
+				<ul class="food-info card-middle card-right large">
+					<li class="food-name icon-after" data-icon="HOT">免费早餐</li>
+					<li class="food-components">免费早餐+营养套餐+有爱晚餐</li>
+					<li class="food-sold icon-before" data-icon="店">幸福便当</li>
+					<li class="food-sold icon-before" data-icon="售">1024份</li>
+					<li class="food-unitprice warning">￥12.0</li>
+				</ul>
+			</div>
+			<div class="card-box food-box"></div>
+			<div class="food-icon-group">
+				<div class="food-icon icon-plus-minus hidden minus" data-icon="-"></div>
+				<span class="food-amount hidden">0</span>
+				<div class="food-icon icon-plus-minus plus" data-icon="+"></div>
+			</div>
+		</div> -->
+		<div class="more">
+			<img src="__PUBLIC__/static/mobile/image/loading.gif" alt="loading">
+			<span>全力为您加载中...</span>
+		</div>
+	</div>
+
+	<div style="font-size:5px;margin-bottom:47px;width:100%;text-align:center;"></div>
+	<div id="order" class="order">
+		<button id="order-icon" class="order-icon icon-number float-left" data-icon="0"></button>
+		<label id="order-price" class="order-price float-left">￥0.00</label>
+		<form id="submit-data" method="post" action="http://bd.koudaigongshe.com/mobile/order/confirm">
+			<input id="order-input" name="data" type="hidden">
+			<button type="submit" id="order-enter" class="order-enter float-right" disabled="disabled">6元起送</button>
+		</form>
+		<div id="order-bg" class="order-bg"></div>
+		<dl id="order-list" class="order-list">
+			<dt id="order-list-title" class="order-list-title">已选菜品<span id="order-list-clear" class="float-right">清空购物车</span></dt>
+			<dd></dd>
+			<div class="order-list-bg"></div>
+		</dl>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+<script src="__PUBLIC__/static/mobile/js/module/dynamic_load.js?1"></script>
+<script type="text/javascript" src="__PUBLIC__/static/mobile/js/index1.js?25"></script>
+</body>
+</html>

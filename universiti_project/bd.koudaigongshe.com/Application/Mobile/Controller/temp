@@ -1,0 +1,32 @@
+// 权限检测
+if (!SESSION('position')) {
+    // 不存在SESSION，判断有无openid
+    if (!SESSION('openid')) {
+        // 没有openid，判断是否是OAUTH
+        if (!I('code')) {
+            // 不是OAUTH，去OAUTH
+            redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx469353a608160fe1&redirect_uri=http://121.42.160.37/bidian/mobile/index/index&response_type=code&scope=snsapi_base#wechat_redirect');
+        } else {
+            // 是OAUTH，取openid
+            $wechat = json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . C('APPID') . '&secret=0bb1a7ce2369b62477e809b0505c1d14&code=' . I('code') . '&grant_type=authorization_code'), true);
+            if (!$wechat) die;//获取微信信息失败
+            SESSION('openid', $wechat['openid']);
+            $this->openid = $wechat['openid'];
+        }
+    }
+    // openid已缓存
+    $this->openid = SESSION('openid');
+    // 取得属性openid，取位置信息
+    $user = M('User_basic')->getByOpenid($this->openid);//使用openid或者unionid
+    if (!$user) {
+        // 用户未注册位置
+        redirect(U('mobile/position/index'));
+    } else {
+        // 用户已注册位置
+        $position = ['building' => $user['building'], 'dormitory' => $user['dormitory']];
+        SESSION('position', $position);
+    }
+}
+$this->position = SESSION('position');
+// https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx469353a608160fe1&redirect_uri=http://121.42.160.37/bidian/mobile/index/index&response_type=code&scope=snsapi_base&state=1#wechat_redirect
+// 取权限、验证对应操作权限号

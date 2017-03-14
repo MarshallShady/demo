@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>口袋高校助手</title>
+	<link rel="stylesheet" href="css/register.css">
+  </head>
+  <body>
+  	<div class="pages">
+  		<header class="main-head">
+  			<img src="img/logo1.png" alt="logo">
+  		</header>
+  		<section class="main-page">
+	  		<form action="" id="reg">
+	  			<div class="from-group">
+	  				<input type="text" name="names" placeholder="姓名" >
+	  			</div>
+	  			<div class="from-group" >
+	  				<input type="tel" name="tel" placeholder="电话" >
+	  			</div>
+	  			<div class="from-group" >
+	  				<input type="text" name="weChatId" placeholder="公众号ID">
+	  			</div>
+	  			<div class="from-group btn">
+	  				<input type="submit" id="submit" value="注 册">
+	  			</div>
+	  		</form>
+  		</section>
+  		<footer class="main-footer">
+  			@口袋高校助手
+  		</footer>
+  	</div>
+    <script>
+    	var reg = document.getElementById("reg");
+    	var submit = document.getElementById("submit");
+    	submit.onclick = function(){
+
+    		if( reg.names.value == '' ){
+    			alert("姓名不能为空");
+    			return false;
+    		}
+    		var r = /^1[0-9]{10}$/;
+    		var str = reg.tel.value;
+    		var t = str.match(r);
+    		if(!t){
+    			alert("电话格式不对");
+    			return false;
+    		}
+    		var r = /^[a-zA-Z]([a-zA-Z0-9]+)?$/;
+    		var str = reg.weChatId.value;
+    		var t = str.match(r);
+    		if(!t){
+    			alert("公众号ID不对");
+    			return false;
+    		}
+    		return true;
+    	};
+    </script>
+  </body>
+</html>

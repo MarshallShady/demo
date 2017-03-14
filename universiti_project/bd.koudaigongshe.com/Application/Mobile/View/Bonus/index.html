@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Sure">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>红包中心</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/luckyCenter.css">
+    <style>
+		.main-section{
+			width: 88%;
+			margin:0 auto;
+
+		}
+		.nothing{
+			margin:0;
+			font-weight:normal;
+			font-size:.8em;
+			color:#ff6550;
+			text-align:center;
+			line-height:80px;
+            opacity: .8;
+		}
+    </style>
+</head>
+<body>
+	<div class="page">
+		<header class="main-header">
+			<div class="headline">
+				<div class="headline-body">
+					<p>红包中心</p>
+				</div>
+			</div>
+			<div class="go-back">
+                <a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+			</div>
+			<div class="main-memu">
+	   			<div class="memu-icon">
+	   				<span></span>
+	   				<span></span>
+	   				<span></span>
+	   			</div>
+	   			<include file="Public/menu"/>
+			</div>
+		</header>
+		<section class="main-section">
+			<article class="personal-img">
+				<img src="__PUBLIC__/static/data/image/me.png" alt="">
+			</article>
+			<div class="lucky-code">
+				<h3><span>红包兑换</span><input class="get_code" type="text" placeholder="输入兑换码" /><button class="use-code">兑&nbsp;&nbsp;&nbsp;换</button></h3>
+			</div>
+			<div class="lucky-lists">
+			    <div id="lucky-wrap">
+			        <div id="append-data"></div>
+			        <div class="worn-info"></div>
+			    	<h3 class="click-more">点击加载更多</h3>
+			    </div>
+			</div>
+			<!-- <button class="invite">邀请得红包</button> -->
+		</section>
+		<div id="addText"></div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/static/mobile/js/luckyCenter.js?=4"></script>
+</body>
+</html>

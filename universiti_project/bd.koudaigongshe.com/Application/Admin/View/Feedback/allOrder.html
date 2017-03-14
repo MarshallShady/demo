@@ -1,0 +1,130 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.canteen=eval(<?php echo json_encode($canteen);?>);
+    window.port=eval(<?php echo json_encode($port);?>);
+    window.date=eval(<?php echo json_encode($date);?>);
+    window.admin=eval(<?php echo json_encode($admin);?>);
+
+</script>
+<html >
+<head>
+    <title>所有订单</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/feedback/js/allorder.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">数据统计</a></li>
+  <li class="active">所有订单</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl'>
+        <div class="panel panel-default">
+            <table class="table table-default ">
+                <tr><th>省份</th><th>学校</th><th>校区</th><th>食堂</th><th>档口</th></tr>
+                <tr>
+                    <td><select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select></td>
+                    <td><select class="form-control" ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select></td>
+                    <td><select class="form-control" ng-init="select_school_ext=school_ext[0]" ng-model="select_school_ext"ng-options="x.name for x in school_ext |filter:{school:select_school['id']}:true"></select></td>
+                    <td><select class="form-control" ng-init="select_canteen=canteen[0]" ng-model="select_canteen" ng-options="x.name for x in canteen|filter:{school_ext:select_school_ext['id']}:true"></select></td>
+                    <td><select class="form-control" ng-init="select_port=port[0]" ng-change="getInfo()"ng-model="select_port" ng-options="x.name for x in port|filter:{canteen:select_canteen['id']}:true"></select></td>
+                </tr>
+            </table>
+
+            <table class="table table-default ">
+                <tr>
+                    <th>时段</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>档口查询</th>
+                    <th>餐厅查询</th>
+                    <th>注意</th>
+                </tr>
+                <tr>
+                    <td><select class="form-control" ng-options="x.name for x in when" ng-model="select_when"></select></td>
+                    <td><input type='date'ng-model='date_start' id="date_s"class="form-control"/></td>
+                    <td><input type='date'ng-model='date_end'  ng-change="getInfo()"id="date_e"class="form-control"/></td>
+                    <td ><button  class="btn btn-info" id="search"ng-click="search()">查询</button></td>
+                    <td ><button  class="btn btn-info" ng-show="b_canteen"ng-click="searchCanteen()">所有档口订单</button></td>
+                    <td>查询时间为订单所属时间，并非下单时间<br/> 准确时间为： 开始日期 00：00 — 结束日期 00：00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading text-center">详细菜品、订单信息</div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                <table class="table table-default ">
+                    <tr>
+                        <td>已付款并出单总金额</td>
+                        <td>已付款并出单菜品数量</td>
+                        <td ng-show="b_canteen">已付款的订单总额</td>
+                        <td ng-show="b_canteen">已付款的订单数量</td>
+                        <td>已付款未出单总金额</td>
+                        <td>已付款未出单菜品数量</th>
+                        <td>退款成功菜品总金额</td>
+                        <td>退款成功菜品数（非订单数）</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-info">{{total_cost/100}}元</td>
+                        <td class="bg-info">{{num}}份</td>
+                        <td class="bg-warning" ng-show="b_canteen">{{total_order/100}}元</td>
+                        <td class="bg-warning" ng-show="b_canteen">{{num_order}}单</td>
+                        <td class="bg-info">{{total_rest/100}}</td>
+                        <td class="bg-info">{{num_rest}}</td>
+                        <td class="bg-warning">{{total_refund/100}}</td>
+                        <td class="bg-warning">{{num_refund}}</td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>订单日期</th>
+                    <th>出单时间</th>
+                    <th>送达时间</th>
+                    <th>时段</th>
+                    <th>档口</th>
+                    <th>订单号</th>
+                    <th>小票号</th>
+                    <th>姓名</th>
+                    <th>手机</th>
+                    <th>楼栋</th>
+                    <th>寝室</th>
+                    <th>菜品名称</th>
+                    <th>菜品价格</th>
+                    <th>分拨员</th>
+                    <th>楼长</th>
+                    <th>订单状态</th>
+                    <th>菜品状态</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="x in data" id="tr-{{x.id}}">
+                <td>{{x.order_date}}</td>
+                <td>{{x.pack_date}}</td>
+                <td>{{x.housemaster_date}}(<span style="{{x.style}}">{{x.time_deliver}}</span>)分</td>
+                <td>{{x.when_name}}</td>
+                <td>{{x.port_name}}</td>
+                <td>{{x.order}}</td>
+                <td>{{x.id}}</td>
+                <td>{{x.user_name}}</td>
+                <td>{{x.mobile}}</td>
+                <td>{{x.build_name}}</td>
+                <td>{{x.dormitory}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.money_cost/100}}元</td>
+                <td>{{x.deliver_name}}</td>
+                <td>{{x.housemaster_name}}</td>
+                <td>{{x.order_status_name}}</td>
+                <td>{{x.status_dish_name}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

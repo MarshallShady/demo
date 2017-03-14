@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数时编程学习</title>
+	<style>
+		html,body {
+			height: 100%;
+			margin:0;
+			padding: 0;
+		}
+		body{
+			
+		}
+		#container {
+			width: 100px;
+			height: 200px;
+			background-color: red;
+			/*transition: width 1s cubic-bezier(1,0,0,1);*/
+		}
+		/*#container:hover {
+			width: 500px;
+		}*/
+		#child {
+			width: 100px;
+			height: 100px;
+			background-color: #234555;
+		}
+		#content {
+			width: 1000px;
+			height: 1000px;
+			border: 1px solid #000;
+			position: relative;
+			margin:100px; auto;
+		}
+		#content .div {
+			width:5px;
+			height: 5px;
+			background-color: #000;
+			position: absolute;
+		}
+	</style>
+</head>
+<body >
+	<div id="container">
+		<div id="child"></div>
+	</div>
+
+	<div id="content"></div>
+	<script>
+		var parent = document.querySelector('#container')
+		,   child = document.querySelector('child')
+		parent.addEventListener('click',function (evnet) {
+			event = evnet || window.evnet
+			evnet.stopPropagation()
+		},true);
+		
+		// var setCub = cubicBezie(1,1,0,0)
+		// var t = 0
+
+		// var timer = setInterval(function () {
+		// 	t += 0.02
+		// 	console.log(setCub(t))
+		// 	if(t>=1){
+		// 		clearInterval(timer)
+		// 	}
+		// },30)
+		IronAnimatoin(parent, {width:600},1,{
+			p1x : 0,
+			p1y : 0,
+			p2x : 1,
+			p2y : 1
+		});
+		function IronAnimatoin( ele, attrs, time, configCubicBezie, callBack ) {
+
+			ele = typeof ele == 'string' ? 
+					document.querySelector(ele) : ele
+			time = parseInt(time*1000)
+			var t = 0
+			,   p = 0
+			,   setCubicBezieT = cubicBezie(
+					configCubicBezie.p1x,
+					configCubicBezie.p1y,
+					configCubicBezie.p2x,
+					configCubicBezie.p2y
+				)
+			,   resultValue = null
+			,   initAttrs = {}
+			for( var attr in attrs ){
+				initAttrs[attr] = parseInt( getStyle( ele, attr ) )
+			}
+
+			ele.timer = setInterval(function () {
+				t += 16
+				p = t/time
+				p > 1 && (p = 1)
+				resultValue = setCubicBezieT(p)
+				for( var attr in attrs ){
+					var temp = resultValue.y * attrs[attr]
+					ele.style[attr] = initAttrs[attr] + temp + 'px'
+					creatDiv(resultValue.x*1000,resultValue.y*1000)
+				}
+				
+				if( p == 1){
+					clearInterval(ele.timer)
+					callBack && callBack()
+				}
+			},16)
+
+
+			function cubicBezie( p1x, p1y, p2x, p2y ){
+				// 原始公式
+				// y= (1-t)^3*p0y + 3*(1-t)^2*t*p1y + 3*(1-t)*t^2p2y + t^3p3y
+				// x= (1-t)^3*p0x + 3*(1-t)^2*t*p1x + 3*(1-t)*t^2p2x + t^3p3x
+				// css3 中 p0=(0,0) p1=(1,1)
+				// y= 3*(1-t)^2*t*p1y + 3*(1-t)*t^2p2y + t^3
+				// x= 3*(1-t)^2*t*p1x + 3*(1-t)*t^2p2x + t^3
+				// t∈[0,1]
+				// 简化后的公式
+				var ax = 3 * p1x - 3 * p2x + 1,
+				      bx = 3 * p2x - 6 * p1x,
+				      cx = 3 * p1x;
+				  
+				var ay = 3 * p1y - 3 * p2y + 1,  
+				      by = 3 * p2y - 6 * p1y,  
+				      cy = 3 * p1y;
+				var x = 0,y = 0,result = 0
+				return function (t) {
+					y = ((ay * t + by) * t + cy ) * t  
+					  
+					x = ((ax * t + bx) * t + cx ) * t
+					return {
+						x : x,
+						y : y
+					}
+				}
+			}
+			function getStyle(obj, attr) {
+				return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
+			}
+		}
+		
+		
+		// 花直角坐标系的图
+		function creatDiv(x,y) {
+			var content = document.getElementById('content')
+			var temp = content.innerHTML
+			x = parseInt( x )
+			y = parseInt( 1000 - y )
+			temp += '<div class="div" style="left:'+x+'px;top:'+y+'px"></div>'
+			content.innerHTML = temp
+		}
+	</script>
+</body>
+</html>

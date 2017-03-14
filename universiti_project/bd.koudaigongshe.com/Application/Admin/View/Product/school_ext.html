@@ -1,0 +1,283 @@
+<script>
+    window.url=eval(<?php echo $url;?>);
+    window.province=eval(<?php echo json_encode($province);?>);
+    window.school=eval(<?php echo json_encode($school);?>);
+    window.school_ext=eval(<?php echo json_encode($school_ext);?>);
+    window.admin=eval(<?php echo json_encode($admin);?>);
+</script>
+<html >
+<head>
+    <title>学校校区管理</title>
+    <script src="__PUBLIC__/library/js/jquery-2.2.1.min.js" ></script>
+    <script src="__PUBLIC__/library/js/bootstrap.min.js" ></script>
+    <script src="__PUBLIC__/library/js/angular.min.js"></script>
+    <script src="__PUBLIC__/admin/product/js/school_ext.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/library/css/bootstrap.css"/>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="#">功能管理</a></li>
+  <li class="active">学校校区管理</li>
+</ol>
+<div ng-app='myApp' ng-controller='myCtrl' >
+    <div class="panel panel-default">
+        <table class="table ">
+            <tr><th class="text-center">省份</th></tr>
+            <tr>
+                <td><select class="form-control" ng-model="select_province" ng-change="getInfo()"ng-options="x.name for x in province"></select></td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading text-center">添加城市、学校、校区功能</div>
+        <div class="row panel-body">
+            <div class="col-md-4"><button class="form-control btn-warning" data-toggle="modal" data-target="#myModal">添加城市</button></div>
+            <div class="col-md-4"><button class="form-control btn-warning" data-toggle="modal" ng-click="getSchool()" data-target="#myModal2">添加学校</button></div>
+            <div class="col-md-4"><button class="form-control btn-warning" data-toggle="modal" ng-click="getSchool()" data-target="#myModal3">添加校区</button></div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading text-center">学校校区管理</div>
+        <table class="table table-striped text-center" >
+            <!-- <tr class="text-center">
+                <th rowspan="2">校区序号</th>
+                <th rowspan="2">学校校区</th>
+                <th colspan="3">早餐</th>
+                <th colspan="3">午餐</th>
+                <th colspan="3">晚餐</th>
+                <th rowspan="2">修改</th>
+                <th rowspan="2">状态</th>
+                <th rowspan="2">改变状态</th>
+            </tr>
+            <tr>
+                <th>禁止下单</th>
+                <th>派送开始</th>
+                <th>派送结束</th>
+                <th>禁止下单</th>
+                <th>派送开始</th>
+                <th>派送结束</th>
+                <th>禁止下单</th>
+                <th>派送开始</th>
+                <th>派送结束</th>
+            </tr> -->
+            <thead>
+                <tr class="text-center">
+                    <td>校区序号</td>
+                    <td>学校校区</td>
+                    <td class="text-center"> 禁止下单 <br/><small style="font-size:10px;">在此时间后无法下此时段订单</small></td>
+                    <td class="text-center">批量出单<br/><small style="font-size:10px;">用于判断批量订单与即时订单的时间界限<br/>只有即时订单时设置为00：00</small></td>
+                    <td class="text-center">派送开始<br/><small style="font-size:10px;">用于系统预判送达时间</small></td>
+                    <td class="text-center">派送结束<br/><small style="font-size:10px;">用于系统预判送达时间</small></td>
+                    <td>修改各信息</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tr ng-repeat="x in data">
+                <td>{{x.id}}</td>
+                <td style="width:200px;">{{x.school_name+x.name}}</td>
+                <td >
+                    <table style="width:100%;">
+                        <tr>
+                            <td>早餐</td>
+                            <td><input type="time" class="form-control"value="{{x.date_breakfast_order_end}}"id="breakfast_order_end-{{x.id}}"/></td>
+                        </tr>
+                        <tr class="bg-info">
+                            <td>午餐</td>
+                            <td><input type="time" class=" form-control"value="{{x.date_lunch_order_end}}"id="lunch_order_end-{{x.id}}"/></td>
+                        </tr>
+                        <tr>
+                            <td>晚餐</td>
+                            <td><input type="time" class="form-control"value="{{x.date_dinner_order_end}}"id="dinner_order_end-{{x.id}}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                早、中餐的时间界限：
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="bg-warning">
+                    <table style="width:100%;"  >
+                        <tr>
+                            <td><input type="time" class="form-control"value="{{x.date_breakfast_pack_start}}"id="breakfast_pack_start-{{x.id}}"/></td>
+                        </tr><tr class="bg-info">
+                            <td class="bg-info"><input type="time" class=" form-control"value="{{x.date_lunch_pack_start}}"id="lunch_pack_start-{{x.id}}"/></td>
+                        </tr><tr>
+                            <td><input type="time" class="form-control"value="{{x.date_dinner_pack_start}}"id="dinner_pack_start-{{x.id}}"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="time" class="form-control"value="{{x.date_bl_break_point}}"id="bl_break_point-{{x.id}}"/></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style="width:100%;">
+                        <tr>
+                            <td><input type="time" class="form-control"value="{{x.date_breakfast_send_start}}"id="breakfast_send_start-{{x.id}}"/></td>
+                        </tr><tr class="bg-info">
+                            <td class="bg-info"><input type="time" class=" form-control"value="{{x.date_lunch_send_start}}"id="lunch_send_start-{{x.id}}"/></td>
+                        </tr><tr>
+                            <td><input type="time" class="form-control"value="{{x.date_dinner_send_start}}"id="dinner_send_start-{{x.id}}"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                中、晚餐的时间分界限：
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style="width:100%;">
+                        <tr>
+                            <td><input type="time" class="form-control"value="{{x.date_breakfast_send_end}}"id="breakfast_send_end-{{x.id}}"/></td>
+                        </tr><tr class="info">
+                            <td class="bg-info"><input type="time" class=" form-control"value="{{x.date_lunch_send_end}}"id="lunch_send_end-{{x.id}}"/></td>
+                        </tr><tr>
+                            <td><input type="time" class="form-control"value="{{x.date_dinner_send_end}}"id="dinner_send_end-{{x.id}}"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="time" class="form-control"value="{{x.date_ld_break_point}}"id="ld_break_point-{{x.id}}"/></td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="container-fluid">
+                    <div class="row">
+                        <label class="col-md-6">配送费：</label>
+                        <div class="col-md-6"><input type="number" class="form-control col-md-8"value="{{x.money_delivery/100}}"id="money_delivery-{{x.id}}"/></div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-6">最小金额：</label>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control"value="{{x.money_least/100}}"id="money_least-{{x.id}}"/>
+                        </div>
+                    </div>
+                    <div class="row"><button style="width:80%;"class="btn btn-warning form-control" ng-click="edit(x.id)" >修改全部信息</button></div>
+                </td>
+                <td><span class="label label-default">{{x.status_name}}</span><br/><br/>
+                    <button class="btn btn-info" ng-click="status(x.id)">改变状态</button><br/><br/>
+                    <button class="btn btn-info" ng-click="d(x.id)"data-toggle="modal" data-target="#myModal4">删除校区</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加城市</h4>
+      </div>
+      <div class="modal-body">
+          添加的城市名称:
+        <input class="form-control" ng-model="i_province"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addProvince()">添加城市</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加学校</h4>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <select class="form-control" ng-model="select_province"ng-options="x.name for x in province"></select>
+          </div>
+          <div class="row">
+              添加的学校名称:
+            <input class="form-control" ng-model="i_school"/>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addSchool()">添加学校</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加学校的校区</h4>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-md-6">
+                  所属城市
+              </div>
+              <div class="col-md-6">
+                  所属学校
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <select class="form-control " ng-model="select_province"ng-options="x.name for x in province"></select>
+              </div>
+              <div class="col-md-6">
+                  <select class="form-control " ng-model="select_school"ng-options="x.name for x in school|filter:{province:select_province['id']}:true"></select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-3">
+                 添加的校区名称:
+              </div>
+              <div class="col-md-9">
+                  <input class="form-control" ng-model="i_school_ext"/>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addSchool_ext()">添加校区</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">删除界面</h4>
+      </div>
+      <div class="modal-body">
+          <table class="table table-default">
+              <tr>
+                  <th>只是删除此学校的校区</th>
+                  <th>同时删除此校区和相对应的学校</th>
+              </tr>
+              <tr>
+                  <td><button class="btn btn-info" ng-click="delete()">删除校区</button></td>
+                  <td><button class="btn btn-warning" ng-click="deleteAll()">同时删除学校校区</button></td>
+              </tr>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

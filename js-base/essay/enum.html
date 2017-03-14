@@ -1,0 +1,50 @@
+·<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>enum</title>
+	<script>
+		//本例在《js权威指南》例9-7 实现枚举类型
+		function enumeration( namesToValues ){
+			var enumeration = function (){ throw "Can't Instantiate Enumeration" };
+			var proto = enumeration.prototype = {
+				constructor : enumeration,
+				toString : function(){ return this.name; },
+				valueOf : function(){ return this.value; },
+				toJSON : function(){ return this.name; }
+			};
+			enumeration.values = [];
+			for( name in namesToValues ){
+				var e = inherit(proto);
+				e.name = name;
+				e.value = namesToValues[name];
+				enumeration[name] = e;
+				enumeration.values.push(e);
+			}
+			enumeration.foreach = function( f, c ){
+				for( var i = 0; i < this.values.length; i++ ){
+					f.call( c, this.values[i] );
+				}
+			};
+			return enumeration;
+		}
+		function inherit(proto) {
+			//proto是一个对象，但不能是null
+			if(proto == null) throw TypeError();
+			if(Object.create) return Object.create(proto); //如果Object.create()存在,使用它
+			var t = typeof proto; //否则进一步检查
+			if(t!=='object' && t!=='function') throw TypeError();
+			var F = function() {}; // 定义一个空构造函数
+			F.prototype = proto; // 将其原型属性设置为proto
+			return new F(); // 使用F()创建proto的继承对象
+		}
+
+		var Coin = enumeration( {Penny:1, Nickel:5, Dime:10, Quarter:25} );
+
+		console.log( ( Coin.Nickel ) );
+		
+	</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>出单员端</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/module/page_init.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile/css/residence_advisor.css">
+    <style>
+		.detail-body a {
+			width: auto;
+			height: auto;
+			line-height: 1.3;
+			margin: 0;
+		}
+		.detail-body li span,.detail-title li{
+			width: 23%;
+		}
+		.detail-body li span:first-child, .detail-title li:first-child{
+			width: 30%;
+		}
+    </style>
+</head>
+<body>
+<div class="page">
+	<header class="main-header">
+		<div class="headline">
+			<div class="headline-body">
+				<p>出单员端</p>
+			</div>
+		</div>
+		<div class="go-back">
+			<a href="<?php echo U('mobile/index/index');?>"><img src="__PUBLIC__/static/mobile/image/go_back.png" alt=""></a>
+		</div>
+		<div class="main-memu">
+   			<div class="memu-icon">
+   				<span></span>
+   				<span></span>
+   				<span></span>
+   			</div>
+            <include file="Public/menu"/>
+		</div>
+	</header>
+	<section class="main-section">
+		<article class="order-manage">
+			<header class="message-title out-title">
+				<a href="#"><p>出单管理</p>
+                </a>
+			</header>
+			<section class="order-body">
+				<header class="out-body-title" id="total_goods">
+				</header>
+				<section>
+					<article class="out-data">
+						<div class="out-data-left" id="dish_total">
+						</div>
+						<div class="out-data-right">
+							<a href="<?php echo U('mobile/pack/packHandle');?>"><button class="gw-btn">出订单</button></a>
+						</div>
+					</article>
+					<article class="out-data">
+						<div class="out-data-left" id="order_undo">
+						</div>
+						<div class="out-data-right">
+							<a href="<?php echo U('mobile/pack/copyHandle');?>"><button class="gw-btn">出底单</button></a>
+						</div>
+					</article>
+                    <article class="out-data">
+						<div class="out-data-left" id="order_did">
+						</div>
+					</article>
+					<hr>
+					<article class="order-data">
+						<header class="order-data-title">
+							<ul>
+								<li><p>漏单补打</p> </li>
+								<li><p> </p></li>
+								<li>
+									<button class="gw-btn mini-btn btn-bg-white">查看</button>
+								</li>
+							</ul>
+						</header>
+						<div class="detail" >
+							<div>
+								<header class="detail-title">
+									<ul>
+										<li>档口</li>
+										<li>份数</li>
+										<li>订单</li>
+										<li>底单</li>
+									</ul>
+								</header>
+								<section class="detail-body">
+								<ul>
+									<li id="detail_list"></li>
+	                            </ul>
+								</section>
+							</div>
+						</div>
+					</article>
+				</section>
+			</section>
+		</article>
+	</section>
+	<footer class="main-footer">
+		<p>版权归：必点所有</p>
+	</footer>
+</div>
+    <script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/mobile/js/lib/zepto.touch.js"></script>
+    <script src="__PUBLIC__/static/mobile/js/module/init.js"></script>
+	<script>
+		$('.btn-bg-white').tap(function(){
+			var target = $(this).closest('.order-data-title').next('.detail');
+			var height =  ( target.height() == 0 ) ? target.children('div').height() : 0 ;
+			target.height(height);
+		});
+		$.ajax({
+			type:"get",
+			url:"http://bd.koudaigongshe.com/mobile/pack/apiShow",
+			dataType:"json",
+			success:function(data){
+				// console.log(data);
+				$("#total_goods").html('<p>本时段共有 ' + data['count']['dish_total']['num'] + ' 单</p>');
+				$("#dish_total").html('<p>全部菜品: ' + data['count']['dish_total']['num'] + '</p>');
+				$("#order_undo").html('<p>未出单菜品: ' + data['count']['order_undo']['num'] + '</p>');
+				$("#order_did").html('<p>已出订单菜品：' + data['count']['order_did']['num'] + '</p><p>已出底单菜品：' + data['count']['dish_backuped']['num'] + '</p>');
+				$.each(data['port'],function (k,v){
+					var html="";
+                    html += '<li>'+
+								'<span>' + v['port_name'] + '</span>'+
+								'<span>' + v['num'] + '</span>'+
+								'<span><a href="http://bd.koudaigongshe.com/mobile/pack/packOrder/id/'+ v['id'] +'" style="color:#F00;">订单</a></span>'+
+								'<span><a href="http://bd.koudaigongshe.com/mobile/pack/packCopy/id/' + v['id'] + '" style="color:#00F;">底单</a></span>'+
+							'</li>'
+					$("#detail_list").append(html);
+				});
+			},
+			error:function(data){
+				console.log("error");
+			}
+		});
+	</script>
+</body>
+</html>

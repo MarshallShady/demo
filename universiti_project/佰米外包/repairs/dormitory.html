@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>报修</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+
+<div id="page" class="form-page">
+	<div class="content">
+		<h1>寝室报修</h1>
+		<hr>
+		<form onsubmit="return false;">
+			<div class="form-group">
+				<label >· 姓名</label>
+				<input type="text" id="user" class="form-control" placeholder="姓名">
+			</div>
+			<div class="form-group">
+				<label >· 学号</label>
+				<input type="tel" id="stu" class="form-control" placeholder="学号">
+			</div>
+			<div class="form-group">
+				<label >· 手机</label>
+				<input type="tel" id="tel" class="form-control" placeholder="输入您的手机号">
+			</div>
+			<div class="form-group">
+				<label >· 楼号</label>
+				<select id="floorNum" class="form-control">
+				  <option>2</option>
+				  <option>3</option>
+				  <option>4南</option>
+				  <option>4北</option>
+				  <option>5南</option>
+				  <option>5北</option>
+				  <option>6南</option>
+				  <option>6北</option>
+				  <option>8</option>
+				  <option>10南</option>
+				  <option>10北</option>
+				  <option>11南</option>
+				  <option>11北</option>
+				  <option>12南</option>
+				  <option>12北</option>
+				  <option>13东</option>
+				  <option>13西</option>
+				  <option>14</option>
+				  <option>15</option>
+				  <option>16</option>
+				  <option>18</option>
+				  <option>21</option>
+				  <option>22</option>
+				  <option>27</option>
+				  <option>28</option>
+				  <option>29</option>
+				  <option>30</option>
+				  <option>31</option>
+				  <option>32</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label >· 寝室号</label>
+				<input type="tel" id="dormitoryNum" class="form-control" placeholder="寝室号">
+			</div>
+			<div class="form-group">
+				<label >· 类别</label>
+				<select id="mold" class="form-control" >
+				    <option value = "1">水工类</option>
+
+			        <option value = "2">电工类</option>
+
+			        <option value = "3">木工类</option>
+
+			        <option value = "4">塑钢类</option>
+
+			        <option value = "5">泥工类</option>
+				</select>
+			</div>
+			<div class="form-group" id="qes-cont">
+				<label >· 具体类型</label>
+				<select name="qes1" class="form-control" >
+
+			        <option value="q1-1" >台盆</option>
+
+			        <option value="q1-2">水龙头</option>
+
+			        <option value="q1-3">水箱</option>
+
+			        <option value="q1-4">热水器</option>
+
+			        <option value="q1-5">厕所堵</option>
+
+			        <option value="q1-6">地漏堵</option>
+
+			        <option value="q1-7">水表</option>
+
+			        <option value="q1-8">其他</option>
+
+			      </select>
+
+
+
+			       <select name="qes2" class="form-control"  style="display:none;">
+
+			        <option value="q2-1">日光灯</option>
+
+			        <option value="q2-2">厕所灯</option>
+
+			        <option value="q2-3">阳台灯</option>
+
+			        <option value="q2-4">走廊灯</option>
+
+			        <option value="q2-5">插座</option>
+
+			        <option value="q2-6">灯开关</option>
+
+			        <option value="q2-7">房间断电</option>
+
+			        <option value="q2-8">空调</option>
+
+			        <option value="q2-9">饮水机</option>
+
+			        <option value="q2-10">热水器</option>
+
+			        <option value="q2-11">电表</option>
+
+			        <option value="q2-12">其他</option>
+
+			      </select>
+
+
+
+			      <select name="qes3"  class="form-control"   style="display:none;">
+
+			        <option value="q3-1">寝室门</option>
+
+			        <option value="q3-2">厕所门</option>
+
+			        <option value="q3-3">床板</option>
+
+			        <option value="q3-4">脚踏板</option>
+
+			        <option value="q3-5">键盘板</option>
+
+			        <option value="q3-6">抽屉</option>
+
+			        <option value="q3-7">柜子</option>
+
+			        <option value="q3-8">蚊帐杆</option>
+
+			        <option value="q3-9">床架</option>
+
+			        <option value="q3-10">其他</option>
+
+			      </select>
+
+
+
+			       <select name="qes4"  class="form-control"  style="display:none;">
+
+			        <option value="q4-1">移门玻璃窗</option>
+
+			        <option value="q4-2">厕所窗</option>
+
+			        <option value="q4-3">窗帘杆</option>
+
+			        <option value="q4-4">窗帘布</option>
+
+			        <option value="q4-5">窗帘轮滑</option>
+
+			        <option value="q4-6">晾衣杆</option>
+
+			        <option value="q4-7">其他</option>
+
+			      </select>
+
+
+
+
+
+			      <select name="qes5"  class="form-control"  style="display:none;">
+
+			        <option value="q5-1">地板砖</option>
+
+			        <option value="q5-2">墙体漏水</option>
+
+			        <option value="q5-3">墙面脱皮</option>
+
+			        <option value="q5-4">其他</option>
+
+			      </select>
+			</div>
+			<div class="form-group">
+				<label >· 详细描述</label>
+				<textarea id="description" class="form-control" placeholder="详细描述您出现的问题，以便更好的维修" rows="5"></textarea>
+			</div>
+			<div class="form-group">
+				<button type="button" id="submit" class="btn btn-primary">提交</button>
+			</div>
+		</form>
+	</div>
+	<footer>
+		<p>@版权归杭电助手所有</p>
+	</footer>
+</div>
+
+
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="js/js.js"></script>
+
+<script>
+	$("#submit").click(function(event) {
+
+		var username =  $("#user").val();
+		
+		var studentId = $("#stu").val();
+
+		var phoneNumber = $("#tel").val();
+
+		var buildingNumber = $("#floorNum").val();
+
+		var apartmentId = $("#dormitoryNum").val();
+
+		var type = $("#mold").val();
+
+		var content = $('#qes-cont select:visible').val();
+
+		var description = $("#description").val();
+
+		// alert( username + ' ' + studentId + ' ' + phoneNumber + ' ' + buildingNumber
+		// + ' ' + apartmentId + ' ' + type + ' ' + content + ' ' + description );
+
+
+		if(username == ""  &&  studentId == "" && phoneNumber == "" && apartmentId == "")
+		{
+			alert("为确保维修及时，请填写完整信息");
+			return false;
+		}
+
+        if(!/^1[0-9]{7}$/.test(studentId)){
+
+          alert("请填写正确的学号！");
+
+          return false;
+
+        }
+
+		if(!/^1[0-9]{10}$/.test(phoneNumber)){
+
+          alert("请填写正确手机号码！");
+
+          return false;
+
+        }
+
+        if(description.length>30){
+
+          alert("请将描述内容控制在30字内！");
+
+          return;
+
+        }
+	});
+</script>
+
+</body>
+</html>
