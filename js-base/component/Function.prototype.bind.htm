@@ -23,21 +23,23 @@
 	Function.prototype.bind = Function.prototype.bind || function(othThis) {
 		var thatArgs = Array.prototype.slice.call( arguments, 1 ),
 			that = this
+		function T(){}//用于原型继承，防止直接引用被修改原型
 		function f() {
 			var thisArgs = Array.prototype.slice.call( arguments )
 			thatArgs = thatArgs.concat( thisArgs )
 			this === window ? 
 			that.apply( othThis, thatArgs ) : that.apply( this, thatArgs )
 		}
-		f.prototype = that.prototype
+		T.prototype = that.prototype
+		f.prototype = new T
 		return f
 	}
 
 
 	function temp() {
-		console.log('-----')
-		console.dir(this)
-		console.log('++++++')
+		// console.log('-----')
+		// console.dir(this)
+		// console.log('++++++')
 	}
 	var obj = {
 		name : "bind"
@@ -45,7 +47,12 @@
 	var Year = temp.bind(obj,1)
 	var aaa = new Year(2,3,4)
 
-	console.dir( aaa instanceof Year )
+	Year.prototype = {}
+
+	console.dir(Year)
+	console.dir(temp)
+
+	// console.dir( aaa instanceof Year )
 	
 	</script>
 </body>
