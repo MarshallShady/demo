@@ -23,7 +23,7 @@ function Thunk(fn) {
 
 // Thunk 函数的真正威力在于，可以自动执行 Generator 函数
 function run(fn) {
-	var gen = fn()
+	var gen = fn();
 	(function next(err, data) {
 		var result = gen.next(data)
 		if(result.done) return
