@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数时编程学习</title>
+	<style>
+		html,body {
+			height: 100%;
+			margin:0;
+			padding: 0;
+		}
+		body{
+			
+		}
+	</style>
+</head>
+<body >
+<script>
+
+ function P(f) {
+ 	var t = {}
+ 	f( resolve )
+ 	var callBackSuccess = null
+ 	function resolve(data) {
+ 		setTimeout(function () {
+ 			callBackSuccess(data)
+	 	},0)
+ 	}
+
+ 	t.then = function (success) {
+ 		callBackSuccess = success
+ 	}
+
+ 	return t
+ } 
+var p = P(function (resolve) {
+	setTimeout(function(){
+		resolve(111)
+		console.log(444)
+		while(true){}
+	},1000)
+	console.log(222)
+})
+
+p.then(function (data) {
+	console.log(data)
+})
+</script>
+</body>
+</html>
