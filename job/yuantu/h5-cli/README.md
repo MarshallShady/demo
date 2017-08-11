@@ -25,6 +25,8 @@ app.js 主要起到一个路由的功能
 实际的模型中，还会有一些公共函数的引用，为了方便理解，这边就不画出来了
 
 ### 目录结构
+
+```
 * src
 	* commons/
 		* xxx.js
@@ -43,7 +45,7 @@ app.js 主要起到一个路由的功能
 	* xxx.js
 	* n.html
 	* n.js
-
+```
 
 ### 代码实现
 ##### app.js
@@ -128,3 +130,197 @@ ReactDOM.render(
 ### 代码实现
 ##### app.js
 
+首先对 app.js 入口文件进行拆分，把入口的 App 组件，和模块加载部分进行分离
+
+* app.js // App 组件
+* corpId/index.js // 医院模块加载的入口文件，负责加载依赖模块（如果需要特殊化的医院，则加载自己文件夹下的，否则加载 Base），并且暴露出接口
+
+```
+import util from 'util'
+const query = util.query()
+,   corpId = query.corpId || null
+,   requirePath = corpId || 'Base'
+
+const pages = require( './'+ requirePath +'/index.js' ) // 使用 require 实现动态加载
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    let pathname = window.location.pathname;
+    //截取页面名字 /a/b.html ==> b.html
+    let pageName = pathname.match(/(\/[\w\-]+\.html$)/);
+    pageName = pageName && pageName[1] ? pageName[1] : null;
+    this.page = pageName ? pages[pageName] : null;
+  }
+
+  render() {
+    let Page = this.page;
+    /**
+     * 阻断性加载中状态  BlockLoading
+     * 非阻断性加载中状态  Loading
+     * **/
+    if (Page) {
+      return <div>
+        <Loading />
+        <BlockLoading />
+        <Alert />
+        <StatusBlock />
+        <Page />
+      </div>
+    } else {
+      return <div>您访问的页面不存在{window.location.pathname}</div>
+    }
+  }
+}
+
+render(<App />, document.getElementById("root"))
+```
+
+##### base/index.js
+```
+import A from './a.js'
+import B from './b.js'
+import B from './c.js'
+import D from './d.js'
+let pages = {};
+function register(pathname, page) {
+  if (!pages[pathname]) {
+    pages[pathname] = page;
+  } else {
+    throw new Error(`"${pathname}" Already exist`);
+  }
+}
+
+register( '/a.html', A )
+register( '/b.html', B )
+register( '/c.html', C )
+register( '/d.html', D )
+
+export default pages
+```
+
+##### corpId/index.js
+```
+import xxx from '../Base' // 使用标准版的模块
+import xxx from './xxx' // 使用重写过的模块
+// ...
+
+let pages = {}
+function register(pathname, page) {
+  if (!pages[pathname]) {
+    pages[pathname] = page;
+  } else {
+    throw new Error(`"${pathname}" Already exist`);
+  }
+}
+register("xxx/xxx.html", xxx)
+// ...
+
+module.exports = pages
+```
+## 对文件进行拆分，实行按需加载
+
+单页应用的代码拆分，一般按照一个视图一个代码片段进行拆分。故就可以很明确的知道，我们代码片段的最小单元是一个视图模块（如一个登入 sign-in.js）和它所依赖的模块。
+
+但是我们业务比较特殊，就是有多医院，并且多医院分别有他们自己特殊的代码片段，所以为了减小 app.js 为入口打包后的文件大小，我们还得把 corpId/index.js 进行拆分。
+
+因为公共函数、公共组件、公共函数库等被多视图模块依赖，为了利用浏览器缓存，同时减少文件大小，加快首屏渲染速度，我们还可以把公共函数进行单独打包。
+
+故按照方案，我们最后打包的内容有：
+
+```
+* app.js => app.bundle.js
+* corpId/index.js => corpId.bundle.js
+* corpId/view.js => corpId/view.bundle.js
+* ***/***.js => veoder.js
+	* compontents/
+	* BaseComponent/
+	* lib/
+	* module/
+	* store/
+```
+
+然后利用 webpack 的 require.ensure 配合 require 进行异步文件打包，并异步加载：
+
+我们已 app.js 为 demo 分别打包 corpId/index.js 为入口的文件
+
+```
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+
+var setPages = function () {}
+
+// 放在外面包着，首屏加载 loading
+class App extends Component {
+  constructor ( props ) {
+    super( props )
+    this.state = {
+      pages: null
+    }
+    setPages = this.setPages.bind( this )
+  }
+  setPages ( pages ){
+    this.setState({
+      pages: pages
+    })
+  }
+  componentDidMount () {
+    
+  }
+
+  render () {
+    const { pages } = this.state
+    return <div>
+      <h1>
+        访问的页面是：{ 
+        pages ? pages.default.name
+        : 'loading'
+      }</h1>
+    </div>
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)
+
+
+new Promise(function ( resolve, reject ) {
+
+  // 进行医院注册
+  var corpId = UtilQuery().corpId || 'base'
+  switch ( corpId ) {
+    case '161': require.ensure( [], function () {
+      var pages = require( './161/index.js' )
+      resolve( pages )
+    }, '161')
+    break
+    case '162': require.ensure( [], function () {
+      var pages = require( './162/index.js' )
+      resolve( pages )
+    }, '162')
+    break
+    default: require.ensure( [], function () { // 不能直接使用 async 否则会不进行单独文件打包。直接使用 require 则可以，但是这样会导致没有第三个 参数
+      ;(async function () {
+        var pages = require( './base/index.js' )
+        , page = await pages.default()
+        resolve( page )
+      })()
+    }, 'base')
+  }
+}).then(function ( pages ) {
+  setPages( pages )
+})
+
+function UtilQuery () {
+  var search = window.location.search
+  , query = {}
+  search = search.slice(1).split('&')
+  search.forEach(function ( val ) {
+    var temp = val.split('=')
+    query[ temp[0] ] = decodeURIComponent( temp[1] )
+  })
+  return query
+}
+```
