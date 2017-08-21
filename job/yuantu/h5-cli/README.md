@@ -18,7 +18,7 @@
 
 ## 基础架构
 ### 基础模型
-![](https://front-images.oss-cn-hangzhou.aliyuncs.com/i4/dbc216720ddd7ff499d44406e4523ed8-733-475.png)
+![](http://upload-images.jianshu.io/upload_images/604678-78348f70f6ad52c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 app.js 主要起到一个路由的功能
 
