@@ -9,6 +9,7 @@
 		html,body {
 			height: 100%;
 			overflow: hidden;
+			touch-action: none; 
 		}
 		* {
 			padding: 0;
@@ -58,7 +59,7 @@
 	body.ontouchstart = function (event) {
 		event = event || window.event
 		// startTop = event.layerY
-		startTop = event.pageY
+		startTop = event.touches[0].pageY
 		startTime = new Date().getTime()
 		offsetSTop = content.offsetTop
 
@@ -67,17 +68,16 @@
 		
 		body.ontouchmove = function (event) {
 			event = event || window.event
-			endTop = event.pageY
-
+			endTop = event.touches[0].pageY
 			offsetETop = endTop - startTop + offsetSTop
 			content.style.top = offsetETop + 'px'
 		}
 		body.ontouchend = function (event) {
 			event = event || window.event
-			endTop = event.pageY
+			// endTop = event.touches[0].pageY
 			
 			endTime = new Date().getTime()
-
+			// console.log(endTop,startTop ,endTime,startTime);
 			speed = ( (endTop-startTop)/(endTime-startTime) ) * 16//重点
 
 			if( endTime - startTime > 300 ) return
@@ -87,21 +87,20 @@
 			timer = true
 			show()
 			function show() {
-				
 				timer && requestAnimationFrame(show)
-
 				f = Math.min( Math.abs( speed )/32, 0.5 )//重点
-
 				if(speed > 0.2){
 					speed -= f
+					console.log(100);
 				} else if(speed < -0.2){
+					console.log(200);
 					speed += f
 				} else {
+					console.log(300);
 					timer = false
 					speed = 0
 					return
 				}
-				
 
 				// consoleLog.innerHTML = f + '-' + speed
 				offsetETop += speed
